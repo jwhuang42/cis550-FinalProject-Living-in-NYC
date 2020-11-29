@@ -83,7 +83,16 @@ export default class BestGenre extends React.Component {
 			            <select value={this.state.selectedDecade} onChange={this.handleChange} className="dropdown" id="decadesDropdown">
 			            	<option select value> -- select an option -- </option>
 			            	{this.state.decades}
+							
 			            </select>
+				    	<select value={this.state.selectedDecade} onChange={this.handleChange} className="dropdown" id="decadesDropdown">
+			            	<option select value> -- select an option -- </option>
+			            	{this.state.decades}
+							<input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+  							<label for="vehicle1"> I have a bike</label><br>
+			            </select>
+						// and many other features........
+				 	
 			            <button className="submit-btn" id="decadesSubmitBtn" onClick={this.submitDecade}>Submit</button>
 			          </div>
 			        </div>

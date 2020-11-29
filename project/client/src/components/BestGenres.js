@@ -77,6 +77,7 @@ export default class BestGenre extends React.Component {
 				<div className="container bestgenres-container">
 			      <div className="jumbotron">
 			        <div className="h5">Best Genres</div>
+				<div className="h5">Best Genres again...</div>
 
 			        <div className="years-container">
 			          <div className="dropdown-container">
@@ -85,7 +86,7 @@ export default class BestGenre extends React.Component {
 			            	{this.state.decades}
 							
 			            </select>
-				    	<select value={this.state.selectedDecade} onChange={this.handleChange} className="dropdown" id="decadesDropdown">
+				    <select value={this.state.selectedDecade} onChange={this.handleChange} className="dropdown" id="decadesDropdown">
 			            	<option select value> -- select an option -- </option>
 			            	{this.state.decades}
 							<input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">

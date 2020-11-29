@@ -19,28 +19,28 @@ export default class App extends React.Component {
 							exact
 							path="/"
 							render={() => (
-								<Dashboard />
+								<BestGenres />
 							)}
 						/>
-						<Route
-							exact
-							path="/dashboard"
-							render={() => (
-								<Dashboard />
-							)}
-						/>
+// 						<Route
+// 							exact
+// 							path="/dashboard"
+// 							render={() => (
+// 								<Dashboard />
+// 							)}
+// 						/>
 // 						<Route
 // 							path="/recommendations"
 // 							render={() => (
 // 								<Recommendations />
 // 							)}
 // 						/>
-// 						<Route
-// 							path="/bestgenres"
-// 							render={() => (
-// 								<BestGenres />
-// 							)}
-// 						/>
+						<Route
+							path="/bestgenres"
+							render={() => (
+								<BestGenres />
+							)}
+						/>
 					</Switch>
 				</Router>
 			</div>

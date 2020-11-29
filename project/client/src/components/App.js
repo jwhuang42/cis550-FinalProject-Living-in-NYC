@@ -5,8 +5,8 @@ import {
 	Switch
 } from 'react-router-dom';
 import Dashboard from './Dashboard';
-import Recommendations from './Recommendations';
-import BestGenres from './BestGenres';
+// import Recommendations from './Recommendations';
+// import BestGenres from './BestGenres';
 
 export default class App extends React.Component {
 
@@ -29,18 +29,18 @@ export default class App extends React.Component {
 								<Dashboard />
 							)}
 						/>
-						<Route
-							path="/recommendations"
-							render={() => (
-								<Recommendations />
-							)}
-						/>
-						<Route
-							path="/bestgenres"
-							render={() => (
-								<BestGenres />
-							)}
-						/>
+// 						<Route
+// 							path="/recommendations"
+// 							render={() => (
+// 								<Recommendations />
+// 							)}
+// 						/>
+// 						<Route
+// 							path="/bestgenres"
+// 							render={() => (
+// 								<BestGenres />
+// 							)}
+// 						/>
 					</Switch>
 				</Router>
 			</div>

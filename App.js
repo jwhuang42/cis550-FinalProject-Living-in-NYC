@@ -8,7 +8,7 @@ import Dashboard from './Dashboard';
 import Recommendations from './Recommendations';
 import BestGenres from './BestGenres';
 import Posters from './Posters';
-hahaha
+
 export default class App extends React.Component {
 
 	render() {

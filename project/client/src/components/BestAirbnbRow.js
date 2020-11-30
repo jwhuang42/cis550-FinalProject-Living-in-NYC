@@ -9,11 +9,11 @@ export default class BestGenreRow extends React.Component {
 	render() {
 		return (
 			<div className="airbnbResults">
-				<div className="name">{this.props.name}</div>
-				<div className="accommodates">{this.props.accommodates}</div>
-				<div className="beds">{this.props.beds}</div>
-				<div className="price">{this.props.price}</div>
-				<div className="rating">{this.props.rating}</div>
+				<div className="name">{this.props.airbnbResults.name}</div>
+				<div className="accommodates">{this.props.airbnbResults.accommodates}</div>
+				<div className="beds">{this.props.airbnbResults.beds}</div>
+				<div className="price">{this.props.airbnbResults.price}</div>
+				<div className="rating">{this.props.airbnbResults.rating}</div>
 			</div>
 		);
 	}

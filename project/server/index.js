@@ -17,10 +17,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 /* ---- Best Airbnb ---- */
 
-app.get('airbnb', routes.getAccommodates);
-app.get('airbnb', routes.getBeds);
-app.get('airbnb', routes.getRoomType);
-app.get('airbnb/:neighbourhood&:accommodates&:beds&:room_type&:price_low&:price_high;', routes.bestAirbnb);
+app.get('/airbnb/accommodates', routes.getAccommodates);
+app.get('/airbnb/beds', routes.getBeds);
+app.get('/airbnb/room_type', routes.getRoomType);
+app.get('/airbnb/:neighbourhood&:accommodates&:beds&:room_type&:price_low&:price_high;', routes.bestAirbnb);
 
 
 

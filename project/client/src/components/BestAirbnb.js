@@ -15,8 +15,8 @@ export default class BestAirbnb extends React.Component {
 
 			neighborhood: "",
 			accomodates: "",
-			beds: "",
-			room_type: "",
+			bed: "",
+			roomType: "",
 			price_low: "",
 			price_high: "",
 
@@ -35,6 +35,9 @@ export default class BestAirbnb extends React.Component {
 		this.handleChange_price_low = this.handleChange_price_low.bind(this);
 		this.handleChange_price_high = this.handleChange_price_high.bind(this);
 		// 3 more
+		this.handleChange_accomodates = this.handleChange_accomodates.bind(this);
+		this.handleChange_bed = this.handleChange_bed.bind(this);
+		this.handleChange_roomType = this.handleChange_roomType.bind(this);
 
 	}
 
@@ -54,7 +57,21 @@ export default class BestAirbnb extends React.Component {
 		});
 	}
 	/// 3 more
-
+	handleChange_accomodates(e) {
+		this.setState({
+			accomodates: e.target.value
+		});
+	}
+	handleChange_bed(e) {
+		this.setState({
+			bed: e.target.value
+		});
+	}
+	handleChange_roomTyped(e) {
+		this.setState({
+			roomType: e.target.value
+		});
+	}
 
 	/* ---- Q3a (Best Genres) ---- */
 	componentDidMount() {
@@ -78,46 +95,41 @@ export default class BestAirbnb extends React.Component {
       .catch(err => console.log(err))
 
 
-
-
-
-
-
 			// fetch beds
 			fetch("http://localhost:8081/beds", {
 	      method: 'GET' // The type of HTTP request.
 	    })
 	      .then(res => res.json()) // Convert the response data to a JSON.
-	      .then(decadesList => {
+	      .then(bedList => {
 
-	      	let decadesDivs = decadesList.map((decade, i) =>
-	          <option value={decade.decade}>{decade.decade}</option>
+	      	let bedDivs = bedList.map((bed, i) =>
+	          <option value={bed.bed}>{bed.bed}</option>
 	        );
 
 	        this.setState({
-	          decades: decadesDivs,
-						decades2: decadesDivs
+	          beds: bedDivs,
+				
 	        })
 	      })
 	      .catch(err => console.log(err))
 
 				// fetch room_type
-				// fetch("http://localhost:8081/room_type", {
-		    //   method: 'GET' // The type of HTTP request.
-		    // })
-		    //   .then(res => res.json()) // Convert the response data to a JSON.
-		    //   .then(decadesList => {
-				//
-		    //   	let decadesDivs = decadesList.map((decade, i) =>
-		    //       <option value={decade.decade}>{decade.decade}</option>
-		    //     );
-				//
-		    //     this.setState({
-		    //       decades: decadesDivs,
-				// 			decades2: decadesDivs
-		    //     })
-		    //   })
-		    //   .catch(err => console.log(err))
+				fetch("http://localhost:8081/room_type", {
+		      method: 'GET' // The type of HTTP request.
+		    })
+		      .then(res => res.json()) // Convert the response data to a JSON.
+		      .then(roomTpyeList => {
+				
+		      	let roomTpyesDivs = roomTpyeList.map((roomTpye, i) =>
+		          <option value={roomTpye.roomTpye}>{roomTpye.roomTpye}</option>
+		        );
+				
+		        this.setState({
+				  room_tpye: roomTpyeDivs,
+							
+		        })
+		      })
+		      .catch(err => console.log(err))
 	}
 
 
@@ -166,17 +178,17 @@ export default class BestAirbnb extends React.Component {
 
 									<input type='text' placeholder="Enter Neighborhood" value={this.state.neighborhood} onChange={this.handleChange_neighborhood} id="neighborhood" className="neighborhood-input"/>
 
-									<select value={this.state.accomodates} onChange={this.handleAccomodateChange} className="dropdown" id="accomodatesDropdown">
+									<select value={this.state.accomodates} onChange={this.handleChange_accomodates} className="dropdown" id="accomodatesDropdown">
 			            	<option select value> -- select an option -- </option>
 			            	{this.state.accomodates_list}
 			            </select>
-									// <select value={this.state.selectedDecade2} onChange={this.handleChange2} className="dropdown" id="bedsDropdown">
+									// <select value={this.state.bed} onChange={this.handleChange_bed} className="dropdown" id="bedsDropdown">
 			            // 	<option select value> -- select an option -- </option>
-			            // 	{this.state.decades2}
+			            // 	{this.state.beds}
 			            // </select>
-									// <select value={this.state.selectedDecade2} onChange={this.handleChange2} className="dropdown" id="room_typeDropdown">
+									// <select value={this.state.roomType} onChange={this.handleChange_roomType} className="dropdown" id="room_typeDropdown">
 			            // 	<option select value> -- select an option -- </option>
-			            // 	{this.state.decades2}
+			            // 	{this.state.oom_type}
 			            // </select>
 
 									<input type='text' placeholder="Enter price_low" value={this.state.price_low} onChange={this.handleChange_price_low} id="pl" className="neighborhood-input"/>
@@ -192,12 +204,11 @@ export default class BestAirbnb extends React.Component {
 
 
 								// schema name
-			            <div className="header"><strong>Genre</strong></div>
-			            <div className="header"><strong>Average Rating</strong></div>
-
-
-
-
+			            <div className="header"><strong>name</strong></div>
+			            <div className="header"><strong>accommodates</strong></div>
+			            <div className="header"><strong>beds</strong></div>
+			            <div className="header"><strong>price</strong></div>
+			            <div className="header"><strong>rating</strong></div>
 
 			          </div>
 			          <div className="movies-container" id="results">

@@ -14,8 +14,8 @@ var connection = mysql.createPool(config);
 
 function getAccommodates(req, res) {
 	var query = `
-        SELECT DISTINCT accommodates
-        FROM airbnb_listings
+		SELECT DISTINCT accommodates
+		FROM airbnb_listings
 		WHERE accommodates > 0
 		ORDER BY accommodates;
   	`;
@@ -29,30 +29,30 @@ function getAccommodates(req, res) {
 
 function getBeds(req, res) {
 	var query = `
-        SELECT DISTINCT beds
-        FROM airbnb_listings
-        WHERE beds > 0
-        ORDER BY beds;
-    `;
-    connection.query(query, function(err, rows, fields) {
-        if (err) console.log(err);
-        else {
-            res.json(rows);
-        }
-    });
+		SELECT DISTINCT beds
+		FROM airbnb_listings
+		WHERE beds > 0
+		ORDER BY beds;
+    	`;
+    	connection.query(query, function(err, rows, fields) {
+        	if (err) console.log(err);
+        	else {
+            		res.json(rows);
+        	}
+    	});
 }
 
 function getRoomType(req, res) {
 	var query = `
-        SELECT DISTINCT RoomType
-        FROM airbnb_listings;
-    `;
-    connection.query(query, function(err, rows, fields) {
-        if (err) console.log(err);
-        else {
-            res.json(rows);
-        }
-    });
+		SELECT DISTINCT RoomType
+		FROM airbnb_listings;
+    	`;
+    	connection.query(query, function(err, rows, fields) {
+        	if (err) console.log(err);
+        	else {
+            		res.json(rows);
+        	}
+    	});
 }
 
 function bestAirbnb(req, res) {
@@ -63,7 +63,7 @@ function bestAirbnb(req, res) {
     var inputPriceLow = req.params.price_low;
     var inputPriceHigh = req.params.price_high;
     var query = `
-        SELECT name, accommodates, beds, price, review_scores_rating 
+        SELECT name, accommodates, beds, price, review_scores_rating AS rating
         FROM airbnb_listings
         WHERE host_neighbourhood = '${inputNeighbourhood}'
             AND accommodates >= '${inputAccomodates}'

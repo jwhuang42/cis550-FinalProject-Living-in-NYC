@@ -70,7 +70,7 @@ function bestAirbnb(req, res) {
             AND beds >= ${inputBeds}
             AND room_type = '${inputRoomType}'
             AND price > ${inputPriceLow} AND price < ${inputPriceHigh}
-        ORDER BY review_scores_rating DESC 
+        ORDER BY review_scores_rating DESC
         LIMIT 10;
     `;
     connection.query(query, function(err, rows, fields) {
@@ -83,12 +83,12 @@ function bestAirbnb(req, res) {
 };
 
 
-
+// change the above
 // The exported functions, which can be accessed in index.js.
 module.exports = {
-	getAllGenres: getAllGenres,
-	getTopInGenre: getTopInGenre,
-	getRecs: getRecs,
-	getDecades: getDecades,
-  bestGenresPerDecade: bestGenresPerDecade
+	getAccommodates: getAccommodates,
+	getBeds: getBeds,
+	getRoomType: getRoomType,
+	bestAirbnb: bestAirbnb
+
 }

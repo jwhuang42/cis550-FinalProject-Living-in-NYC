@@ -22,6 +22,7 @@ function getAccommodates(req, res) {
 	connection.query(query, function(err, rows, fields) {
 		if (err) console.log(err);
 		else {
+			console.log(rows);
 		  	res.json(rows);
 		}
 	});
@@ -37,6 +38,7 @@ function getBeds(req, res) {
     	connection.query(query, function(err, rows, fields) {
         	if (err) console.log(err);
         	else {
+						console.log(rows);
             		res.json(rows);
         	}
     	});
@@ -44,12 +46,13 @@ function getBeds(req, res) {
 
 function getRoomType(req, res) {
 	var query = `
-		SELECT DISTINCT RoomType
+		SELECT DISTINCT room_type
 		FROM airbnb_listings;
     	`;
     	connection.query(query, function(err, rows, fields) {
         	if (err) console.log(err);
         	else {
+								console.log(rows);
             		res.json(rows);
         	}
     	});
@@ -59,7 +62,7 @@ function bestAirbnb(req, res) {
     var inputNeighbourhood = req.params.neighbourhood;
     var inputAccomodates = req.params.accommodates;
     var inputBeds = req.params.beds;
-    var inputRoomType = req.params.room_type;
+    // var inputRoomType = req.params.room_type;
     var inputPriceLow = req.params.price_low;
     var inputPriceHigh = req.params.price_high;
     var query = `
@@ -68,7 +71,7 @@ function bestAirbnb(req, res) {
         WHERE host_neighbourhood = '${inputNeighbourhood}'
             AND accommodates >= '${inputAccomodates}'
             AND beds >= ${inputBeds}
-            AND room_type = '${inputRoomType}'
+
             AND price > ${inputPriceLow} AND price < ${inputPriceHigh}
         ORDER BY review_scores_rating DESC
         LIMIT 10;

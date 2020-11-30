@@ -1,7 +1,7 @@
 import React from 'react';
 import PageNavbar from './PageNavbar';
 import BestAirbnbRow from './BestAirbnbRow';
-import '../style/BestAirbnb.css';
+import '../style/BestGenres.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 //neighborhood(user input), accomodates(), beds(number1-14), room type(4 types), price(min-max)
@@ -24,8 +24,8 @@ export default class BestAirbnb extends React.Component {
 
 
 			accomodates_list: [],
-			beds: [],
-			room_type: []
+			beds_list: [],
+			room_type_list: []
 		};
 
 		this.submitResult = this.submitResult.bind(this);
@@ -67,7 +67,7 @@ export default class BestAirbnb extends React.Component {
 			bed: e.target.value
 		});
 	}
-	handleChange_roomTyped(e) {
+	handleChange_roomType(e) {
 		this.setState({
 			roomType: e.target.value
 		});
@@ -77,16 +77,16 @@ export default class BestAirbnb extends React.Component {
 	componentDidMount() {
 		// fetch accomodates
 
-	  fetch("http://localhost:8081/accomodate", {
+	  fetch("http://localhost:8081/airbnb/accommodates", {
       method: 'GET' // The type of HTTP request.
     })
       .then(res => res.json()) // Convert the response data to a JSON.
       .then(accomodatesList => {
 
       	let accomodatesDivs = accomodatesList.map((accomodates, i) =>
-          <option value={accomodates.accomodates}>{accomodates.accomodates}</option>
+          <option value={accomodates.accommodates}>{accomodates.accommodates}</option>
         );
-
+				console.log(accomodatesDivs);
         this.setState({
           accomodates_list: accomodatesDivs,
 
@@ -96,37 +96,38 @@ export default class BestAirbnb extends React.Component {
 
 
 			// fetch beds
-			fetch("http://localhost:8081/beds", {
+			fetch("http://localhost:8081/airbnb/beds", {
 	      method: 'GET' // The type of HTTP request.
 	    })
 	      .then(res => res.json()) // Convert the response data to a JSON.
 	      .then(bedList => {
 
+
 	      	let bedDivs = bedList.map((bed, i) =>
-	          <option value={bed.bed}>{bed.bed}</option>
+	          <option value={bed.beds}>{bed.beds}</option>
 	        );
 
 	        this.setState({
-	          beds: bedDivs,
-				
+	          beds_list: bedDivs,
+
 	        })
 	      })
 	      .catch(err => console.log(err))
 
 				// fetch room_type
-				fetch("http://localhost:8081/room_type", {
+				fetch("http://localhost:8081/airbnb/room_type", {
 		      method: 'GET' // The type of HTTP request.
 		    })
 		      .then(res => res.json()) // Convert the response data to a JSON.
 		      .then(roomTpyeList => {
-				
-		      	let roomTpyesDivs = roomTpyeList.map((roomTpye, i) =>
-		          <option value={roomTpye.roomTpye}>{roomTpye.roomTpye}</option>
+
+		      	let roomTypeDivs = roomTpyeList.map((roomTpye, i) =>
+		          <option value={roomTpye.room_type}>{roomTpye.room_type}</option>
 		        );
-				
+
 		        this.setState({
-				  room_tpye: roomTpyeDivs,
-							
+				  room_type_list: roomTypeDivs,
+
 		        })
 		      })
 		      .catch(err => console.log(err))
@@ -139,10 +140,7 @@ export default class BestAirbnb extends React.Component {
 		console.log("price low is: " + this.state.price_low)
 		console.log("price high is: " + this.state.price_high)
 
-		fetch("http://localhost:8081/airbnb/" +
-		this.state.neighborhood+ "&" + this.state.accomodates
-		+ "&" + this.state.beds+ "&" + this.state.room_type
-		+ "&" + this.state.price_low + "&" + this.state.price_high, {
+		fetch("http://localhost:8081/airbnb/" +	this.state.neighborhood+ "&" + this.state.accomodates	+ "&" + this.state.bed	+ "&" + this.state.price_low + "&" + this.state.price_high, {
       method: 'GET' // The type of HTTP request.
     })
       .then(res => res.json()) // Convert the response data to a JSON.
@@ -179,17 +177,17 @@ export default class BestAirbnb extends React.Component {
 									<input type='text' placeholder="Enter Neighborhood" value={this.state.neighborhood} onChange={this.handleChange_neighborhood} id="neighborhood" className="neighborhood-input"/>
 
 									<select value={this.state.accomodates} onChange={this.handleChange_accomodates} className="dropdown" id="accomodatesDropdown">
-			            	<option select value> -- select an option -- </option>
+			            	<option select value> -- select accomodate number -- </option>
 			            	{this.state.accomodates_list}
 			            </select>
-									// <select value={this.state.bed} onChange={this.handleChange_bed} className="dropdown" id="bedsDropdown">
-			            // 	<option select value> -- select an option -- </option>
-			            // 	{this.state.beds}
-			            // </select>
-									// <select value={this.state.roomType} onChange={this.handleChange_roomType} className="dropdown" id="room_typeDropdown">
-			            // 	<option select value> -- select an option -- </option>
-			            // 	{this.state.oom_type}
-			            // </select>
+									<select value={this.state.bed} onChange={this.handleChange_bed} className="dropdown" id="bedsDropdown">
+			            	<option select value> -- select bed number -- </option>
+			            	{this.state.beds_list}
+			            </select>
+									<select value={this.state.roomType} onChange={this.handleChange_roomType} className="dropdown" id="room_typeDropdown">
+			            	<option select value> -- select room type -- </option>
+			            	{this.state.room_type_list}
+			            </select>
 
 									<input type='text' placeholder="Enter price_low" value={this.state.price_low} onChange={this.handleChange_price_low} id="pl" className="neighborhood-input"/>
 									<input type='text' placeholder="Enter price_high" value={this.state.price_high} onChange={this.handleChange_price_high} id="ph" className="neighborhood-input"/>
@@ -202,8 +200,6 @@ export default class BestAirbnb extends React.Component {
 			        <div className="movies-container">
 			          <div className="movie">
 
-
-								// schema name
 			            <div className="header"><strong>name</strong></div>
 			            <div className="header"><strong>accommodates</strong></div>
 			            <div className="header"><strong>beds</strong></div>

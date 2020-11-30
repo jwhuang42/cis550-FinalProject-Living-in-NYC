@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/airbnb/accommodates', routes.getAccommodates);
 app.get('/airbnb/beds', routes.getBeds);
 app.get('/airbnb/room_type', routes.getRoomType);
-app.get('/airbnb/:neighbourhood&:accommodates&:beds&:price_low&:price_high', routes.bestAirbnb);
+app.get('/airbnb/:neighbourhood&:accommodates&:beds&:room_type&:price_low&:price_high', routes.bestAirbnb);
 
 
 

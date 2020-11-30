@@ -62,16 +62,21 @@ function bestAirbnb(req, res) {
     var inputNeighbourhood = req.params.neighbourhood;
     var inputAccomodates = req.params.accommodates;
     var inputBeds = req.params.beds;
-    // var inputRoomType = req.params.room_type;
+    var inputRoomType = req.params.room_type;
     var inputPriceLow = req.params.price_low;
     var inputPriceHigh = req.params.price_high;
+
+		inputRoomType = inputRoomType.replace("q", "/");
+		inputRoomType = inputRoomType.replace(/_/g, " ");
+		console.log(inputRoomType);
+		
     var query = `
         SELECT name, accommodates, beds, price, review_scores_rating AS rating
         FROM airbnb_listings
         WHERE host_neighbourhood = '${inputNeighbourhood}'
             AND accommodates >= '${inputAccomodates}'
             AND beds >= ${inputBeds}
-
+            AND room_type = '${inputRoomType}'
             AND price > ${inputPriceLow} AND price < ${inputPriceHigh}
         ORDER BY review_scores_rating DESC
         LIMIT 10;

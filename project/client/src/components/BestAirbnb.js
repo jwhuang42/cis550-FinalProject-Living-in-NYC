@@ -139,8 +139,10 @@ export default class BestAirbnb extends React.Component {
 		console.log("neighborhood is: " + this.state.neighborhood)
 		console.log("price low is: " + this.state.price_low)
 		console.log("price high is: " + this.state.price_high)
+		var rmType = this.state.roomType.replace(/ /g,"_");
+		rmType = rmType.replace("/","q")
 
-		fetch("http://localhost:8081/airbnb/" +	this.state.neighborhood+ "&" + this.state.accomodates	+ "&" + this.state.bed	+ "&" + this.state.price_low + "&" + this.state.price_high, {
+		fetch("http://localhost:8081/airbnb/" +	this.state.neighborhood+ "&" + this.state.accomodates	+ "&" + this.state.bed + "&" + rmType	+ "&" + this.state.price_low + "&" + this.state.price_high, {
       method: 'GET' // The type of HTTP request.
     })
       .then(res => res.json()) // Convert the response data to a JSON.

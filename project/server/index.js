@@ -15,6 +15,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 
+/* ---- Best Airbnb ---- */
+
+app.get('airbnb', routes.getAccommodates);
+app.get('airbnb', routes.getBeds);
+app.get('airbnb', routes.getRoomType);
+app.get('airbnb/:neighbourhood&:accommodates&:beds&:room_type&:price_low&:price_high;', routes.bestAirbnb);
+
+
+
 app.listen(8081, () => {
 	console.log(`Server listening on PORT 8081`);
 });

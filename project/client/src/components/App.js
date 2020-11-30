@@ -5,8 +5,9 @@ import {
 	Switch
 } from 'react-router-dom';
 import Dashboard from './Dashboard';
-import Recommendations from './Recommendations';
-import BestGenres from './BestGenres';
+
+import BestAirbnb from './BestAirbnb';
+
 
 export default class App extends React.Component {
 
@@ -19,28 +20,17 @@ export default class App extends React.Component {
 							exact
 							path="/"
 							render={() => (
-								<BestGenres />
+								<BestAirbnb />
 							)}
 						/>
-// 						<Route
-// 							exact
-// 							path="/dashboard"
-// 							render={() => (
-// 								<Dashboard />
-// 							)}
-// 						/>
-// 						<Route
-// 							path="/recommendations"
-// 							render={() => (
-// 								<Recommendations />
-// 							)}
-// 						/>
 						<Route
-							path="/bestgenres"
+							exact
+							path="/dashboard"
 							render={() => (
-								<BestGenres />
+								<BestAirbnb />
 							)}
 						/>
+
 					</Switch>
 				</Router>
 			</div>

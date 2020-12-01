@@ -1,7 +1,7 @@
 import React from 'react';
 import PageNavbar from './PageNavbar';
 import BestAirbnbRow from './BestAirbnbRow';
-import '../style/BestGenres.css';
+import '../style/BestAirbnb.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 //neighborhood(user input), accomodates(), beds(number1-14), room type(4 types), price(min-max)
@@ -13,7 +13,7 @@ export default class BestAirbnb extends React.Component {
 		this.state = {
 
 
-			neighborhood: "",
+			neighborhood: "Midtown",
 			accomodates: "",
 			bed: "",
 			roomType: "",
@@ -159,7 +159,11 @@ export default class BestAirbnb extends React.Component {
       .catch(err => console.log(err))
 	}
 
-
+	// <div className="header"><strong>name</strong></div>
+	// <div className="header"><strong>accommodates</strong></div>
+	// <div className="header"><strong>beds</strong></div>
+	// <div className="header"><strong>price</strong></div>
+	// <div className="header"><strong>rating</strong></div>
 
 	render() {
 
@@ -169,50 +173,68 @@ export default class BestAirbnb extends React.Component {
 
 				<div className="container bestgenres-container">
 			      <div className="jumbotron">
-			        <div className="h5">Best Genres</div>
+			        <div className="h5">Best Bnb recommendation</div>
 
 			        <div className="years-container">
 			          <div className="dropdown-container">
 
 
+									<div class="row">
+										<label> Enter your preferred neighborhood: </label>
 
-									<input type='text' placeholder="Enter Neighborhood" value={this.state.neighborhood} onChange={this.handleChange_neighborhood} id="neighborhood" className="neighborhood-input"/>
-
-									<select value={this.state.accomodates} onChange={this.handleChange_accomodates} className="dropdown" id="accomodatesDropdown">
-			            	<option select value> -- select accomodate number -- </option>
-			            	{this.state.accomodates_list}
-			            </select>
-									<select value={this.state.bed} onChange={this.handleChange_bed} className="dropdown" id="bedsDropdown">
-			            	<option select value> -- select bed number -- </option>
-			            	{this.state.beds_list}
-			            </select>
-									<select value={this.state.roomType} onChange={this.handleChange_roomType} className="dropdown" id="room_typeDropdown">
-			            	<option select value> -- select room type -- </option>
-			            	{this.state.room_type_list}
-			            </select>
-
-									<input type='text' placeholder="Enter price_low" value={this.state.price_low} onChange={this.handleChange_price_low} id="pl" className="neighborhood-input"/>
-									<input type='text' placeholder="Enter price_high" value={this.state.price_high} onChange={this.handleChange_price_high} id="ph" className="neighborhood-input"/>
-
-			            <button className="submit-btn" id="decadesSubmitBtn" onClick={this.submitResult}>Submit</button>
+										<input type='text' placeholder="Enter Neighborhood" value={this.state.neighborhood} onChange={this.handleChange_neighborhood} id="neighborhood" className="neighborhood-input"/>
+									</div>
+									<div class="row"><p></p></div>
+									<div class="row">
+										<div class="col-4">
+											<select value={this.state.accomodates} onChange={this.handleChange_accomodates} className="dropdown" id="accomodatesDropdown">
+					            	<option select value> -- select accomodate number -- </option>
+					            	{this.state.accomodates_list}
+					            </select>
+										</div>
+										<div class="col-4">
+											<select value={this.state.bed} onChange={this.handleChange_bed} className="dropdown" id="bedsDropdown">
+					            	<option select value> -- select bed number -- </option>
+					            	{this.state.beds_list}
+					            </select>
+										</div>
+										<div class="col-4">
+											<select value={this.state.roomType} onChange={this.handleChange_roomType} className="dropdown" id="room_typeDropdown">
+					            	<option select value> -- select room type -- </option>
+					            	{this.state.room_type_list}
+					            </select>
+										</div>
+									</div>
+									<div class="row"><p></p></div>
+									<div class="row">
+										<div class="col-4">
+											<input type='text' placeholder="Enter price_low" value={this.state.price_low} onChange={this.handleChange_price_low} id="pl" className="price_low-input"/>
+										</div>
+										<div class="col-4">
+											<input type='text' placeholder="Enter price_high" value={this.state.price_high} onChange={this.handleChange_price_high} id="ph" className="price_high-input"/>
+										</div>
+										<div class="col-4">
+			            		<button className="submit-btn" id="decadesSubmitBtn" onClick={this.submitResult}>Submit</button>
+										</div>
+									</div>
 			          </div>
 			        </div>
 			      </div>
 			      <div className="jumbotron">
-			        <div className="movies-container">
-			          <div className="movie">
 
-			            <div className="header"><strong>name</strong></div>
-			            <div className="header"><strong>accommodates</strong></div>
-			            <div className="header"><strong>beds</strong></div>
-			            <div className="header"><strong>price</strong></div>
-			            <div className="header"><strong>rating</strong></div>
+			          <div className="airbnb-head">
+
+			            <div class="row" className="header"><strong>You May like: </strong></div>
 
 			          </div>
 			          <div className="movies-container" id="results">
-			            {this.state.result}
+									<div class="row">
+										<div class="col-lg-4">
+			            		{this.state.result}
+										</div>
+									</div>
 			          </div>
-			        </div>
+
 			      </div>
 			    </div>
 			</div>

@@ -8,12 +8,26 @@ export default class BestGenreRow extends React.Component {
 
 	render() {
 		return (
-			<div className="airbnbResults">
-				<div className="name">{this.props.airbnbResults.name}</div>
-				<div className="accommodates">{this.props.airbnbResults.accommodates}</div>
-				<div className="beds">{this.props.airbnbResults.beds}</div>
-				<div className="price">{this.props.airbnbResults.price}</div>
-				<div className="rating">{this.props.airbnbResults.rating}</div>
+			<div class="container" className="airbnbResults">
+				<div class="row" className="picture_link">
+					<div class="col-6">
+						<a href = {this.props.airbnbResults.picture_url}>
+							<img src={this.props.airbnbResults.picture_url} class="img-thumbnail" className="picture" alt="Apartment" />
+							</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col" className="name">{this.props.airbnbResults.name}</div>
+				</div>
+				<div class="row">
+					<div class="col" className="accommodates"> accommodates: {this.props.airbnbResults.accommodates}</div>
+				</div>
+				<div class="row">
+					<div class="col-4" className="beds"> beds#: {this.props.airbnbResults.beds}</div>
+					<div class="col-4" className="price"> price: {this.props.airbnbResults.price}</div>
+					<div class="col-4" className="rating"> rating: {this.props.airbnbResults.rating}</div>
+				</div>
+
 			</div>
 		);
 	}

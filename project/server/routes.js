@@ -69,9 +69,9 @@ function bestAirbnb(req, res) {
 		inputRoomType = inputRoomType.replace("q", "/");
 		inputRoomType = inputRoomType.replace(/_/g, " ");
 		console.log(inputRoomType);
-		
+
     var query = `
-        SELECT name, accommodates, beds, price, review_scores_rating AS rating
+        SELECT picture_url, name, accommodates, beds, price, review_scores_rating AS rating
         FROM airbnb_listings
         WHERE host_neighbourhood = '${inputNeighbourhood}'
             AND accommodates >= '${inputAccomodates}'

@@ -1,22 +1,79 @@
-.movies-container {
-  display: flex;
-  flex-flow: column wrap;
-  margin-top: 10px;
-}
 
-.movies-container .movie {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  height: 40px;
-  padding: 0 10px;
-}
+.h5{
+  position: relative;
+  top:-50px;
 
+  right:15px;
+}
+.label {
+  color: white;
+
+  float: left;
+  text-align: center;
+  font-size: 25px;
+  width:40%;
+  position: relative;
+  top:-10px;
+
+}
+.info {
+  background-color: #2196F3;
+  } /* Blue */
+
+.neighborhood_input{
+  color:gray;
+  text-align: center;
+  font-size: 25px;
+  width:25%;
+  position: relative;
+  left: 200px;
+  top:-10px;
+  width:300px;
+
+}
+.dropdown{
+  font-size: 25px;
+  color:gray;
+  width:300px;
+}
+#accomodatesDropdown{
+  position: relative;
+  right: 15px;
+}
+#pl{
+  position: relative;
+  right:15px;
+  top:10px;
+  font-size: 25px;
+  text-align: center;
+  width:300px;
+}
+#ph{
+  position: relative;
+
+  top:10px;
+  font-size: 25px;
+  text-align: center;
+  width:300px;
+}
+button{
+  position: relative;
+
+  top:10px;
+  font-size: 25px;
+  text-align: center;
+  width:300px;
+}
 .picture{
-  width: 750px;
-  height: 600px;
+  width: 350px;
+  height: 300px;
+
 }
 
 .airbnbResults{
   background-color: #e6eff4;
+
+}
+.jumbotron {
+    background: none;
 }

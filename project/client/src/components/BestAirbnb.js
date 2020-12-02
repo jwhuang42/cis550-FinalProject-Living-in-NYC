@@ -14,11 +14,11 @@ export default class BestAirbnb extends React.Component {
 
 
 			neighborhood: "Midtown",
-			accomodates: "2",
-			bed: "1",
-			roomType: "Entire home/apt",
-			price_low: "10",
-			price_high: "300",
+			accomodates: "",
+			bed: "",
+			roomType: "",
+			price_low: "",
+			price_high: "",
 
 			result: [],
 
@@ -178,17 +178,18 @@ export default class BestAirbnb extends React.Component {
 			        <div className="years-container">
 			          <div className="dropdown-container">
 
-
 									<div class="row">
-										<label> Enter your preferred neighborhood: </label>
 
-										<input type='text' placeholder="Enter Neighborhood" value={this.state.neighborhood} onChange={this.handleChange_neighborhood} id="neighborhood" className="neighborhood-input"/>
+
+										<span class="label info">Enter your preferred neighborhood:</span>
+
+										<input type='text' placeholder="Enter Neighborhood" value={this.state.neighborhood} onChange={this.handleChange_neighborhood} id="neighborhood" className="neighborhood_input"/>
 									</div>
 									<div class="row"><p></p></div>
 									<div class="row">
 										<div class="col-4">
 											<select value={this.state.accomodates} onChange={this.handleChange_accomodates} className="dropdown" id="accomodatesDropdown">
-					            	<option select value> -- select accomodate number -- </option>
+					            	<option select value> -- select accomodates -- </option>
 					            	{this.state.accomodates_list}
 					            </select>
 										</div>
@@ -214,7 +215,7 @@ export default class BestAirbnb extends React.Component {
 											<input type='text' placeholder="Enter price_high" value={this.state.price_high} onChange={this.handleChange_price_high} id="ph" className="price_high-input"/>
 										</div>
 										<div class="col-4">
-			            		<button className="submit-btn" id="decadesSubmitBtn" onClick={this.submitResult}>Submit</button>
+			            		<button className="submit-btn" id="decadesSubmitBtn" onClick={this.submitResult}>Search</button>
 										</div>
 									</div>
 			          </div>

@@ -14,11 +14,11 @@ export default class BestAirbnb extends React.Component {
 
 
 			neighborhood: "Midtown",
-			accomodates: "",
-			bed: "",
+			accomodates: "1",
+			bed: "1",
 			roomType: "",
-			price_low: "",
-			price_high: "",
+			price_low: "1",
+			price_high: "1000",
 
 			result: [],
 
@@ -165,27 +165,90 @@ export default class BestAirbnb extends React.Component {
 	// <div className="header"><strong>price</strong></div>
 	// <div className="header"><strong>rating</strong></div>
 
+	// <span class="label info">Enter your preferred neighborhood:</span>
+	// <input type='text' placeholder="Enter Neighborhood" value={this.state.neighborhood} onChange={this.handleChange_neighborhood} id="neighborhood" className="neighborhood_input"/>
+
+
+
+
+
+// Below is an example code of a much better header part: make sure to use class as attribute in each tag, not className
+
+// <form>
+//   <div class="form-row">
+//     <div class="form-group col-md-6">
+//       <label for="inputEmail4">Email</label>
+//       <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+//     </div>
+//     <div class="form-group col-md-6">
+//       <label for="inputPassword4">Password</label>
+//       <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+//     </div>
+//   </div>
+//   <div class="form-group">
+//     <label for="inputAddress">Address</label>
+//     <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+//   </div>
+//   <div class="form-group">
+//     <label for="inputAddress2">Address 2</label>
+//     <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+//   </div>
+//   <div class="form-row">
+//     <div class="form-group col-md-6">
+//       <label for="inputCity">City</label>
+//       <input type="text" class="form-control" id="inputCity">
+//     </div>
+//     <div class="form-group col-md-4">
+//       <label for="inputState">State</label>
+//       <select id="inputState" class="form-control">
+//         <option selected>Choose...</option>
+//         <option>...</option>
+//       </select>
+//     </div>
+//     <div class="form-group col-md-2">
+//       <label for="inputZip">Zip</label>
+//       <input type="text" class="form-control" id="inputZip">
+//     </div>
+//   </div>
+//   <div class="form-group">
+//     <div class="form-check">
+//       <input class="form-check-input" type="checkbox" id="gridCheck">
+//       <label class="form-check-label" for="gridCheck">
+//         Check me out
+//       </label>
+//     </div>
+//   </div>
+//   <button type="submit" class="btn btn-primary">Sign in</button>
+// </form>
+
+
 	render() {
 
 		return (
 			<div className="BestGenres">
 				<PageNavbar active="bestgenres" />
 
-				<div className="container bestgenres-container">
-			      <div className="jumbotron">
-			        <div className="h5">Best Bnb recommendation</div>
+				<div class="container bestgenres-container">
+						<div><p></p></div>
+			      <div class="jumbotron" >
+			        <div class="h1 text-primary">Best Bnb recommendation</div>
 
-			        <div className="years-container">
+			        <br/>
 			          <div className="dropdown-container">
 
 									<div class="row">
+										<div class="input-group mb-3">
+											<div class="input-group-prepend">
+												<span class="input-group-text" id="">Enter a neighborhood you prefer </span>
+											</div>
+											<input type="text" class="form-control" placeholder="Enter Neighborhood" value={this.state.neighborhood} onChange={this.handleChange_neighborhood} id="neighborhood"/>
+										</div>
 
 
-										<span class="label info">Enter your preferred neighborhood:</span>
 
-										<input type='text' placeholder="Enter Neighborhood" value={this.state.neighborhood} onChange={this.handleChange_neighborhood} id="neighborhood" className="neighborhood_input"/>
 									</div>
-									<div class="row"><p></p></div>
+									<br/>
+
 									<div class="row">
 										<div class="col-4">
 											<select value={this.state.accomodates} onChange={this.handleChange_accomodates} className="dropdown" id="accomodatesDropdown">
@@ -215,22 +278,23 @@ export default class BestAirbnb extends React.Component {
 											<input type='text' placeholder="Enter price_high" value={this.state.price_high} onChange={this.handleChange_price_high} id="ph" className="price_high-input"/>
 										</div>
 										<div class="col-4">
-			            		<button className="submit-btn" id="decadesSubmitBtn" onClick={this.submitResult}>Search</button>
+			            		<button type="button" class="btn btn-danger"  onClick={this.submitResult}>Search</button>
 										</div>
 									</div>
 			          </div>
-			        </div>
+
 			      </div>
-			      <div className="jumbotron">
+			      <div class="jumbotron"  >
 
-			          <div className="airbnb-head">
+			          <div class="row" className="airbnb-head" >
 
-			            <div class="row" className="header"><strong>You May like: </strong></div>
+			            <div class="col" ><strong>You May like: </strong></div>
 
 			          </div>
+								<br/>
 			          <div className="movies-container" id="results">
-									<div class="row">
-										<div class="col-lg-4">
+									<div class="row d-flex align-content-start flex-wrap">
+										<div class="col-lg-12 col-md-6 ">
 			            		{this.state.result}
 										</div>
 									</div>

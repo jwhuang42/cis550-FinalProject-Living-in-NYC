@@ -28,7 +28,7 @@
   position: relative;
   left: 200px;
   top:-10px;
-  width:300px;
+
 
 }
 .dropdown{
@@ -64,16 +64,12 @@ button{
   text-align: center;
   width:300px;
 }
-.picture{
-  width: 350px;
-  height: 300px;
 
-}
 
 .airbnbResults{
   background-color: #e6eff4;
 
 }
-.jumbotron {
-    background: none;
+.head-jumbotron {
+
 }

@@ -27,9 +27,9 @@ export default class BestGenreRow extends React.Component {
 		return (
 			<div class="container" >
 				<div class="row justify-content-md-center" >
-					<div class="col-6 ">
+					<div class="col-4 ">
 						<a href = {this.props.airbnbResults.picture_url}>
-							<img src={this.props.airbnbResults.picture_url} class="img-fluid rounded" alt="Apartment" />
+							<img src={this.props.airbnbResults.picture_url} class="img-fluid rounded border border-primary border-3" alt="Apartment" />
 						</a>
 					</div>
 				</div>

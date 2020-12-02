@@ -294,7 +294,7 @@ export default class BestAirbnb extends React.Component {
 								<br/>
 			          <div className="movies-container" id="results">
 									<div class="row d-flex align-content-start flex-wrap">
-										<div class="col-lg-12 col-md-6 ">
+										<div class="">
 			            		{this.state.result}
 										</div>
 									</div>

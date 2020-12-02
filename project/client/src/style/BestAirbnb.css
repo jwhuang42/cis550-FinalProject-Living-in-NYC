@@ -65,7 +65,9 @@ button{
   width:300px;
 }
 
-
+.border-3{
+  border-width: thick
+}
 .airbnbResults{
   background-color: #e6eff4;
 

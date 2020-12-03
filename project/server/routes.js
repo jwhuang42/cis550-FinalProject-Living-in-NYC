@@ -35,13 +35,13 @@ function getBeds(req, res) {
 		WHERE beds > 0
 		ORDER BY beds;
     	`;
-    	connection.query(query, function(err, rows, fields) {
-        	if (err) console.log(err);
-        	else {
-						console.log(rows);
-            		res.json(rows);
-        	}
-    	});
+    connection.query(query, function(err, rows, fields) {
+        if (err) console.log(err);
+        else {
+			console.log(rows);
+            res.json(rows);
+        }
+    });
 }
 
 function getRoomType(req, res) {
@@ -49,13 +49,13 @@ function getRoomType(req, res) {
 		SELECT DISTINCT room_type
 		FROM airbnb_listings;
     	`;
-    	connection.query(query, function(err, rows, fields) {
-        	if (err) console.log(err);
-        	else {
-								console.log(rows);
-            		res.json(rows);
-        	}
-    	});
+    connection.query(query, function(err, rows, fields) {
+    	if (err) console.log(err);
+    	else {
+			console.log(rows);
+            res.json(rows);
+        }
+    });
 }
 
 function bestAirbnb(req, res) {

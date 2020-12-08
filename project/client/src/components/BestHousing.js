@@ -1,9 +1,8 @@
 import React from 'react';
-import '../style/Dashboard.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import PageNavbar from './PageNavbar';
-import GenreButton from './GenreButton';
-import DashboardMovieRow from './DashboardMovieRow';
+import BestHousingRow from './BestHousingRow';
+import '../style/BestHousing.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -31,7 +30,7 @@ export default class Dashboard extends React.Component {
         // Map each genreObj in genreList to an HTML element:
         // A button which triggers the showMovies function for each genre.
         let genreDivs = genreList.map((genreObj, i) =>
-          <GenreButton id={"button-" + genreObj.genre} onClick={() => this.showMovies(genreObj.genre)} genre={genreObj.genre} />
+          <BestHousingRow id={"button-" + genreObj.genre} onClick={() => this.showMovies(genreObj.genre)} genre={genreObj.genre} />
         );
 
         // Set the state of the genres list to the value returned by the HTTP response from the server.
@@ -55,7 +54,7 @@ export default class Dashboard extends React.Component {
           if (!movieList) return;
           console.log(movieList); //displays your JSON object in the console
 		  let movieDivs = movieList.map((movie, i) =>
-			<DashboardMovieRow title={movie.title} rating={movie.rating} vote_count={movie.vote_count} />
+			<BestHousingRow title={movie.title} rating={movie.rating} vote_count={movie.vote_count} />
 		  );
 
           // Set the state of the movies list to the value returned by the HTTP response from the server.

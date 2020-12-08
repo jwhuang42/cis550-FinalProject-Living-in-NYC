@@ -3,7 +3,7 @@ var mysql = require('mysql');
 
 config.connectionLimit = 10;
 var connection = mysql.createPool(config);
-
+var mongoConnection = mongo.MongoClient;
 /* -------------------------------------------------- */
 /* ------------------- Route Handlers --------------- */
 /* -------------------------------------------------- */
@@ -68,7 +68,7 @@ function bestAirbnb(req, res) {
 
 		inputRoomType = inputRoomType.replace("q", "/");
 		inputRoomType = inputRoomType.replace(/_/g, " ");
-		console.log(inputRoomType);
+		//console.log(inputRoomType);
 
     var query = `
         SELECT picture_url, name, accommodates, beds, price, review_scores_rating AS rating

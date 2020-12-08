@@ -3,8 +3,9 @@ import PageNavbar from './PageNavbar';
 import BestLivingRow from './BestLivingRow';
 import '../style/BestLiving.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Loader, LoaderOptions} from 'google-maps';
 
-export default class Recommendations extends React.Component {
+export default class BestLiving extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -12,7 +13,8 @@ export default class Recommendations extends React.Component {
 		// and the list of recommended movies.
 		this.state = {
 			movieName: "",
-			recMovies: []
+			recMovies: [],
+			initialMap: []
 		}
 
 		this.handleMovieNameChange = this.handleMovieNameChange.bind(this);
@@ -24,6 +26,11 @@ export default class Recommendations extends React.Component {
 			movieName: e.target.value
 		});
 	}
+
+	componentDidMount(){
+
+	}
+
 
 	/* ---- Q2 (Recommendations) ---- */
 	// Hint: Name of movie submitted is contained in `this.state.movieName`.
@@ -48,15 +55,59 @@ export default class Recommendations extends React.Component {
           .catch(err => console.log(err))	// Print the error if there is one.
 	}
 
+	// connecting to google API and initial the google map
+
+
+
+	// ----------------look     https://github.com/moshen/node-googlemaps    next time------------------------------
+
+
+
+	initialMap(){
+		const options: LoaderOptions = {};
+
+		// !!!!!!!!!!!safely store key later!!!!!!!!!!!
+		const loader = new Loader('AIzaSyA0rycsA7bNG_uKcvXq7i5wIcYmOIalCQs');
+
+		const google = loader.load().then(function (google) {
+			// The location of Uluru
+	    var uluru = {
+	      lat: -25.344,
+	      lng: 131.036
+	    };
+
+    	var map = new google.maps.Map(document.getElementById('map'), {
+        center: uluru,
+        zoom: 4,
+    	});
+
+			var marker = new google.maps.Marker({
+	      position: uluru,
+	      map: map
+    	});
+		});
+	}
+
+		// let recMovieDivs = recMovieList.map((recMovie, i) =>
+		// <BestLivingRow title={recMovie.title} id={recMovie.id} rating={recMovie.rating} vote_count={recMovie.vote_count} />
+		// );
+
 
 	render() {
-
 		return (
-			<div className="Recommendations">
-				<PageNavbar active="recommendations" />
+			<div className="BestLiving">
+				<PageNavbar active="bestliving" />
 
+				<div className="container bestliving-container">
+					<div className="jumbotron">
+						<div class="h3">My Google Maps Demo</div>
 
-		    </div>
+						<br></br>
+						<script
+						<div id="map" className="map-container">{this.initialMap}</div>
+					</div>
+				</div>
+		  </div>
 		);
 	}
 }

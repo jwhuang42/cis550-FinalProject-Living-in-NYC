@@ -225,11 +225,11 @@ export default class BestAirbnb extends React.Component {
 	render() {
 
 		return (
-			<div className="BestGenres">
-				<PageNavbar active="bestgenres" />
+			<div className="BestAirbnb">
+				<PageNavbar active="bestairbnb" />
 
-				<div class="container bestgenres-container">
-						<div><p></p></div>
+				<div class="container bestairbnb-container">
+						<br/>
 			      <div class="jumbotron" >
 			        <div class="h1 text-primary">Best Bnb recommendation</div>
 

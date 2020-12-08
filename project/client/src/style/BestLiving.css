@@ -11,6 +11,13 @@
   height: 40px;
 }
 
+#map{
+  height: 400px;
+  /* The height is 400 pixels */
+  width: 100%;
+  /* The width is the width of the web page */
+}
+
 .movieResults .title, .movieResults .id, .movieResults .rating, .movieResults .votes, .headers .header {
   flex: 1 0 25%;
 }

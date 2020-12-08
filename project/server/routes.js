@@ -3,7 +3,7 @@ var mysql = require('mysql');
 
 config.connectionLimit = 10;
 var connection = mysql.createPool(config);
-var mongoConnection = mongo.MongoClient;
+
 /* -------------------------------------------------- */
 /* ------------------- Route Handlers --------------- */
 /* -------------------------------------------------- */

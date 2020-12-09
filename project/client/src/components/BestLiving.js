@@ -1,7 +1,7 @@
 import React from 'react';
 import PageNavbar from './PageNavbar';
 import BestLivingRow from './BestLivingRow';
-import MapContainer from './Map';
+import MapContainer from './MapContainer';
 import '../style/BestLiving.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -17,6 +17,7 @@ export default class BestLiving extends React.Component {
 			recMovies: [],
 			initialMap: []
 		}
+
 
 
 		this.handleMovieNameChange = this.handleMovieNameChange.bind(this);
@@ -74,6 +75,9 @@ export default class BestLiving extends React.Component {
 
 
 	render() {
+		const mapInfo = {
+
+		};
 
 		return (
 			<div className="BestLiving">
@@ -81,12 +85,13 @@ export default class BestLiving extends React.Component {
 
 				<div className="container bestliving-container">
 					<div className="jumbotron">
-						<div class="h3">My Google Maps Demo</div>
+						<div class="h3">NYC Map</div>
 
 						<br></br>
 
-						<div id="map" className="map-container">
-							<MapContainer />
+						<div class="row" id="map" >
+							<div class="col-12"> <MapContainer mapInfo={this.mapInfo} /></div>
+
 						</div>
 					</div>
 				</div>

@@ -1,9 +1,10 @@
 import React from 'react';
 import PageNavbar from './PageNavbar';
 import BestLivingRow from './BestLivingRow';
+import MapContainer from './Map';
 import '../style/BestLiving.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Loader, LoaderOptions} from 'google-maps';
+
 
 export default class BestLiving extends React.Component {
 	constructor(props) {
@@ -16,6 +17,7 @@ export default class BestLiving extends React.Component {
 			recMovies: [],
 			initialMap: []
 		}
+
 
 		this.handleMovieNameChange = this.handleMovieNameChange.bind(this);
 		this.submitMovie = this.submitMovie.bind(this);
@@ -63,30 +65,8 @@ export default class BestLiving extends React.Component {
 
 
 
-	initialMap(){
-		const options: LoaderOptions = {};
 
-		// !!!!!!!!!!!safely store key later!!!!!!!!!!!
-		const loader = new Loader('AIzaSyA0rycsA7bNG_uKcvXq7i5wIcYmOIalCQs');
 
-		const google = loader.load().then(function (google) {
-			// The location of Uluru
-	    var uluru = {
-	      lat: -25.344,
-	      lng: 131.036
-	    };
-
-    	var map = new google.maps.Map(document.getElementById('map'), {
-        center: uluru,
-        zoom: 4,
-    	});
-
-			var marker = new google.maps.Marker({
-	      position: uluru,
-	      map: map
-    	});
-		});
-	}
 
 		// let recMovieDivs = recMovieList.map((recMovie, i) =>
 		// <BestLivingRow title={recMovie.title} id={recMovie.id} rating={recMovie.rating} vote_count={recMovie.vote_count} />
@@ -94,6 +74,7 @@ export default class BestLiving extends React.Component {
 
 
 	render() {
+
 		return (
 			<div className="BestLiving">
 				<PageNavbar active="bestliving" />
@@ -103,14 +84,20 @@ export default class BestLiving extends React.Component {
 						<div class="h3">My Google Maps Demo</div>
 
 						<br></br>
-						<script
-						<div id="map" className="map-container">{this.initialMap}</div>
+
+						<div id="map" className="map-container">
+							<MapContainer />
+						</div>
 					</div>
 				</div>
 		  </div>
 		);
 	}
 }
+
+
+
+
 // <div className="container recommendations-container">
 // 	<div className="jumbotron">
 // 		<div className="h5">Recommendations</div>

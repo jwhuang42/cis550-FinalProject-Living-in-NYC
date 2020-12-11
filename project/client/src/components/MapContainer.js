@@ -8,15 +8,26 @@ export class MapContainer extends React.Component {
 
 
     this.state = {
-      stores: [{lat: 40.7128, lng: -74.0060}]
+      // this is just an example. At first, no marker should displays on the map
+      nyc: [{lat: 40.7128, lng: -74.0060}]
     }
   }
 
-  displayMarkers = () => {
-    return this.state.stores.map((store, index) => {
+  // TODO: get the coordinates and update "nyc" document array based on some conditions given by users
+  getCoordinates(){
+
+  }
+
+
+  displayMarkers (){
+    // need a function to retrive json file from mysql and update "nyc" variable(fetch...)
+
+
+    return this.state.nyc.map((nyc, index) => {
       return <Marker key={index} id={index} position={{
-       lat: store.lat,
-       lng: store.lng
+        // TODO: add additional properties
+        lat: nyc.lat,
+        lng: nyc.lng
      }}
      onClick={() => console.log("You clicked me!")} />
     })

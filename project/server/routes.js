@@ -15,7 +15,7 @@ var connection = mysql.createPool(config);
 function getAccommodates(req, res) {
 	var query = `
 		SELECT DISTINCT accommodates
-		FROM airbnb_listings
+		FROM airbnb_property
 		WHERE accommodates > 0
 		ORDER BY accommodates;
   	`;
@@ -31,10 +31,10 @@ function getAccommodates(req, res) {
 function getBeds(req, res) {
 	var query = `
 		SELECT DISTINCT beds
-		FROM airbnb_listings
+		FROM airbnb_property
 		WHERE beds > 0
 		ORDER BY beds;
-    	`;
+    `;
     connection.query(query, function(err, rows, fields) {
         if (err) console.log(err);
         else {
@@ -47,8 +47,8 @@ function getBeds(req, res) {
 function getRoomType(req, res) {
 	var query = `
 		SELECT DISTINCT room_type
-		FROM airbnb_listings;
-    	`;
+		FROM airbnb_property;
+    `;
     connection.query(query, function(err, rows, fields) {
     	if (err) console.log(err);
     	else {
@@ -71,14 +71,15 @@ function bestAirbnb(req, res) {
 		//console.log(inputRoomType);
 
     var query = `
-        SELECT picture_url, name, accommodates, beds, price, review_scores_rating AS rating
-        FROM airbnb_listings
-        WHERE host_neighbourhood = '${inputNeighbourhood}'
-            AND accommodates >= '${inputAccomodates}'
-            AND beds >= ${inputBeds}
-            AND room_type = '${inputRoomType}'
-            AND price > ${inputPriceLow} AND price < ${inputPriceHigh}
-        ORDER BY review_scores_rating DESC
+		SELECT n.picture_url, n.name, p.accommodates, p.beds, p.price, r.review_scores_rating AS rating
+		FROM airbnb_name n, airbnb_property p, airbnb_review r, airbnb_host h
+    	WHERE n.id = p.id AND n.id = r.id AND n.id = h.id
+			AND h.host_neighbourhood = '${inputNeighbourhood}'
+            AND p.accommodates >= '${inputAccomodates}'
+            AND p.beds >= ${inputBeds}
+            AND p.room_type = '${inputRoomType}'
+            AND p.price > ${inputPriceLow} AND p.price < ${inputPriceHigh}
+        ORDER BY rating DESC
         LIMIT 10;
     `;
     connection.query(query, function(err, rows, fields) {

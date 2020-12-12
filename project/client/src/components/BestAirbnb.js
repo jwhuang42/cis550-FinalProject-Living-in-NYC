@@ -17,8 +17,8 @@ export default class BestAirbnb extends React.Component {
 			accomodates: "1",
 			bed: "1",
 			roomType: "",
-			price_low: "1",
-			price_high: "1000",
+			priceLow: "1",
+			priceHigh: "1000",
 
 			result: [],
 
@@ -32,8 +32,8 @@ export default class BestAirbnb extends React.Component {
 
 
 		this.handleChange_neighborhood = this.handleChange_neighborhood.bind(this);
-		this.handleChange_price_low = this.handleChange_price_low.bind(this);
-		this.handleChange_price_high = this.handleChange_price_high.bind(this);
+		this.handleChange_priceLow = this.handleChange_priceLow.bind(this);
+		this.handleChange_priceHigh = this.handleChange_priceHigh.bind(this);
 		// 3 more
 		this.handleChange_accomodates = this.handleChange_accomodates.bind(this);
 		this.handleChange_bed = this.handleChange_bed.bind(this);
@@ -46,14 +46,14 @@ export default class BestAirbnb extends React.Component {
 			neighborhood: e.target.value
 		});
 	}
-	handleChange_price_low(e) {
+	handleChange_priceLow(e) {
 		this.setState({
-			price_low: e.target.value
+			priceLow: e.target.value
 		});
 	}
-	handleChange_price_high(e) {
+	handleChange_priceHigh(e) {
 		this.setState({
-			price_high: e.target.value
+			priceHigh: e.target.value
 		});
 	}
 	/// 3 more
@@ -137,18 +137,18 @@ export default class BestAirbnb extends React.Component {
 	/* ---- Q3b (Best Genres) ---- */
 	submitResult() {
 		console.log("neighborhood is: " + this.state.neighborhood)
-		console.log("price low is: " + this.state.price_low)
-		console.log("price high is: " + this.state.price_high)
+		console.log("price low is: " + this.state.priceLow)
+		console.log("price high is: " + this.state.priceHigh)
 		var rmType = this.state.roomType.replace(/ /g,"_");
 		rmType = rmType.replace("/","q")
 
-		fetch("http://localhost:8081/airbnb/" +	this.state.neighborhood+ "&" + this.state.accomodates	+ "&" + this.state.bed + "&" + rmType	+ "&" + this.state.price_low + "&" + this.state.price_high, {
+		fetch("http://localhost:8081/airbnb/" +	this.state.neighborhood+ "&" + this.state.accomodates	+ "&" + this.state.bed + "&" + rmType	+ "&" + this.state.priceLow + "&" + this.state.priceHigh, {
       method: 'GET' // The type of HTTP request.
     })
       .then(res => res.json()) // Convert the response data to a JSON.
-      .then(genreratList => {
-		// console.log("genreLIST is: "+genreratList)
-      	let genrerateDivs = genreratList.map((airbnbResults, i) =>
+      .then(resultList => {
+		// console.log("genreLIST is: "+resultList)
+      	let genrerateDivs = resultList.map((airbnbResults, i) =>
           <BestAirbnbRow airbnbResults={airbnbResults} />
         );
 
@@ -225,11 +225,11 @@ export default class BestAirbnb extends React.Component {
 	render() {
 
 		return (
-			<div className="BestGenres">
-				<PageNavbar active="bestgenres" />
+			<div className="BestAirbnb">
+				<PageNavbar active="bestairbnb" />
 
-				<div class="container bestgenres-container">
-						<div><p></p></div>
+				<div class="container bestairbnb-container">
+						<br/>
 			      <div class="jumbotron" >
 			        <div class="h1 text-primary">Best Bnb recommendation</div>
 
@@ -272,10 +272,10 @@ export default class BestAirbnb extends React.Component {
 									<div class="row"><p></p></div>
 									<div class="row">
 										<div class="col-4">
-											<input type='text' placeholder="Enter price_low" value={this.state.price_low} onChange={this.handleChange_price_low} id="pl" className="price_low-input"/>
+											<input type='text' placeholder="Enter priceLow" value={this.state.priceLow} onChange={this.handleChange_priceLow} id="pl" className="priceLow-input"/>
 										</div>
 										<div class="col-4">
-											<input type='text' placeholder="Enter price_high" value={this.state.price_high} onChange={this.handleChange_price_high} id="ph" className="price_high-input"/>
+											<input type='text' placeholder="Enter priceHigh" value={this.state.priceHigh} onChange={this.handleChange_priceHigh} id="ph" className="priceHigh-input"/>
 										</div>
 										<div class="col-4">
 			            		<button type="button" class="btn btn-danger"  onClick={this.submitResult}>Search</button>

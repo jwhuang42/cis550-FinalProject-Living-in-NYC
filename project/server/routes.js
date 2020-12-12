@@ -107,12 +107,52 @@ function bestAirbnb(req, res) {
 };
 
 
+
+/* ---- Airbnb Fun Facts ---- */
+
+function avgRating(req, res) {
+	var query = `
+		SELECT h.host_neighbourhood, COUNT(*) AS count, AVG(r.review_scores_rating) AS avg_rating
+		FROM airbnb_review r JOIN airbnb_host h ON r.id = h.id
+		WHERE h.host_neighbourhood IS NOT NULL
+		GROUP BY h.host_neighbourhood
+		HAVING count > 100
+		ORDER BY avg_rating DESC
+		LIMIT 10;
+    `;
+    connection.query(query, function(err, rows, fields) {
+    	if (err) console.log(err);
+    	else {
+			console.log(rows);
+            res.json(rows);
+        }
+    });
+}
+
+function newHosts(req, res) {
+	var query = `
+		SELECT YEAR(host_since) AS year, COUNT(*) as num
+		FROM airbnb_host
+		WHERE YEAR(host_since) is NOT NULL
+		GROUP BY YEAR(host_since)
+		ORDER BY year;
+    `;
+    connection.query(query, function(err, rows, fields) {
+    	if (err) console.log(err);
+    	else {
+			console.log(rows);
+            res.json(rows);
+        }
+    });
+}
+
 // change the above
 // The exported functions, which can be accessed in index.js.
 module.exports = {
 	getAccommodates: getAccommodates,
 	getBeds: getBeds,
 	getRoomType: getRoomType,
-	bestAirbnb: bestAirbnb
-
+	bestAirbnb: bestAirbnb,
+	avgRating: avgRating,
+	newHosts: newHosts
 }

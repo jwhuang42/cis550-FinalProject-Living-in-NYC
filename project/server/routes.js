@@ -66,9 +66,9 @@ function bestAirbnb(req, res) {
     var inputPriceLow = req.params.price_low;
     var inputPriceHigh = req.params.price_high;
 
-		inputRoomType = inputRoomType.replace("q", "/");
-		inputRoomType = inputRoomType.replace(/_/g, " ");
-		console.log(inputRoomType);
+	inputRoomType = inputRoomType.replace("q", "/");
+	inputRoomType = inputRoomType.replace(/_/g, " ");
+	console.log(inputRoomType);
 
     var query = `
         SELECT picture_url, name, accommodates, beds, price, review_scores_rating AS rating

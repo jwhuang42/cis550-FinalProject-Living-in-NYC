@@ -14,10 +14,10 @@ export default class BestGenreRow extends React.Component {
 		var rate = this.props.airbnbResults.rating;
 
 		// console.log(rate);
-		if(rate > 90){
+		if (rate > 90){
 			return "text-success";
 		}
-		else if(rate >80){
+		else if (rate > 80){
 			return "text-warning";
 		}
 		else return "text-danger";
@@ -25,9 +25,9 @@ export default class BestGenreRow extends React.Component {
 
 	render() {
 		return (
-			<div class="container" >
+			<div class="container">
 				<div class="row justify-content-md-center" >
-					<div class="col-4 ">
+					<div class="col-4">
 						<a href = {this.props.airbnbResults.picture_url}>
 							<img src={this.props.airbnbResults.picture_url} class="img-fluid rounded border border-primary border-3" alt="Apartment" />
 						</a>
@@ -35,12 +35,10 @@ export default class BestGenreRow extends React.Component {
 				</div>
 				<br/>
 				<div class="row justify-content-md-center">
-					<div class="text-primary" >{this.props.airbnbResults.name}</div>
-				</div>
-				<div class="row justify-content-md-center">
-					<div class="col" className="accommodates"> accommodates: {this.props.airbnbResults.accommodates}</div>
+					<div class="text-primary">{this.props.airbnbResults.name}</div>
 				</div>
 				<div class="row justify-content-md-around">
+					<div class="col" className="accommodates"> accommodates: {this.props.airbnbResults.accommodates}</div>
 					<div class="" > beds#: {this.props.airbnbResults.beds}</div>
 					<div class=""> price: {this.props.airbnbResults.price}</div>
 					<div class={this.getcolor()}> rating: {this.props.airbnbResults.rating}</div>

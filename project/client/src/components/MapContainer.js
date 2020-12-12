@@ -8,7 +8,7 @@ export class MapContainer extends React.Component {
 
 
     this.state = {
-      // this is just an example. At first, no marker should displays on the map
+      // this is just an example. Markers are fetched from BestLivings
       nyc: [{lat: 40.7128, lng: -74.0060}, {lat: 40.7228, lng: -74.0160}, {lat: 40.6128, lng: -74.1060}],
       showingInfoWindow: false,  // Hides or shows the InfoWindow
       activeMarker: {},          // Shows the active marker upon click
@@ -39,7 +39,7 @@ export class MapContainer extends React.Component {
 
   displayMarkers (){
 
-
+    // additional icons: https://sites.google.com/site/gmapsdevelopment/
     return this.state.nyc.map((nyc, index) => {
       return <Marker key={index} id={index} position={{
         // TODO: add additional properties
@@ -49,6 +49,7 @@ export class MapContainer extends React.Component {
       onClick={this.onMarkerClick}
       name={'Title'}
       subText = {'Some discriptive text...'}
+      options = {{icon: {url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"}}}
       />
     })
   }

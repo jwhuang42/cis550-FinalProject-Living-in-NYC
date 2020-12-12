@@ -14,11 +14,14 @@ export default class BestGenreRow extends React.Component {
 		var rate = this.props.airbnbResults.rating;
 
 		// console.log(rate);
-		if (rate > 90){
+		if (rate > 90) {
 			return "text-success";
 		}
-		else if (rate > 80){
+		else if (rate > 80) {
 			return "text-warning";
+		}
+		else if (rate == 'N/A') {
+			return "text-secondary";
 		}
 		else return "text-danger";
 	}
@@ -39,9 +42,12 @@ export default class BestGenreRow extends React.Component {
 				</div>
 				<div class="row justify-content-md-around">
 					<div class="col" className="accommodates"> accommodates: {this.props.airbnbResults.accommodates}</div>
-					<div class="" > beds#: {this.props.airbnbResults.beds}</div>
+					<div class="" > # beds: {this.props.airbnbResults.beds}</div>
 					<div class=""> price: {this.props.airbnbResults.price}</div>
 					<div class={this.getcolor()}> rating: {this.props.airbnbResults.rating}</div>
+				</div>
+				<div class="row justify-content-md-center">
+					<div class=""> average number of crimes within half miles per month: {this.props.airbnbResults.num_crimes}</div>
 				</div>
 				<br/>
 				<br/>

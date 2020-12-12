@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default class BestGenreRow extends React.Component {
+export default class BestAirbnbRow extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -10,7 +10,7 @@ export default class BestGenreRow extends React.Component {
 		this.getcolor = this.getcolor.bind(this);
 	}
 
-	getcolor(){
+	getcolor() {
 		var rate = this.props.airbnbResults.rating;
 
 		// console.log(rate);

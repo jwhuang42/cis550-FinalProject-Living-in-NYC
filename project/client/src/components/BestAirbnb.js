@@ -11,17 +11,14 @@ export default class BestAirbnb extends React.Component {
 		super(props);
 
 		this.state = {
-
-
 			neighborhood: "Midtown",
-			accomodates: "1",
-			bed: "1",
+			accomodates: "4",
+			bed: "4",
 			roomType: "",
 			priceLow: "1",
 			priceHigh: "1000",
 
 			result: [],
-
 
 			accomodates_list: [],
 			beds_list: [],
@@ -73,7 +70,6 @@ export default class BestAirbnb extends React.Component {
 		});
 	}
 
-	/* ---- Q3a (Best Genres) ---- */
 	componentDidMount() {
 		// fetch accomodates
 
@@ -134,7 +130,6 @@ export default class BestAirbnb extends React.Component {
 	}
 
 
-	/* ---- Q3b (Best Genres) ---- */
 	submitResult() {
 		console.log("neighborhood is: " + this.state.neighborhood)
 		console.log("price low is: " + this.state.priceLow)
@@ -142,7 +137,7 @@ export default class BestAirbnb extends React.Component {
 		var rmType = this.state.roomType.replace(/ /g,"_");
 		rmType = rmType.replace("/","q")
 
-		fetch("http://localhost:8081/airbnb/" +	this.state.neighborhood+ "&" + this.state.accomodates	+ "&" + this.state.bed + "&" + rmType	+ "&" + this.state.priceLow + "&" + this.state.priceHigh, {
+		fetch("http://localhost:8081/airbnb/" +	this.state.neighborhood + "&" + this.state.accomodates + "&" + this.state.bed + "&" + rmType + "&" + this.state.priceLow + "&" + this.state.priceHigh, {
       method: 'GET' // The type of HTTP request.
     })
       .then(res => res.json()) // Convert the response data to a JSON.

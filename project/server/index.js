@@ -57,6 +57,13 @@ app.get('/airbnb/:neighbourhood&:accommodates&:beds&:room_type&:price_low&:price
 
 
 
+/* ---- Airbnb Fun Facts ---- */
+
+app.get('/funfacts/avgRating', routes.avgRating);
+app.get('/funfacts/newHosts', routes.newHosts);
+
+
+
 app.listen(8081, () => {
 	console.log(`Server listening on PORT 8081`);
 });

@@ -73,7 +73,7 @@ function bestAirbnb(req, res) {
     var query = `
 		WITH airbnb AS (
 			SELECT n.id, n.picture_url, n.name, p.accommodates, p.beds, p.price,
-				r.review_scores_rating AS rating, l.latitude, l.longitude
+				FLOOR(r.review_scores_rating) AS rating, l.latitude, l.longitude
 			FROM airbnb_name n, airbnb_property p, airbnb_review r, airbnb_host h, airbnb_place l
 	    	WHERE n.id = p.id AND n.id = r.id AND n.id = h.id AND n.id = l.id
 				AND h.host_neighbourhood = '${inputNeighbourhood}'

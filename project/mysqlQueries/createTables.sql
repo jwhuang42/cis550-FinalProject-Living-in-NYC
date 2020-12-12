@@ -7,7 +7,7 @@ SELECT id, host_id, host_url, host_name, host_since, host_response_time, host_re
     host_acceptance_rate, host_is_superhost, host_neighbourhood, host_listings_count, 
     host_total_listings_count, host_verifications, host_has_profile_pic, host_identity_verified
 FROM airbnb_listings;
-    
+
 CREATE TABLE airbnb_place
 SELECT id, neighbourhood, neighbourhood_cleansed, neighbourhood_group_cleansed, latitude, longitude
 FROM airbnb_listings;

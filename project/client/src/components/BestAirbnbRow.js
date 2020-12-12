@@ -23,7 +23,9 @@ export default class BestGenreRow extends React.Component {
 		else if (rate == 'N/A') {
 			return "text-secondary";
 		}
-		else return "text-danger";
+		else {
+			return "text-danger";
+		}
 	}
 
 	render() {

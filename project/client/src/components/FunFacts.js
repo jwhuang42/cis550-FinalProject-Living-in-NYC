@@ -1,7 +1,8 @@
 import React from 'react';
 import PageNavbar from './PageNavbar';
-import FunFactsRow from './FunFactsRow';
-import '../style/BestHousing.css';
+import FunFactsAvgRatingRow from './FunFactsAvgRatingRow';
+import FunFactsNewHostsRow from './FunFactsNewHostsRow';
+import '../style/FunFacts.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default class FunFacts extends React.Component {
@@ -9,7 +10,7 @@ export default class FunFacts extends React.Component {
 		super(props);
 
 		this.state = {
-			result: [],
+			result: []
 		};
 
 		this.showAvgRating = this.showAvgRating.bind(this);
@@ -28,7 +29,7 @@ export default class FunFacts extends React.Component {
             	if (!avgRatingList) return;
             	console.log(avgRatingList); //displays your JSON object in the console
 	  			let avgRatingDivs = avgRatingList.map((avgRatingResults, i) =>
-	  				<FunFactsRow host_neighbourhood={avgRatingResults.host_neighbourhood} count={avgRatingResults.count} avg_rating={avgRatingResults.avg_rating} />
+	  				<FunFactsAvgRatingRow host_neighbourhood={avgRatingResults.host_neighbourhood} count={avgRatingResults.count} avg_rating={avgRatingResults.avg_rating} />
 	  			);
 
 	            // Set the state of the movies list to the value returned by the HTTP response from the server.
@@ -49,13 +50,13 @@ export default class FunFacts extends React.Component {
             	if (!newHostsList) return;
             	console.log(newHostsList); //displays your JSON object in the console
 	  			let newHostsDivs = newHostsList.map((newHostsResults, i) =>
-	  				<FunFactsRow year={newHostsResults.year} num={newHostsResults.num} />
+	  				<FunFactsNewHostsRow year={newHostsResults.year} num={newHostsResults.num} />
 	  			);
 
 	            // Set the state of the movies list to the value returned by the HTTP response from the server.
 	            this.setState({
 	            	result: newHostsDivs
-	            })
+	            });
         	})
         	.catch(err => console.log(err))	// Print the error if there is one.
     }
@@ -71,17 +72,22 @@ export default class FunFacts extends React.Component {
           <div className="container movies-container">
             <div className="jumbotron">
               <div className="h5">Which fun fact do you wang to know?</div>
-			  <button type="button" class="btn btn-danger"  onClick={this.showAvgRating}>Number and Average_Rating of Airbnb for each Neighbourhood</button>
-              <button type="button" class="btn btn-danger"  onClick={this.showNewHosts}>Number of New Hosts each Year</button>
+			  <div className="">
+			  	<button type="button" class="btn btn-info" onClick={this.showAvgRating}>Number and Average Rating of Airbnb for each Neighbourhood</button>
+			  </div>
+			  <br></br>
+              <div className="">
+			    <button type="button" class="btn btn-info" onClick={this.showNewHosts}>Number of New Hosts each Year</button>
+				</div>
             </div>
 
             <br></br>
             <div className="jumbotron">
               <div className="movies-container">
                 <div className="movies-header">
-                  <div className="header-lg"><strong>Title</strong></div>
-                  <div className="header"><strong>Rating</strong></div>
-                  <div className="header"><strong>Vote Count</strong></div>
+				  <div className="header"><strong>Neighbourhood</strong></div>
+                  <div className="header"><strong>Count</strong></div>
+                  <div className="header"><strong>Average Rating</strong></div>
                 </div>
                 <div className="results-container" id="results">
                   {this.state.result}

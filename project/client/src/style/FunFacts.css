@@ -1,0 +1,55 @@
+
+.h5{
+  position: relative;
+  top:-50px;
+
+  right:15px;
+}
+
+.info {
+  background-color: #2196F3;
+  } /* Blue */
+
+button{
+  position: relative;
+  top:10px;
+  font-size: 25px;
+  text-align: center;
+  width: 800px;
+}
+
+.border-3{
+  border-width: thick
+}
+
+.head-jumbotron {
+
+}
+
+.header-container .headers, .results-container .FunFactsAvgRatingResults {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  height: 40px;
+}
+
+.header-container, .results-container {
+  display: flex;
+  flex-flow: column wrap;
+  /* margin-top: 10px; */
+}
+
+.header-container .headers, .results-container .FunFactsNewHostsResults {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  height: 40px;
+}
+
+.FunFactsAvgRatingResults .host_neighbourhood, .FunFactsAvgRatingResults .count, .FunFactsAvgRatingResults .avg_rating {
+  flex: 1 0 25%;
+}
+
+.FunFactsNewHostsResults .year, .FunFactsNewHostsResults .num, .headers .header {
+  flex: 1 0 25%;
+}

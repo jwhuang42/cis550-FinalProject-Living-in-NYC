@@ -9,6 +9,7 @@ import {
 import BestAirbnb from './BestAirbnb';
 import BestHousing from './BestHousing';
 import BestLiving from './BestLiving';
+import FunFacts from './FunFacts';
 
 export default class App extends React.Component {
 
@@ -45,7 +46,13 @@ export default class App extends React.Component {
 								<BestLiving />
 							)}
 						/>
-
+						<Route
+							exact
+							path="/funfacts"
+							render={() => (
+								<FunFacts />
+							)}
+						/>
 					</Switch>
 				</Router>
 			</div>

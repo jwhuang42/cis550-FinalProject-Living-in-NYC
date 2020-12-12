@@ -1,0 +1,95 @@
+import React from 'react';
+import PageNavbar from './PageNavbar';
+import FunFactsRow from './FunFactsRow';
+import '../style/BestHousing.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+export default class FunFacts extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			result: [],
+		};
+
+		this.showAvgRating = this.showAvgRating.bind(this);
+		this.showNewHosts = this.showNewHosts.bind(this);
+	}
+
+
+
+	showAvgRating() {
+        // Send an HTTP request to the server.
+        fetch("http://localhost:8081/funfacts/avgRating", {
+        	method: 'GET' // The type of HTTP request.
+        })
+        	.then(res => res.json()) // Convert the response data to a JSON.
+        	.then(avgRatingList => {
+            	if (!avgRatingList) return;
+            	console.log(avgRatingList); //displays your JSON object in the console
+	  			let avgRatingDivs = avgRatingList.map((avgRatingResults, i) =>
+	  				<FunFactsRow host_neighbourhood={avgRatingResults.host_neighbourhood} count={avgRatingResults.count} avg_rating={avgRatingResults.avg_rating} />
+	  			);
+
+	            // Set the state of the movies list to the value returned by the HTTP response from the server.
+	            this.setState({
+	            	result: avgRatingDivs
+	            })
+        	})
+        	.catch(err => console.log(err))	// Print the error if there is one.
+    }
+
+	showNewHosts() {
+        // Send an HTTP request to the server.
+        fetch("http://localhost:8081/funfacts/newHosts", {
+        	method: 'GET' // The type of HTTP request.
+        })
+        	.then(res => res.json()) // Convert the response data to a JSON.
+        	.then(newHostsList => {
+            	if (!newHostsList) return;
+            	console.log(newHostsList); //displays your JSON object in the console
+	  			let newHostsDivs = newHostsList.map((newHostsResults, i) =>
+	  				<FunFactsRow year={newHostsResults.year} num={newHostsResults.num} />
+	  			);
+
+	            // Set the state of the movies list to the value returned by the HTTP response from the server.
+	            this.setState({
+	            	result: newHostsDivs
+	            })
+        	})
+        	.catch(err => console.log(err))	// Print the error if there is one.
+    }
+
+
+	render() {
+      return (
+        <div className="Dashboard">
+
+          <PageNavbar active="dashboard" />
+
+          <br></br>
+          <div className="container movies-container">
+            <div className="jumbotron">
+              <div className="h5">Which fun fact do you wang to know?</div>
+			  <button type="button" class="btn btn-danger"  onClick={this.showAvgRating}>Number and Average_Rating of Airbnb for each Neighbourhood</button>
+              <button type="button" class="btn btn-danger"  onClick={this.showNewHosts}>Number of New Hosts each Year</button>
+            </div>
+
+            <br></br>
+            <div className="jumbotron">
+              <div className="movies-container">
+                <div className="movies-header">
+                  <div className="header-lg"><strong>Title</strong></div>
+                  <div className="header"><strong>Rating</strong></div>
+                  <div className="header"><strong>Vote Count</strong></div>
+                </div>
+                <div className="results-container" id="results">
+                  {this.state.result}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }

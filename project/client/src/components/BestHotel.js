@@ -1,10 +1,10 @@
 import React from 'react';
 import PageNavbar from './PageNavbar';
-import BestHousingRow from './BestHousingRow';
-import '../style/BestHousing.css';
+import BestHotelRow from './BestHotelRow';
+import '../style/BestHotel.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default class BestHousing extends React.Component {
+export default class BestHotel extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -177,7 +177,7 @@ export default class BestHousing extends React.Component {
 			.then(res => res.json()) // Convert the response data to a JSON.
 			.then(resultList => {
 				let resultDivs = resultList.map((hotelResults, i) =>
-					<BestHousingRow name={hotelResults.name} street_address={hotelResults.street_address} class={hotelResults.class} price={hotelResults.price} overall={hotelResults.overall} />
+					<BestHotelRow name={hotelResults.name} street_address={hotelResults.street_address} class={hotelResults.class} price={hotelResults.price} overall={hotelResults.overall} />
 				);
 				this.setState({
 					result: resultDivs
@@ -192,7 +192,7 @@ export default class BestHousing extends React.Component {
 		return (
 			<div className="BestHotel">
 				<PageNavbar active="besthotel" />
-				<div class="container besthotel-container">
+				<div class="container besthousing-container">
 
 					<br/>
 					<div class="jumbotron" >

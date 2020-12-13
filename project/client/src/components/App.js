@@ -7,8 +7,8 @@ import {
 // import Dashboard from './Dashboard';
 
 import BestAirbnb from './BestAirbnb';
-import BestHousing from './BestHousing';
-import BestLiving from './BestLiving';
+import BestHotel from './BestHotel';
+import BestPlace from './BestPlace';
 import FunFacts from './FunFacts';
 
 export default class App extends React.Component {
@@ -34,16 +34,16 @@ export default class App extends React.Component {
 						/>
 						<Route
 							exact
-							path="/besthousing"
+							path="/besthotel"
 							render={() => (
-								<BestHousing />
+								<BestHotel />
 							)}
 						/>
 						<Route
 							exact
-							path="/bestliving"
+							path="/bestplace"
 							render={() => (
-								<BestLiving />
+								<BestPlace />
 							)}
 						/>
 						<Route

@@ -2,11 +2,11 @@ import React from 'react';
 import PageNavbar from './PageNavbar';
 // import BestLivingRow from './BestLivingRow';
 import MapContainer from './MapContainer';
-import '../style/BestLiving.css';
+import '../style/BestPlace.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-export default class BestLiving extends React.Component {
+export default class BestPlace extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -57,7 +57,7 @@ export default class BestLiving extends React.Component {
 				.catch(err => console.log(err))	// Print the error if there is one.
 		}else{
 			return this.setState({
-				header: <div class="h5"> No such contents so far, more contents are coming soon! </div> ,
+				header: <div class="h5"> No such contents so far, more interesting contents are coming soon! </div> ,
 				mapResult: []
 			});
 		}
@@ -79,13 +79,13 @@ export default class BestLiving extends React.Component {
 	render() {
 
 		return (
-			<div className="BestLiving">
-				<PageNavbar active="bestliving" />
+			<div className="BestPlace">
+				<PageNavbar active="bestplace" />
 
 				<div className="container bestliving-container">
 					<div className="jumbotron">
 						<div class="h1 text-primary">
-							Best Place Recommendation
+							Best Places to explore
 						</div>
 						<br/>
 						<div className="dropdown-container">

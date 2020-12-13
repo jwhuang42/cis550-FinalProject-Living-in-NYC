@@ -10,7 +10,8 @@ export default class FunFacts extends React.Component {
 		super(props);
 
 		this.state = {
-			result: []
+			result: [],
+			header: []
 		};
 
 		this.showAvgRating = this.showAvgRating.bind(this);
@@ -34,6 +35,9 @@ export default class FunFacts extends React.Component {
 
 	            // Set the state of the movies list to the value returned by the HTTP response from the server.
 	            this.setState({
+								header: [<div className="header"><strong>Neighbourhood</strong></div>,
+													<div className="header"><strong>Count</strong></div>,
+													<div className="header"><strong>Average Rating</strong></div>],
 	            	result: avgRatingDivs
 	            })
         	})
@@ -55,6 +59,8 @@ export default class FunFacts extends React.Component {
 
 	            // Set the state of the movies list to the value returned by the HTTP response from the server.
 	            this.setState({
+								header: [<div className="header"><strong>Year</strong></div>,
+													<div className="header"><strong>Number</strong></div>],
 	            	result: newHostsDivs
 	            });
         	})
@@ -85,9 +91,7 @@ export default class FunFacts extends React.Component {
             <div className="jumbotron">
               <div className="movies-container">
                 <div className="movies-header">
-				  <div className="header"><strong>Neighbourhood</strong></div>
-                  <div className="header"><strong>Count</strong></div>
-                  <div className="header"><strong>Average Rating</strong></div>
+				  				{this.state.header}
                 </div>
                 <div className="results-container" id="results">
                   {this.state.result}

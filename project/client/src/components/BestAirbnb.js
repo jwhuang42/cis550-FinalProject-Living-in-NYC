@@ -142,7 +142,7 @@ export default class BestAirbnb extends React.Component {
     })
       .then(res => res.json()) // Convert the response data to a JSON.
       .then(resultList => {
-		// console.log("genreLIST is: "+resultList)
+				// console.log("genreLIST is: "+resultList)
       	let genrerateDivs = resultList.map((airbnbResults, i) =>
           <BestAirbnbRow airbnbResults={airbnbResults} />
         );

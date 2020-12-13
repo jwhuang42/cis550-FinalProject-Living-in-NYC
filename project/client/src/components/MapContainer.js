@@ -13,7 +13,9 @@ export class MapContainer extends React.Component {
       selectedPlace: {}          // Shows the InfoWindow to the selected place upon a marker
     }
     this.displayMarkers = this.displayMarkers.bind(this);
-    console.log(this.state.nyc);
+    this.onMarkerClick = this.onMarkerClick.bind(this);
+    this.onClose = this.onClose.bind(this);
+    //console.log(this.state.nyc);
   }
 
   // TODO: get the coordinates and update "nyc" document array based on some conditions given by users
@@ -37,12 +39,12 @@ export class MapContainer extends React.Component {
     }
   };
 
-  displayMarkers (){
+  displayMarkers (props){
 
     // additional icons: https://sites.google.com/site/gmapsdevelopment/
     console.log(this.state.nyc);
     return this.state.nyc.map((info, index) => {
-      return <Marker key={index} id={index} position={{
+      return (<Marker key={index} id={index} position={{
         // TODO: add additional properties
         lat: info.latitude,
         lng: info.longitude
@@ -51,7 +53,7 @@ export class MapContainer extends React.Component {
       name = {info.imdb_link}
       subText = {info.film}
       options = {{icon: {url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"}}}
-      />
+      />);
     })
   }
 
@@ -61,24 +63,51 @@ export class MapContainer extends React.Component {
 	  	height: '110%'
 		};
     return (
-        <Map
-          google={this.props.google}
-          zoom={10}
-          style={mapStyles}
-          initialCenter={{ lat: 40.7128, lng: -74.0060}}  //center of nyc
-        >
-          {this.displayMarkers}
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}
-            onClose={this.onClose}
+        <div class="googleMapContainer">
+
+          <Map
+            google={this.props.google}
+            zoom={10}
+            style={mapStyles}
+            initialCenter={{ lat: 40.7128, lng: -74.0060}}  //center of nyc
           >
-            <div>
-              <h4>{this.state.selectedPlace.name}</h4>
-              <p>{this.state.selectedPlace.subText}</p>
-            </div>
-          </InfoWindow>
-        </Map>
+              {this.displayMarkers}
+
+              <Marker key={1} id={1} position={{
+                // TODO: add additional properties
+                lat: 40.7128,
+                lng: -74.0060
+             }}
+              onClick = {this.onMarkerClick}
+              name = {"link"}
+              subText = {"film name"}
+              options = {{icon: {url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"}}}
+              />
+
+
+              <Marker key={2} id={2} position={{
+                // TODO: add additional properties
+                lat: 40.8128,
+                lng: -74.1060
+             }}
+              onClick = {this.onMarkerClick}
+              name = {"link2"}
+              subText = {"film name2"}
+              options = {{icon: {url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"}}}
+              />
+
+            <InfoWindow
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}
+              onClose={this.onClose}
+            >
+              <div>
+                <h4>{this.state.selectedPlace.name}</h4>
+                <p>{this.state.selectedPlace.subText}</p>
+              </div>
+            </InfoWindow>
+          </Map>
+        </div>
     );
   }
 }

@@ -83,6 +83,7 @@ export default class BestPlace extends React.Component {
 				<PageNavbar active="bestplace" />
 
 				<div className="container bestliving-container">
+					<br/>
 					<div className="jumbotron">
 						<div class="h1 text-primary">
 							Best Places to explore

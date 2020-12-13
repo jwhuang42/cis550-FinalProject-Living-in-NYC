@@ -47,9 +47,9 @@ export class MapContainer extends React.Component {
         lat: info.latitude,
         lng: info.longitude
      }}
-      onClick={this.onMarkerClick}
-      name={'Title'}
-      subText = {'Some discriptive text...'}
+      onClick = {this.onMarkerClick}
+      name = {info.imdb_link}
+      subText = {info.film}
       options = {{icon: {url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"}}}
       />
     })

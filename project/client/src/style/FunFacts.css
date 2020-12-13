@@ -22,9 +22,6 @@ button{
   border-width: thick
 }
 
-.head-jumbotron {
-
-}
 
 .header-container .headers, .results-container .FunFactsAvgRatingResults {
   display: flex;

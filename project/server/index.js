@@ -55,7 +55,8 @@ app.get('/airbnb/beds', routes.getBeds);
 app.get('/airbnb/room_type', routes.getRoomType);
 app.get('/airbnb/:neighbourhood&:accommodates&:beds&:room_type&:price_low&:price_high', routes.bestAirbnb);
 
-
+/* ---- Best Living ---- */
+app.get('/movies/popular', routes.getPopularPlaces);
 
 /* ---- Airbnb Fun Facts ---- */
 

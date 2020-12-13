@@ -79,11 +79,11 @@ export default class FunFacts extends React.Component {
             <div className="jumbotron">
               <div className="h5">Which fun fact do you wang to know?</div>
 			  <div className="">
-			  	<button type="button" class="btn btn-info" onClick={this.showAvgRating}>Number and Average Rating of Airbnb for each Neighbourhood</button>
+			  	<button type="button"  class="btn btn-info" onClick={this.showAvgRating}>Number and Average Rating of Airbnb for each Neighbourhood</button>
 			  </div>
 			  <br></br>
               <div className="">
-			    <button type="button" class="btn btn-info" onClick={this.showNewHosts}>Number of New Hosts each Year</button>
+			    <button type="button"  class="btn btn-info" onClick={this.showNewHosts}>Number of New Hosts each Year</button>
 				</div>
             </div>
 

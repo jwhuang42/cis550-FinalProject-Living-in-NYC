@@ -5,15 +5,15 @@ export class MapContainer extends React.Component {
   constructor(props) {
     super(props);
 
-
-
     this.state = {
       // this is just an example. Markers are fetched from BestLivings
-      nyc: [{lat: 40.7128, lng: -74.0060}, {lat: 40.7228, lng: -74.0160}, {lat: 40.6128, lng: -74.1060}],
+      nyc: this.props.mapInfo,
       showingInfoWindow: false,  // Hides or shows the InfoWindow
       activeMarker: {},          // Shows the active marker upon click
       selectedPlace: {}          // Shows the InfoWindow to the selected place upon a marker
     }
+    this.displayMarkers = this.displayMarkers.bind(this);
+    console.log(this.state.nyc);
   }
 
   // TODO: get the coordinates and update "nyc" document array based on some conditions given by users
@@ -40,11 +40,12 @@ export class MapContainer extends React.Component {
   displayMarkers (){
 
     // additional icons: https://sites.google.com/site/gmapsdevelopment/
-    return this.state.nyc.map((nyc, index) => {
+    console.log(this.state.nyc);
+    return this.state.nyc.map((info, index) => {
       return <Marker key={index} id={index} position={{
         // TODO: add additional properties
-        lat: nyc.lat,
-        lng: nyc.lng
+        lat: info.latitude,
+        lng: info.longitude
      }}
       onClick={this.onMarkerClick}
       name={'Title'}
@@ -66,7 +67,7 @@ export class MapContainer extends React.Component {
           style={mapStyles}
           initialCenter={{ lat: 40.7128, lng: -74.0060}}  //center of nyc
         >
-          {this.displayMarkers()}
+          {this.displayMarkers}
           <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}

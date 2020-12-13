@@ -1,6 +1,6 @@
 import React from 'react';
 import PageNavbar from './PageNavbar';
-import BestLivingRow from './BestLivingRow';
+// import BestLivingRow from './BestLivingRow';
 import MapContainer from './MapContainer';
 import '../style/BestLiving.css';
 import 'bootstrap/dist/css/bootstrap.min.css';

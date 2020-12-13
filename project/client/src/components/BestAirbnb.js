@@ -1,6 +1,7 @@
 import React from 'react';
 import PageNavbar from './PageNavbar';
 import BestAirbnbRow from './BestAirbnbRow';
+import MapContainer from './MapContainer';
 import '../style/BestAirbnb.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -19,6 +20,7 @@ export default class BestAirbnb extends React.Component {
 			priceHigh: "1000",
 
 			result: [],
+			mapResult: [],
 
 			accomodates_list: [],
 			beds_list: [],
@@ -148,7 +150,8 @@ export default class BestAirbnb extends React.Component {
         );
 
         this.setState({
-          result: genrerateDivs
+          result: genrerateDivs,
+					mapResult: <MapContainer mapInfo={resultList}/>
         })
       })
       .catch(err => console.log(err))
@@ -279,13 +282,21 @@ export default class BestAirbnb extends React.Component {
 			          </div>
 
 			      </div>
+
+						<div class="jumbotron" >
+							<div class="row justify-content-md-center">
+								<div class="h5"> Below are our recommend location  </div>
+							</div>
+							<div class="row justify-content-md-center" id="map">
+								<div class="col-12"> {this.state.mapResult}</div>
+							</div>
+						</div>
+
 			      <div class="jumbotron"  >
 
-			          <div class="row" className="airbnb-head" >
-
-			            <div class="col" ><strong>You May like: </strong></div>
-
-			          </div>
+							<div class="row justify-content-md-center">
+								<div class="h5"><strong>You may like: </strong> </div>
+							</div>
 								<br/>
 			          <div className="movies-container" id="results">
 									<div class="row d-flex align-content-start flex-wrap">

@@ -25,6 +25,8 @@ WITH airbnb AS (
 SELECT picture_url, name, accommodates, beds, price, IFNULL(rating, 'N/A') AS rating, num_crimes
 FROM result;
 
+
+
 -- Number and Average_Rating of Airbnb for each Neighbourhood --
 SELECT h.host_neighbourhood, COUNT(*) AS count, AVG(r.review_scores_rating) AS avg_rating
 FROM airbnb_review r JOIN airbnb_host h ON r.id = h.id
@@ -34,12 +36,16 @@ HAVING count > 100
 ORDER BY avg_rating DESC
 LIMIT 10;
 
+
+
 -- Number of New Hosts each Year --
 SELECT YEAR(host_since) AS year, COUNT(*) as num
 FROM airbnb_host
 WHERE YEAR(host_since) is NOT NULL
 GROUP BY YEAR(host_since)
 ORDER BY year;
+
+
 
 -- Number of Movie Scenes in each Neighbourhood --
 SELECT neighborhood, Borough, COUNT(*) as num
@@ -48,14 +54,33 @@ GROUP BY neighborhood, Borough
 ORDER BY num DESC
 LIMIT 10;
 
-WITH popPlace AS (
-	SELECT neighborhood, Borough, COUNT(*) as num
-	FROM movie_scene
-	GROUP BY neighborhood, Borough
-	ORDER BY num DESC
-	LIMIT 10
+
+
+-- Output Best Hotel based on User Requirements
+WITH hotel_rating AS (
+	SELECT name, street_address, hotel_class, postal_code, AVG(price) AS price, AVG(service) AS service, 
+		AVG(cleanliness) AS cleanliness, AVG(value) AS value, AVG(location_score) AS location,
+		AVG(sleep_quality) AS sleep_quality, AVG(rooms) AS rooms, AVG(overall) AS overall
+	FROM hotel
+	GROUP BY name, street_address, hotel_class, postal_code
+), transformer AS (
+	SELECT DISTINCT NEIGHBORHOOD, ZIPCODE
+	FROM zillow
+), hotel_info AS (
+	SELECT DISTINCT h.*, t.NEIGHBORHOOD AS neighbourhood
+	FROM hotel_rating h JOIN transformer t ON h.postal_code = t.ZIPCODE
+	ORDER BY name
 )
-SELECT m.latitude, m.longitude, m.film, m.imdb_link, m.neighborhood, m.Borough
-FROM movie_scene m JOIN popPlace p ON (m.neighborhood, m.Borough) = (p.neighborhood, p.Borough)
-ORDER BY p.num DESC
-LIMIT 10;
+SELECT name, street_address, hotel_class, price, overall
+FROM hotel_info
+WHERE neighbourhood = 'CHELSEA'
+	AND price > 1 AND price < 1000
+    AND hotel_class > 3
+    AND service > 4
+    AND cleanliness > 4
+    AND value > 4
+    AND location > 4
+    AND sleep_quality > 4
+    AND rooms > 4
+ORDER BY overall DESC
+LIMIT 5;

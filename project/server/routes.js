@@ -108,6 +108,56 @@ function bestAirbnb(req, res) {
 
 
 
+/* ---- Best Hotel ---- */
+
+function bestHotel(req, res){
+	var inputNeighbourhood = req.params.neighbourhood;
+    var inputAccomodates = req.params.accommodates;
+    var inputBeds = req.params.beds;
+    var inputRoomType = req.params.room_type;
+    var inputPriceLow = req.params.price_low;
+    var inputPriceHigh = req.params.price_high;
+
+	var query = `
+		WITH hotel_rating AS (
+			SELECT name, street_address, hotel_class, postal_code, AVG(price) AS price, AVG(service) AS service,
+				AVG(cleanliness) AS cleanliness, AVG(value) AS value, AVG(location_score) AS location,
+				AVG(sleep_quality) AS sleep_quality, AVG(rooms) AS rooms, AVG(overall) AS overall
+			FROM hotel
+			GROUP BY name, street_address, hotel_class, postal_code
+		), transformer AS (
+			SELECT DISTINCT NEIGHBORHOOD, ZIPCODE
+			FROM zillow
+		), hotel_info AS (
+			SELECT DISTINCT h.*, t.NEIGHBORHOOD AS neighbourhood
+			FROM hotel_rating h JOIN transformer t ON h.postal_code = t.ZIPCODE
+			ORDER BY name
+		)
+		SELECT name, street_address, hotel_class, price, overall
+		FROM hotel_info
+		WHERE neighbourhood = 'CHELSEA'
+			AND price > 1 AND price < 1000
+			AND hotel_class > 3
+			AND service > 4
+			AND cleanliness > 4
+			AND value > 4
+			AND location > 4
+			AND sleep_quality > 4
+			AND rooms > 4
+		ORDER BY overall DESC
+		LIMIT 5;
+    `;
+    connection.query(query, function(err, rows, fields) {
+    	if (err) console.log(err);
+    	else {
+			console.log(rows);
+            res.json(rows);
+        }
+    });
+}
+
+
+
 /* ---- Best Living ---- */
 function getPopularPlaces(req, res){
 	var query = `
@@ -199,6 +249,8 @@ module.exports = {
 	getBeds: getBeds,
 	getRoomType: getRoomType,
 	bestAirbnb: bestAirbnb,
+
+	bestHotel: bestHotel,
 
 	getPopularPlaces: getPopularPlaces,
 

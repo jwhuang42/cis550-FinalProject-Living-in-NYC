@@ -113,7 +113,7 @@ export default class FunFacts extends React.Component {
 						<br></br>
 						<div className="">
 							<button type="button" class="btninfo btn-info" onClick={this.showNewHosts}>
-								Number of New Hosts each Year
+								Number of New Airbnb Hosts each Year
 							</button>
 						</div>
 

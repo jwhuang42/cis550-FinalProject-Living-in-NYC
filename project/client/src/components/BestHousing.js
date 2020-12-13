@@ -124,6 +124,8 @@ export default class BestHousing extends React.Component {
 
 
 
+
+
 	submitResult() {
 		console.log("neighborhood is: " + this.state.neighborhood);
 		console.log("price low is: " + this.state.priceLow);
@@ -215,37 +217,37 @@ export default class BestHousing extends React.Component {
 
 							<div class="row">
 								<div class="form-group">
-									<div class="form-check">
+									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="checkbox" onChange={this.handleChange_service} id="gridCheck"/>
 										<label class="form-check-label" for="gridCheck">
 											service
 										</label>
 									</div>
-									<div class="form-check">
+									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="checkbox" onChange={this.handleChange_cleanliness} id="gridCheck"/>
 										<label class="form-check-label" for="gridCheck">
 											cleanliness
 										</label>
 									</div>
-									<div class="form-check">
+									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="checkbox" onChange={this.handleChange_value} id="gridCheck"/>
 										<label class="form-check-label" for="gridCheck">
 											value
 										</label>
 									</div>
-									<div class="form-check">
+									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="checkbox" onChange={this.handleChange_location} id="gridCheck"/>
 										<label class="form-check-label" for="gridCheck">
 											location
 										</label>
 									</div>
-									<div class="form-check">
+									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="checkbox" onChange={this.handleChange_sleepQuality} id="gridCheck"/>
 										<label class="form-check-label" for="gridCheck">
 											sleep quality
 										</label>
 									</div>
-									<div class="form-check">
+									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="checkbox" onChange={this.handleChange_room} id="gridCheck"/>
 										<label class="form-check-label" for="gridCheck">
 											room
@@ -264,13 +266,13 @@ export default class BestHousing extends React.Component {
 								</select>
 							</div>
 
-							<bt/>
+							<br/>
 							<div class="row">
 								<div class="col-4">
-									<input type='text' placeholder="Enter price low" value={this.state.priceLow} onChange={this.handleChange_priceLow} id="pl" className="priceLow-input"/>
+									<input type='text' placeholder="Enter price lowerbound" value={this.state.priceLow} onChange={this.handleChange_priceLow} id="pl" className="priceLow-input"/>
 								</div>
 								<div class="col-4">
-									<input type='text' placeholder="Enter price high" value={this.state.priceHigh} onChange={this.handleChange_priceHigh} id="ph" className="priceHigh-input"/>
+									<input type='text' placeholder="Enter price upperbound" value={this.state.priceHigh} onChange={this.handleChange_priceHigh} id="ph" className="priceHigh-input"/>
 								</div>
 								<div class="col-4">
 									<button type="button" class="btn btn-danger" onClick={this.submitResult}>

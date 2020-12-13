@@ -62,7 +62,7 @@ app.get('/hotel/:neighbourhood&:price_low&:price_high&:class&:service&:cleanline
 
 /* ---- Best Living ---- */
 
-app.get('/movies/popular', routes.getPopularPlaces);
+app.get('/movies/popular', routes.getPopularFilmingPlaces);
 
 /* ---- Fun Facts ---- */
 

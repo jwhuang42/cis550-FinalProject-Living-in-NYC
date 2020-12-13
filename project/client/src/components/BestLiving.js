@@ -13,20 +13,21 @@ export default class BestLiving extends React.Component {
 		// State maintained by this React component is the selected movie name,
 		// and the list of recommended movies.
 		this.state = {
-			movieName: "",
-			recMovies: [],
+
+			interest: "",
 			initialMap: [],
-			mapResult: []
+			mapResult: [],
+			header: []
 		}
 
-		this.handleMovieNameChange = this.handleMovieNameChange.bind(this);
+		this.handleChange_interest = this.handleChange_interest.bind(this);
 
 		this.initializeMap = this.initializeMap.bind(this);
 	}
 
-	handleMovieNameChange(e) {
+	handleChange_interest(e){
 		this.setState({
-			movieName: e.target.value
+			interest: e.target.value
 		});
 	}
 
@@ -34,47 +35,32 @@ export default class BestLiving extends React.Component {
 		// this.setState({mapResult: <MapContainer mapInfo={{latitude: 40.7128,longitude: -74.0060}} />})
 	}
 
-
-	/* ---- Q2 (Recommendations) ---- */
-	// Hint: Name of movie submitted is contained in `this.state.movieName`.
-	// submitMovie() {
-	// 	// Send an HTTP request to the server.
-  //       fetch("http://localhost:8081/recommendations/" + this.state.movieName, {
-  //         method: 'GET' // The type of HTTP request.
-  //       })
-  //         .then(res => res.json()) // Convert the response data to a JSON.
-  //         .then(recMovieList => {
-  //           if (!recMovieList) return;
-  //           console.log(recMovieList); //displays your JSON object in the console
-  // 		    let recMovieDivs = recMovieList.map((recMovie, i) =>
-  // 			  <BestLivingRow title={recMovie.title} id={recMovie.id} rating={recMovie.rating} vote_count={recMovie.vote_count} />
-  // 		    );
-	//
-  //           // Set the state of the recommended movies list to the value returned by the HTTP response from the server.
-  //           this.setState({
-  //             recMovies: recMovieDivs
-  //           })
-  //         })
-  //         .catch(err => console.log(err))	// Print the error if there is one.
-	// }
-
 	// connecting to google API and initial the google map
 	initializeMap(){
-		fetch("http://localhost:8081/movies/popular", {
-			method: 'GET' // The type of HTTP request.
-		})
-			.then(res => res.json()) // Convert the response data to a JSON.
-			.then(recMovieList => {
-				if (!recMovieList) return;
-				//console.log(recMovieList); //displays your JSON object in the console
-
-
-				// Set the state of the recommended movies list to the value returned by the HTTP response from the server.
-				this.setState({
-					mapResult: <MapContainer mapInfo={recMovieList}/>
-				})
+		// this is one branch, can be expanded further if more data are provided
+		if(this.state.interest.includes("movie")){
+			fetch("http://localhost:8081/movies/popular", {
+				method: 'GET' // The type of HTTP request.
 			})
-			.catch(err => console.log(err))	// Print the error if there is one.
+				.then(res => res.json()) // Convert the response data to a JSON.
+				.then(recMovieList => {
+					if (!recMovieList) return;
+					//console.log(recMovieList); //displays your JSON object in the console
+
+
+					// Set the state of the recommended movies list to the value returned by the HTTP response from the server.
+					this.setState({
+						header: <div class="h5"> It seems like you are a movie fan! here are the most popular filming places in NYC </div> ,
+						mapResult: <MapContainer mapInfo={recMovieList}/>
+					})
+				})
+				.catch(err => console.log(err))	// Print the error if there is one.
+		}else{
+			return this.setState({
+				header: <div class="h5"> No such contents so far, more contents are coming soon! </div> ,
+				mapResult: []
+			});
+		}
 	}
 
 
@@ -98,13 +84,33 @@ export default class BestLiving extends React.Component {
 
 				<div className="container bestliving-container">
 					<div className="jumbotron">
-						<div class="h3">NYC Map</div>
+						<div class="h1 text-primary">
+							Best Place Recommendation
+						</div>
+						<br/>
+						<div className="dropdown-container">
+							<div class="row">
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="">
+											Enter something you are interested in
+										</span>
+									</div>
+									<input type="text" class="form-control" placeholder="Enter here" value={this.state.interest} onChange={this.handleChange_interest} id="neighborhood"/>
+								</div>
+							</div>
 
-						<div class="row justify-content-md-center">
-					  	<button type="button" class="btn btn-info" buttonType="mapButton" onClick={this.initializeMap}>Which place in NYC is the most popular filming location</button>
-					  </div>
-						<br></br>
+							<div class="row justify-content-md-center">
+						  	<button type="button" class="btn btn-danger" buttonType="mapButton" onClick={this.initializeMap}>Starting Exploration</button>
+						  </div>
+						</div>
+					</div>
 
+					<br/>
+					<div className="jumbotron">
+						<div class = "row justify-content-md-center">
+							{this.state.header}
+						</div>
 						<div class="row" id="map" >
 							<div class="col-12"> {this.state.mapResult}</div>
 

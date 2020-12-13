@@ -185,7 +185,7 @@ function bestHotel(req, res) {
 
 
 /* ---- Best Living ---- */
-function getPopularPlaces(req, res){
+function getPopularFilmingPlaces(req, res){
 	var query = `
 		WITH popPlace AS(
 		SELECT neighborhood , Borough , count(*) as num
@@ -279,7 +279,7 @@ module.exports = {
 	getClass: getClass,
 	bestHotel: bestHotel,
 
-	getPopularPlaces: getPopularPlaces,
+	getPopularFilmingPlaces: getPopularFilmingPlaces,
 
 	avgRating: avgRating,
 	newHosts: newHosts,

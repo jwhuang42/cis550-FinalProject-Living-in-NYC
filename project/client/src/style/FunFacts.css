@@ -1,8 +1,6 @@
-
 .h5{
   position: relative;
   top:-50px;
-
   right:15px;
 }
 
@@ -22,27 +20,36 @@
   border-width: thick
 }
 
-.header-container, .results-container {
-  display: flex;
-  flex-flow: column wrap;
-  /* margin-top: 10px; */
-}
-
-.header-container .headers, .results-container .FunFactsAvgRatingResults {
+.container .results-header {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   height: 40px;
 }
 
-.header-container .headers, .results-container .FunFactsNewHostsResults {
+.results-header .header-lg {
+  flex: 1 0 50%;
+}
+
+.results-header .header {
+  flex: 1 0 25%;
+}
+
+.results-container .FunFactsAvgRatingResults {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   height: 40px;
 }
 
-.header-container .headers, .results-container .FunFactsNumMoviesResults {
+.results-container .FunFactsNewHostsResults {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  height: 40px;
+}
+
+.results-container .FunFactsNumMoviesResults {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -53,7 +60,7 @@
   flex: 1 0 25%;
 }
 
-.FunFactsNewHostsResults .year, .FunFactsNewHostsResults .num, .headers .header {
+.FunFactsNewHostsResults .year, .FunFactsNewHostsResults .num {
   flex: 1 0 25%;
 }
 

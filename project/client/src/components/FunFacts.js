@@ -35,7 +35,7 @@ export default class FunFacts extends React.Component {
 					<FunFactsAvgRatingRow host_neighbourhood={avgRatingResults.host_neighbourhood} count={avgRatingResults.count} avg_rating={avgRatingResults.avg_rating} />
 				);
 
-				// Set the state of the movies list to the value returned by the HTTP response from the server.
+				// Set the state of the header and result to the value returned by the HTTP response from the server.
 				this.setState({
 					header: [<div className="header"><strong>Neighbourhood</strong></div>,
 							 <div className="header"><strong>Count</strong></div>,
@@ -59,7 +59,7 @@ export default class FunFacts extends React.Component {
 					<FunFactsNewHostsRow year={newHostsResults.year} num={newHostsResults.num} />
 				);
 
-				// Set the state of the movies list to the value returned by the HTTP response from the server.
+				// Set the state of the header and result to the value returned by the HTTP response from the server.
 				this.setState({
 					header: [<div className="header"><strong>Year</strong></div>,
 							 <div className="header"><strong>Number</strong></div>],
@@ -82,7 +82,7 @@ export default class FunFacts extends React.Component {
 					<FunFactsNumMoviesRow neighborhood={numMoviesResults.neighborhood} Borough={numMoviesResults.Borough} num={numMoviesResults.num} />
 				);
 
-				// Set the state of the movies list to the value returned by the HTTP response from the server.
+				// Set the state of the header and result to the value returned by the HTTP response from the server.
 				this.setState({
 					header: [<div className="header"><strong>Neighbourhood</strong></div>,
 							 <div className="header"><strong>Borough</strong></div>,
@@ -99,7 +99,7 @@ export default class FunFacts extends React.Component {
 				<PageNavbar active="dashboard" />
 
 				<br></br>
-				<div className="container movies-container">
+				<div className="container">
 					<div className="jumbotron">
 						<div className="h5">
 							Which fun fact do you wang to know?
@@ -127,8 +127,8 @@ export default class FunFacts extends React.Component {
 
 					<br></br>
 					<div className="jumbotron">
-						<div className="movies-container">
-							<div className="movies-header">
+						<div className="container">
+							<div className="results-header">
 								{this.state.header}
 							</div>
 							<div className="results-container" id="results">

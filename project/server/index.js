@@ -55,6 +55,10 @@ app.get('/airbnb/beds', routes.getBeds);
 app.get('/airbnb/room_type', routes.getRoomType);
 app.get('/airbnb/:neighbourhood&:accommodates&:beds&:room_type&:price_low&:price_high', routes.bestAirbnb);
 
+/* ---- Best Hotel ---- */
+
+app.get('/hotel/:neighbourhood&:price_low&:price_high&:class&:service&:cleanliness&:value&:location&:sleep_quality&:rooms', routes.hotel);
+
 /* ---- Best Living ---- */
 
 app.get('/movies/popular', routes.getPopularPlaces);

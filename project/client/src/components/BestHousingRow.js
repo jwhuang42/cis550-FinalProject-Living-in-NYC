@@ -1,20 +1,21 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-export default class DashboardMovieRow extends React.Component {
+export default class BestHousingRow extends React.Component {
 	constructor(props) {
 		super(props);
 	}
 
-	/* ---- Q1b (Dashboard) ---- */
-	/* Change the contents (NOT THE STRUCTURE) of the HTML elements to show a movie row. */
 	render() {
 		return (
-			<div className="movie">
-				<div className="title">{this.props.title}</div>
-				<div className="rating">{this.props.rating}</div>
-				<div className="votes">{this.props.vote_count}</div>
+			<div className="bestHotelResults">
+				<div className="name">{this.props.name}</div>
+				<div className="street_address">{this.props.street_address}</div>
+				<div className="hotel_class">{this.props.hotel_class}</div>
+				<div className="price">{this.props.price}</div>
+				<div className="overall">{this.props.overall}</div>
 			</div>
 		);
 	}
 }
+name, street_address, hotel_class, price, overall

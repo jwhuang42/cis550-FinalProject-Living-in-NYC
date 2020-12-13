@@ -112,11 +112,15 @@ function bestAirbnb(req, res) {
 
 function bestHotel(req, res){
 	var inputNeighbourhood = req.params.neighbourhood;
-    var inputAccomodates = req.params.accommodates;
-    var inputBeds = req.params.beds;
-    var inputRoomType = req.params.room_type;
     var inputPriceLow = req.params.price_low;
     var inputPriceHigh = req.params.price_high;
+	var inputClass = req.params.class;
+	var inputService = req.params.service;
+	var inputCleanliness = req.params.cleanliness;
+	var inputValue = req.params.value;
+	var inputLocation = req.params.location;
+	var inputSleepQuality = req.params.sleep_quality;
+	var inputRooms = req.params.rooms;
 
 	var query = `
 		WITH hotel_rating AS (
@@ -135,8 +139,8 @@ function bestHotel(req, res){
 		)
 		SELECT name, street_address, hotel_class, price, overall
 		FROM hotel_info
-		WHERE neighbourhood = 'CHELSEA'
-			AND price > 1 AND price < 1000
+		WHERE neighbourhood = '${inputNeighbourhood}'
+			AND price > ${inputPriceLow} AND price < ${inputPriceHigh}
 			AND hotel_class > 3
 			AND service > 4
 			AND cleanliness > 4

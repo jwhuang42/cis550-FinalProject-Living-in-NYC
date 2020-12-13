@@ -35,9 +35,9 @@ export default class FunFacts extends React.Component {
 
 	            // Set the state of the movies list to the value returned by the HTTP response from the server.
 	            this.setState({
-								header: [<div className="header"><strong>Neighbourhood</strong></div>,
-													<div className="header"><strong>Count</strong></div>,
-													<div className="header"><strong>Average Rating</strong></div>],
+					header: [<div className="header"><strong>Neighbourhood</strong></div>,
+							 <div className="header"><strong>Count</strong></div>,
+							 <div className="header"><strong>Average Rating</strong></div>],
 	            	result: avgRatingDivs
 	            })
         	})
@@ -59,8 +59,8 @@ export default class FunFacts extends React.Component {
 
 	            // Set the state of the movies list to the value returned by the HTTP response from the server.
 	            this.setState({
-								header: [<div className="header"><strong>Year</strong></div>,
-													<div className="header"><strong>Number</strong></div>],
+					header: [<div className="header"><strong>Year</strong></div>,
+							 <div className="header"><strong>Number</strong></div>],
 	            	result: newHostsDivs
 	            });
         	})
@@ -79,11 +79,11 @@ export default class FunFacts extends React.Component {
             <div className="jumbotron">
               <div className="h5">Which fun fact do you wang to know?</div>
 			  <div className="">
-			  	<button type="button"  class="btn btn-info" onClick={this.showAvgRating}>Number and Average Rating of Airbnb for each Neighbourhood</button>
+			  	<button type="button"  class="btninfo btn-info" onClick={this.showAvgRating}>Number and Average Rating of Airbnb for each Neighbourhood</button>
 			  </div>
 			  <br></br>
               <div className="">
-			    <button type="button"  class="btn btn-info" onClick={this.showNewHosts}>Number of New Hosts each Year</button>
+			    <button type="button"  class="btninfo btn-info" onClick={this.showNewHosts}>Number of New Hosts each Year</button>
 				</div>
             </div>
 

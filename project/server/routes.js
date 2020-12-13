@@ -172,7 +172,7 @@ function getPopularPlaces(req, res){
 		ORDER BY num DESC
 		LIMIT 10
 		)
-		SELECT m.latitude, m.longitude, m.film, m.imdb_link, m.neighborhood, m.Borough
+		SELECT m.latitude, m.longitude, m.film, m.imdb_link, m.neighborhood, m.Borough, m.scene_type
 		FROM movie_scene m
 		JOIN popPlace p ON (m.neighborhood, m.Borough) = (p.neighborhood, p.Borough)
 		ORDER BY p.num DESC

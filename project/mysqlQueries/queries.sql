@@ -25,7 +25,7 @@ WITH airbnb AS (
 SELECT picture_url, name, accommodates, beds, price, IFNULL(rating, 'N/A') AS rating, num_crimes
 FROM result;
 
--- Count and Average_Rating of Airbnb for each Neighbourhood --
+-- Number and Average_Rating of Airbnb for each Neighbourhood --
 SELECT h.host_neighbourhood, COUNT(*) AS count, AVG(r.review_scores_rating) AS avg_rating
 FROM airbnb_review r JOIN airbnb_host h ON r.id = h.id
 WHERE h.host_neighbourhood IS NOT NULL
@@ -41,3 +41,21 @@ WHERE YEAR(host_since) is NOT NULL
 GROUP BY YEAR(host_since)
 ORDER BY year;
 
+-- Number of Movie Scenes in each Neighbourhood --
+SELECT neighborhood, Borough, COUNT(*) as num
+FROM movie_scene
+GROUP BY neighborhood, Borough
+ORDER BY num DESC
+LIMIT 10;
+
+WITH popPlace AS (
+	SELECT neighborhood, Borough, COUNT(*) as num
+	FROM movie_scene
+	GROUP BY neighborhood, Borough
+	ORDER BY num DESC
+	LIMIT 10
+)
+SELECT m.latitude, m.longitude, m.film, m.imdb_link, m.neighborhood, m.Borough
+FROM movie_scene m JOIN popPlace p ON (m.neighborhood, m.Borough) = (p.neighborhood, p.Borough)
+ORDER BY p.num DESC
+LIMIT 10;

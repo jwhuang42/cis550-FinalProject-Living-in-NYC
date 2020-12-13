@@ -106,6 +106,8 @@ function bestAirbnb(req, res) {
     });
 };
 
+
+
 /* ---- Best Living ---- */
 function getPopularPlaces(req, res){
 	var query = `
@@ -132,7 +134,8 @@ function getPopularPlaces(req, res){
 }
 
 
-/* ---- Airbnb Fun Facts ---- */
+
+/* ---- Fun Facts ---- */
 
 function avgRating(req, res) {
 	var query = `
@@ -170,6 +173,25 @@ function newHosts(req, res) {
     });
 }
 
+function numMovies(req, res) {
+	var query = `
+		SELECT neighborhood, Borough, COUNT(*) as num
+		FROM movie_scene
+		GROUP BY neighborhood, Borough
+		ORDER BY num DESC
+		LIMIT 10;
+    `;
+    connection.query(query, function(err, rows, fields) {
+    	if (err) console.log(err);
+    	else {
+			console.log(rows);
+            res.json(rows);
+        }
+    });
+}
+
+
+
 // change the above
 // The exported functions, which can be accessed in index.js.
 module.exports = {
@@ -177,7 +199,10 @@ module.exports = {
 	getBeds: getBeds,
 	getRoomType: getRoomType,
 	bestAirbnb: bestAirbnb,
+
 	getPopularPlaces: getPopularPlaces,
+
 	avgRating: avgRating,
-	newHosts: newHosts
+	newHosts: newHosts,
+	numMovies: numMovies
 }

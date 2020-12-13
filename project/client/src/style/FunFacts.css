@@ -22,6 +22,11 @@
   border-width: thick
 }
 
+.header-container, .results-container {
+  display: flex;
+  flex-flow: column wrap;
+  /* margin-top: 10px; */
+}
 
 .header-container .headers, .results-container .FunFactsAvgRatingResults {
   display: flex;
@@ -30,13 +35,14 @@
   height: 40px;
 }
 
-.header-container, .results-container {
+.header-container .headers, .results-container .FunFactsNewHostsResults {
   display: flex;
-  flex-flow: column wrap;
-  /* margin-top: 10px; */
+  flex-flow: row nowrap;
+  align-items: center;
+  height: 40px;
 }
 
-.header-container .headers, .results-container .FunFactsNewHostsResults {
+.header-container .headers, .results-container .FunFactsNumMoviesResults {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -48,5 +54,9 @@
 }
 
 .FunFactsNewHostsResults .year, .FunFactsNewHostsResults .num, .headers .header {
+  flex: 1 0 25%;
+}
+
+.FunFactsNumMoviesResults .neighborhood, .FunFactsNumMoviesResults .Borough, .FunFactsNumMoviesResults .num {
   flex: 1 0 25%;
 }

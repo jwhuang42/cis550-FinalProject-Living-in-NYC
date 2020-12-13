@@ -12,15 +12,11 @@ export class MapContainer extends React.Component {
       activeMarker: {},          // Shows the active marker upon click
       selectedPlace: {}          // Shows the InfoWindow to the selected place upon a marker
     }
-    this.displayLink = this.displayLink.bind(this);
+    this.displayHostLink = this.displayHostLink.bind(this);
+    this.displayMovieLink = this.displayMovieLink.bind(this);
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onClose = this.onClose.bind(this);
     // console.log(this.state.nyc);
-  }
-
-  // TODO: get the coordinates and update "nyc" document array based on some conditions given by users
-  getCoordinates(){
-
   }
 
   onMarkerClick = (props, marker, e) =>
@@ -39,7 +35,19 @@ export class MapContainer extends React.Component {
     }
   };
 
-  displayLink (link, scene){
+  displayHostLink (host_url, listing_url, rating, price, host_name){
+
+    return (
+      <div class="hostLink">
+        <p>price: {price}</p>
+        <p>rating: {rating}</p>
+        <p>please <a href = {listing_url}>click here</a> to check more detailed infomation of the listing. </p>
+        <p> contact <a href = {host_url}>{host_name}</a> to start an amazing journey! </p>
+      </div>
+    );
+  }
+
+  displayMovieLink (link, scene){
     // additional icons: https://sites.google.com/site/gmapsdevelopment/
     return (
       <div class="imdmLink">
@@ -59,19 +67,33 @@ export class MapContainer extends React.Component {
 
           <Map
             google={this.props.google}
-            zoom={10}
+            zoom={11}
             style={mapStyles}
-            initialCenter={{ lat: 40.7128, lng: -74.0060}}  //center of nyc
+            initialCenter={{ lat: 40.7528, lng: -74.0060}}  //center of nyc
           >
               {this.state.nyc.map((info, index) => {
-                return (
-                  <Marker key={index} id={index} position={{lat: info.latitude, lng: info.longitude}}
-                    onClick = {this.onMarkerClick}
-                    name = {'Part of "'+info.film + '" is filmed here!'}
-                    subText = {this.displayLink(info.imdb_link, info.scene_type)}
-                    options = {{icon: {url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"}}}
-                  />
-                );
+                if (info.film !== undefined){
+                  console.log(info.film);
+                  return (
+                    <Marker key={index} id={index} position={{lat: info.latitude, lng: info.longitude}}
+                      onClick = {this.onMarkerClick}
+                      name = {'Part of "'+info.film + '" is filmed here!'}
+                      subText = {this.displayMovieLink(info.imdb_link, info.scene_type)}
+                      options = {{icon: {url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"}}}
+                    />
+                  );
+                }
+                else {
+                  console.log(info);
+                  return (
+                    <Marker key={index+50} id={index+50} position={{lat: info.latitude, lng: info.longitude}}
+                      onClick = {this.onMarkerClick}
+                      name = {info.name}
+                      subText = {this.displayHostLink(info.host_url, info.listing_url, info.rating, info.price, info.host_name)}
+                      options = {{icon: {url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"}}}
+                    />
+                  );
+                }
               })}
 
 

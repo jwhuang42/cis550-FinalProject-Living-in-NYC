@@ -112,8 +112,8 @@ function bestAirbnb(req, res) {
 
 function bestHotel(req, res){
 	var inputNeighbourhood = req.params.neighbourhood;
-    var inputPriceLow = req.params.price_low;
-    var inputPriceHigh = req.params.price_high;
+  var inputPriceLow = req.params.price_low;
+  var inputPriceHigh = req.params.price_high;
 	var inputClass = req.params.class;
 	var inputService = req.params.service;
 	var inputCleanliness = req.params.cleanliness;
@@ -176,7 +176,7 @@ function getPopularPlaces(req, res){
 		FROM movie_scene m
 		JOIN popPlace p ON (m.neighborhood, m.Borough) = (p.neighborhood, p.Borough)
 		ORDER BY p.num DESC
-		LIMIT 10;
+		LIMIT 40;
     `;
     connection.query(query, function(err, rows, fields) {
     	if (err) console.log(err);

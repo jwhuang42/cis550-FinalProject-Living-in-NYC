@@ -39,16 +39,13 @@ export class MapContainer extends React.Component {
     }
   };
 
-  displayLink (link){
-
+  displayLink (link, scene){
     // additional icons: https://sites.google.com/site/gmapsdevelopment/
-
-
-      return (
-        <div class="imdmLink">
-          <p>please <a href = {link}>click here</a> for more: </p>
-        </div>
-      );
+    return (
+      <div class="imdmLink">
+        <p>This place is used for a {scene} scene, please <a href = {link}>click here</a> for more: </p>
+      </div>
+    );
 
   }
 
@@ -70,8 +67,8 @@ export class MapContainer extends React.Component {
                 return (
                   <Marker key={index} id={index} position={{lat: info.latitude, lng: info.longitude}}
                     onClick = {this.onMarkerClick}
-                    name = {info.film + ' is filmed here!'}
-                    subText = {this.displayLink(info.imdb_link)}
+                    name = {'Part of "'+info.film + '" is filmed here!'}
+                    subText = {this.displayLink(info.imdb_link, info.scene_type)}
                     options = {{icon: {url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"}}}
                   />
                 );

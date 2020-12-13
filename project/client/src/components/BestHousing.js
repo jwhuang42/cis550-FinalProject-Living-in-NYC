@@ -20,10 +20,17 @@ export default class BestHousing extends React.Component {
 
 			accomodates_list: [],
 			beds_list: [],
-			room_type_list: []
+			room_type_list: [],
+
+
+      somethingChecked: false
+
 		};
 
 		this.submitResult = this.submitResult.bind(this);
+
+
+    this.handleChange_something = this.handleChange_something.bind(this);
 
 
 		this.handleChange_neighborhood = this.handleChange_neighborhood.bind(this);
@@ -35,6 +42,27 @@ export default class BestHousing extends React.Component {
 		this.handleChange_roomType = this.handleChange_roomType.bind(this);
 
 	}
+
+
+  handleChange_something(e){
+
+    this.setState({
+      somethingChecked: e.target.checked
+    })
+    console.log(this.state.somethingChecked);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 
 	handleChange_neighborhood(e) {
 		this.setState({
@@ -72,60 +100,60 @@ export default class BestHousing extends React.Component {
 	componentDidMount() {
 		// fetch accomodates
 
-	  fetch("http://localhost:8081/airbnb/accommodates", {
-      method: 'GET' // The type of HTTP request.
-    })
-      .then(res => res.json()) // Convert the response data to a JSON.
-      .then(accomodatesList => {
-
-      	let accomodatesDivs = accomodatesList.map((accomodates, i) =>
-          <option value={accomodates.accommodates}>{accomodates.accommodates}</option>
-        );
-				console.log(accomodatesDivs);
-        this.setState({
-          accomodates_list: accomodatesDivs,
-
-        })
-      })
-      .catch(err => console.log(err))
-
-
-			// fetch beds
-			fetch("http://localhost:8081/airbnb/beds", {
-	      method: 'GET' // The type of HTTP request.
-	    })
-	      .then(res => res.json()) // Convert the response data to a JSON.
-	      .then(bedList => {
-
-
-	      	let bedDivs = bedList.map((bed, i) =>
-	          <option value={bed.beds}>{bed.beds}</option>
-	        );
-
-	        this.setState({
-	          beds_list: bedDivs,
-
-	        })
-	      })
-	      .catch(err => console.log(err))
-
-				// fetch room_type
-				fetch("http://localhost:8081/airbnb/room_type", {
-		      method: 'GET' // The type of HTTP request.
-		    })
-		      .then(res => res.json()) // Convert the response data to a JSON.
-		      .then(roomTpyeList => {
-
-		      	let roomTypeDivs = roomTpyeList.map((roomTpye, i) =>
-		          <option value={roomTpye.room_type}>{roomTpye.room_type}</option>
-		        );
-
-		        this.setState({
-				  room_type_list: roomTypeDivs,
-
-		        })
-		      })
-		      .catch(err => console.log(err))
+	  // fetch("http://localhost:8081/airbnb/accommodates", {
+    //   method: 'GET' // The type of HTTP request.
+    // })
+    //   .then(res => res.json()) // Convert the response data to a JSON.
+    //   .then(accomodatesList => {
+    //
+    //   	let accomodatesDivs = accomodatesList.map((accomodates, i) =>
+    //       <option value={accomodates.accommodates}>{accomodates.accommodates}</option>
+    //     );
+		// 		console.log(accomodatesDivs);
+    //     this.setState({
+    //       accomodates_list: accomodatesDivs,
+    //
+    //     })
+    //   })
+    //   .catch(err => console.log(err))
+    //
+    //
+		// 	// fetch beds
+		// 	fetch("http://localhost:8081/airbnb/beds", {
+	  //     method: 'GET' // The type of HTTP request.
+	  //   })
+	  //     .then(res => res.json()) // Convert the response data to a JSON.
+	  //     .then(bedList => {
+    //
+    //
+	  //     	let bedDivs = bedList.map((bed, i) =>
+	  //         <option value={bed.beds}>{bed.beds}</option>
+	  //       );
+    //
+	  //       this.setState({
+	  //         beds_list: bedDivs,
+    //
+	  //       })
+	  //     })
+	  //     .catch(err => console.log(err))
+    //
+		// 		// fetch room_type
+		// 		fetch("http://localhost:8081/airbnb/room_type", {
+		//       method: 'GET' // The type of HTTP request.
+		//     })
+		//       .then(res => res.json()) // Convert the response data to a JSON.
+		//       .then(roomTpyeList => {
+    //
+		//       	let roomTypeDivs = roomTpyeList.map((roomTpye, i) =>
+		//           <option value={roomTpye.room_type}>{roomTpye.room_type}</option>
+		//         );
+    //
+		//         this.setState({
+		// 		  room_type_list: roomTypeDivs,
+    //
+		//         })
+		//       })
+		//       .catch(err => console.log(err))
 	}
 
 
@@ -136,14 +164,14 @@ export default class BestHousing extends React.Component {
 		var rmType = this.state.roomType.replace(/ /g,"_");
 		rmType = rmType.replace("/","q")
 
-		fetch("http://localhost:8081/airbnb/" +	this.state.neighborhood + "&" + this.state.accomodates + "&" + this.state.bed + "&" + rmType + "&" + this.state.priceLow + "&" + this.state.priceHigh, {
+		fetch("http://localhost:8081/hotel/" +	this.state.neighborhood + "&" + this.state.accomodates + "&" + this.state.bed + "&" + rmType + "&" + this.state.priceLow + "&" + this.state.priceHigh, {
       method: 'GET' // The type of HTTP request.
     })
       .then(res => res.json()) // Convert the response data to a JSON.
       .then(resultList => {
 				// console.log("genreLIST is: "+resultList)
       	let genrerateDivs = resultList.map((airbnbResults, i) =>
-          <BestAirbnbRow airbnbResults={airbnbResults} />
+          <BestHousingRow airbnbResults={airbnbResults} />
         );
 
         this.setState({
@@ -182,6 +210,15 @@ export default class BestHousing extends React.Component {
 									</div>
 									<br/>
 
+                  <div class="row">
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" onChange={this.handleChange_something} id="gridCheck"/>
+                        <label class="form-check-label" for="gridCheck"> Check me for something </label>
+                      </div>
+                    </div>
+                  </div>
+
 									<div class="row">
 										<div class="col-4">
 											<select value={this.state.accomodates} onChange={this.handleChange_accomodates} className="dropdown" id="accomodatesDropdown">
@@ -202,7 +239,7 @@ export default class BestHousing extends React.Component {
 					            </select>
 										</div>
 									</div>
-									<div class="row"><p></p></div>
+									<br/>
 									<div class="row">
 										<div class="col-4">
 											<input type='text' placeholder="Enter priceLow" value={this.state.priceLow} onChange={this.handleChange_priceLow} id="pl" className="priceLow-input"/>

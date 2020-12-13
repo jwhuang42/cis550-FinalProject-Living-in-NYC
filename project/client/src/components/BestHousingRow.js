@@ -18,4 +18,4 @@ export default class BestHousingRow extends React.Component {
 		);
 	}
 }
-name, street_address, hotel_class, price, overall
+// name, street_address, hotel_class, price, overall

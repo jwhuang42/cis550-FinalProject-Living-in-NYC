@@ -40,20 +40,31 @@ export default class BestAirbnbRow extends React.Component {
 				</div>
 				<br/>
 				<div class="row justify-content-md-center">
-					<div class="text-primary">{this.props.airbnbResults.name}</div>
+					<div class="text-primary">
+						{this.props.airbnbResults.name}
+					</div>
 				</div>
 				<div class="row justify-content-md-around">
-					<div class="col" className="accommodates"> accommodates: {this.props.airbnbResults.accommodates}</div>
-					<div class="" > # beds: {this.props.airbnbResults.beds}</div>
-					<div class=""> price: {this.props.airbnbResults.price}</div>
-					<div class={this.getcolor()}> rating: {this.props.airbnbResults.rating}</div>
+					<div class="">
+						accommodates: {this.props.airbnbResults.accommodates}
+					</div>
+					<div class="" >
+						# beds: {this.props.airbnbResults.beds}
+					</div>
+					<div class="">
+						price: {this.props.airbnbResults.price}
+					</div>
+					<div class={this.getcolor()}>
+						rating: {this.props.airbnbResults.rating}
+					</div>
 				</div>
 				<div class="row justify-content-md-center">
-					<div class=""> average number of crimes within half miles per month: {this.props.airbnbResults.num_crimes}</div>
+					<div class="">
+						average number of crimes within half miles per month: {this.props.airbnbResults.num_crimes}
+					</div>
 				</div>
 				<br/>
 				<br/>
-
 			</div>
 		);
 	}

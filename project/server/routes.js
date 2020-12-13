@@ -18,12 +18,12 @@ function getAccommodates(req, res) {
 		FROM airbnb_property
 		WHERE accommodates > 0
 		ORDER BY accommodates;
-  	`;
+	`;
 	connection.query(query, function(err, rows, fields) {
 		if (err) console.log(err);
 		else {
 			console.log(rows);
-		  	res.json(rows);
+			res.json(rows);
 		}
 	});
 }
@@ -34,53 +34,53 @@ function getBeds(req, res) {
 		FROM airbnb_property
 		WHERE beds > 0
 		ORDER BY beds;
-    `;
-    connection.query(query, function(err, rows, fields) {
-        if (err) console.log(err);
-        else {
+	`;
+	connection.query(query, function(err, rows, fields) {
+		if (err) console.log(err);
+		else {
 			console.log(rows);
-            res.json(rows);
-        }
-    });
+			res.json(rows);
+		}
+	});
 }
 
 function getRoomType(req, res) {
 	var query = `
 		SELECT DISTINCT room_type
 		FROM airbnb_property;
-    `;
-    connection.query(query, function(err, rows, fields) {
-    	if (err) console.log(err);
-    	else {
+	`;
+	connection.query(query, function(err, rows, fields) {
+		if (err) console.log(err);
+		else {
 			console.log(rows);
-            res.json(rows);
-        }
-    });
+			res.json(rows);
+		}
+	});
 }
 
 function bestAirbnb(req, res) {
-    var inputNeighbourhood = req.params.neighbourhood;
-    var inputAccomodates = req.params.accommodates;
-    var inputBeds = req.params.beds;
-    var inputRoomType = req.params.room_type;
-    var inputPriceLow = req.params.price_low;
-    var inputPriceHigh = req.params.price_high;
+	var inputNeighbourhood = req.params.neighbourhood;
+	var inputAccomodates = req.params.accommodates;
+	var inputBeds = req.params.beds;
+	var inputRoomType = req.params.room_type;
+	var inputPriceLow = req.params.price_low;
+	var inputPriceHigh = req.params.price_high;
 
 		inputRoomType = inputRoomType.replace("q", "/");
 		inputRoomType = inputRoomType.replace(/_/g, " ");
 		//console.log(inputRoomType);
 
-    var query = `
+	var query = `
 		WITH airbnb AS (
 			SELECT n.id, n.picture_url, n.name, p.accommodates, p.beds, p.price,
 				FLOOR(r.review_scores_rating) AS rating, l.latitude, l.longitude
 			FROM airbnb_name n, airbnb_property p, airbnb_review r, airbnb_host h, airbnb_place l
-	    	WHERE n.id = p.id AND n.id = r.id AND n.id = h.id AND n.id = l.id
+			WHERE n.id = p.id AND n.id = r.id AND n.id = h.id AND n.id = l.id
 				AND h.host_neighbourhood = '${inputNeighbourhood}'
-	            AND p.accommodates >= ${inputAccomodates}
-	            AND p.beds >= ${inputBeds} AND p.beds <= ${inputBeds} + 2
-	            AND p.room_type = '${inputRoomType}'
-	            AND p.price > ${inputPriceLow} AND p.price < ${inputPriceHigh}
+				AND p.accommodates >= ${inputAccomodates}
+				AND p.beds >= ${inputBeds} AND p.beds <= ${inputBeds} + 2
+				AND p.room_type = '${inputRoomType}'
+				AND p.price > ${inputPriceLow} AND p.price < ${inputPriceHigh}
 		), crime_count AS (
 			SELECT a.id, FLOOR(COUNT(*) / 9) AS num_crimes
 			FROM airbnb a, crime c
@@ -96,68 +96,88 @@ function bestAirbnb(req, res) {
 		)
 		SELECT picture_url, name, accommodates, beds, price, IFNULL(rating, 'N/A') AS rating, num_crimes
 		FROM result;
-    `;
-    connection.query(query, function(err, rows, fields) {
-        if (err) console.log(err);
-        else {
-            console.log(rows);
-            res.json(rows);
-        }
-    });
+	`;
+	connection.query(query, function(err, rows, fields) {
+		if (err) console.log(err);
+		else {
+			console.log(rows);
+			res.json(rows);
+		}
+	});
 };
 
 
 
 /* ---- Best Hotel ---- */
 
-function bestHotel(req, res){
+function getClass(req, res) {
+	var query = `
+		SELECT DISTINCT IFNULL(hotel_class, 0) AS class
+		FROM hotel
+		ORDER BY class;
+	`;
+	connection.query(query, function(err, rows, fields) {
+		if (err) console.log(err);
+		else {
+			console.log(rows);
+			res.json(rows);
+		}
+	});
+}
+
+function bestHotel(req, res) {
 	var inputNeighbourhood = req.params.neighbourhood;
-  var inputPriceLow = req.params.price_low;
-  var inputPriceHigh = req.params.price_high;
+	var inputPriceLow = req.params.price_low;
+	var inputPriceHigh = req.params.price_high;
 	var inputClass = req.params.class;
 	var inputService = req.params.service;
 	var inputCleanliness = req.params.cleanliness;
 	var inputValue = req.params.value;
 	var inputLocation = req.params.location;
 	var inputSleepQuality = req.params.sleep_quality;
-	var inputRooms = req.params.rooms;
+	var inputRoom = req.params.room;
 
 	var query = `
 		WITH hotel_rating AS (
-			SELECT name, street_address, hotel_class, postal_code, AVG(price) AS price, AVG(service) AS service,
-				AVG(cleanliness) AS cleanliness, AVG(value) AS value, AVG(location_score) AS location,
-				AVG(sleep_quality) AS sleep_quality, AVG(rooms) AS rooms, AVG(overall) AS overall
+			SELECT name, street_address, hotel_class, postal_code, AVG(price) AS price,
+				AVG(service) AS service, AVG(cleanliness) AS cleanliness, AVG(value) AS value,
+				AVG(location_score) AS location, AVG(sleep_quality) AS sleep_quality,
+				AVG(rooms) AS room, AVG(overall) AS overall
 			FROM hotel
 			GROUP BY name, street_address, hotel_class, postal_code
 		), transformer AS (
 			SELECT DISTINCT NEIGHBORHOOD, ZIPCODE
 			FROM zillow
 		), hotel_info AS (
-			SELECT DISTINCT h.*, t.NEIGHBORHOOD AS neighbourhood
+			SELECT DISTINCT h.name, h.street_address, t.NEIGHBORHOOD AS neighbourhood, h.price,
+				IFNULL(h.hotel_class, 0) AS class, IFNULL(h.service, 0) AS service,
+				IFNULL(h.cleanliness, 0) AS cleanliness, IFNULL(h.value, 0) AS value,
+				IFNULL(h.location, 0) AS location, IFNULL(h.sleep_quality, 0) AS sleep_quality,
+				IFNULL(h.room, 0) AS room, h.overall
 			FROM hotel_rating h JOIN transformer t ON h.postal_code = t.ZIPCODE
 			ORDER BY name
 		)
-		SELECT name, street_address, hotel_class, price, overall
+		SELECT name, street_address, class, price, overall
 		FROM hotel_info
 		WHERE neighbourhood = '${inputNeighbourhood}'
-			AND price > ${inputPriceLow} AND price < ${inputPriceHigh}
-			AND hotel_class > 3
-			AND service > 4
-			AND cleanliness > 4
-			AND value > 4
-			AND location > 4
-			AND sleep_quality > 4
-			AND rooms > 4
+			AND price >= ${inputPriceLow} AND price <= ${inputPriceHigh}
+			AND class >= ${inputClass}
+			AND service >= ${inputService}
+			AND cleanliness >= ${inputCleanliness}
+			AND value >= ${inputValue}
+			AND location >= ${inputLocation}
+			AND sleep_quality >= ${inputSleepQuality}
+			AND room >= ${inputRoom}
 		ORDER BY overall DESC
 		LIMIT 5;
-    `;
-    connection.query(query, function(err, rows, fields) {
-    	if (err) console.log(err);
-    	else {
+	`;
+	connection.query(query, function(err, rows, fields) {
+		if (err) console.log(err);
+		else {
 			console.log(rows);
-            res.json(rows);
-        }
-    });
+			res.json(rows);
+		}
+	});
 }
 
 
@@ -177,14 +197,14 @@ function getPopularPlaces(req, res){
 		JOIN popPlace p ON (m.neighborhood, m.Borough) = (p.neighborhood, p.Borough)
 		ORDER BY p.num DESC
 		LIMIT 40;
-    `;
-    connection.query(query, function(err, rows, fields) {
-    	if (err) console.log(err);
-    	else {
+	`;
+	connection.query(query, function(err, rows, fields) {
+		if (err) console.log(err);
+		else {
 			console.log(rows);
-            res.json(rows);
-        }
-    });
+			res.json(rows);
+		}
+	});
 }
 
 
@@ -200,14 +220,14 @@ function avgRating(req, res) {
 		HAVING count > 100
 		ORDER BY avg_rating DESC
 		LIMIT 10;
-    `;
-    connection.query(query, function(err, rows, fields) {
-    	if (err) console.log(err);
-    	else {
+	`;
+	connection.query(query, function(err, rows, fields) {
+		if (err) console.log(err);
+		else {
 			console.log(rows);
-            res.json(rows);
-        }
-    });
+			res.json(rows);
+		}
+	});
 }
 
 function newHosts(req, res) {
@@ -217,14 +237,14 @@ function newHosts(req, res) {
 		WHERE YEAR(host_since) is NOT NULL
 		GROUP BY YEAR(host_since)
 		ORDER BY year;
-    `;
-    connection.query(query, function(err, rows, fields) {
-    	if (err) console.log(err);
-    	else {
+	`;
+	connection.query(query, function(err, rows, fields) {
+		if (err) console.log(err);
+		else {
 			console.log(rows);
-            res.json(rows);
-        }
-    });
+			res.json(rows);
+		}
+	});
 }
 
 function numMovies(req, res) {
@@ -234,14 +254,14 @@ function numMovies(req, res) {
 		GROUP BY neighborhood, Borough
 		ORDER BY num DESC
 		LIMIT 10;
-    `;
-    connection.query(query, function(err, rows, fields) {
-    	if (err) console.log(err);
-    	else {
+	`;
+	connection.query(query, function(err, rows, fields) {
+		if (err) console.log(err);
+		else {
 			console.log(rows);
-            res.json(rows);
-        }
-    });
+			res.json(rows);
+		}
+	});
 }
 
 
@@ -254,6 +274,7 @@ module.exports = {
 	getRoomType: getRoomType,
 	bestAirbnb: bestAirbnb,
 
+	getClass: getClass,
 	bestHotel: bestHotel,
 
 	getPopularPlaces: getPopularPlaces,

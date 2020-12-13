@@ -9,58 +9,35 @@ export default class BestHousing extends React.Component {
 		super(props);
 
 		this.state = {
-			zipcode: "Midtown",
-			accomodates: "4",
-			bed: "4",
-			roomType: "",
+			neighborhood: "CHELSEA",
 			priceLow: "1",
 			priceHigh: "1000",
+			class: "",
+			service: false,
+			cleanliness: false,
+			value: false,
+			location: false,
+			sleep_quality: false,
+			room: false,
+
+			class_list: [],
 
 			result: [],
-
-			accomodates_list: [],
-			beds_list: [],
-			room_type_list: [],
-
-
-      somethingChecked: false
-
 		};
 
 		this.submitResult = this.submitResult.bind(this);
 
-
-    this.handleChange_something = this.handleChange_something.bind(this);
-
-
 		this.handleChange_neighborhood = this.handleChange_neighborhood.bind(this);
 		this.handleChange_priceLow = this.handleChange_priceLow.bind(this);
 		this.handleChange_priceHigh = this.handleChange_priceHigh.bind(this);
-		// 3 more
-		this.handleChange_accomodates = this.handleChange_accomodates.bind(this);
-		this.handleChange_bed = this.handleChange_bed.bind(this);
-		this.handleChange_roomType = this.handleChange_roomType.bind(this);
-
-	}
-
-
-  handleChange_something(e){
-
-    this.setState({
-      somethingChecked: e.target.checked
-    })
-    console.log(this.state.somethingChecked);
-  }
-
-
-
-
-
-
-
-
-
-
+		this.handleChange_class = this.handleChange_class.bind(this);
+		this.handleChange_service = this.handleChange_service.bind(this);
+		this.handleChange_cleanliness = this.handleChange_cleanliness.bind(this);
+		this.handleChange_value = this.handleChange_value.bind(this);
+		this.handleChange_location = this.handleChange_location.bind(this);
+		this.handleChange_sleepQuality = this.handleChange_sleepQuality.bind(this);
+		this.handleChange_room = this.handleChange_room.bind(this);
+	};
 
 
 
@@ -68,210 +45,262 @@ export default class BestHousing extends React.Component {
 		this.setState({
 			neighborhood: e.target.value
 		});
-	}
+	};
+
 	handleChange_priceLow(e) {
 		this.setState({
 			priceLow: e.target.value
 		});
-	}
+	};
+
 	handleChange_priceHigh(e) {
 		this.setState({
 			priceHigh: e.target.value
 		});
-	}
-	handleChange_accomodates(e) {
+	};
+
+	handleChange_class(e) {
 		this.setState({
-			accomodates: e.target.value
+			class: e.target.value
 		});
-	}
-	handleChange_bed(e) {
+	};
+
+	handleChange_service(e) {
 		this.setState({
-			bed: e.target.value
+			service: e.target.checked
 		});
-	}
-	handleChange_roomType(e) {
+	};
+
+	handleChange_cleanliness(e) {
 		this.setState({
-			roomType: e.target.value
+			cleanliness: e.target.checked
 		});
-	}
+	};
+
+	handleChange_value(e) {
+		this.setState({
+			value: e.target.checked
+		});
+	};
+
+	handleChange_location(e) {
+		this.setState({
+			location: e.target.checked
+		});
+	};
+
+	handleChange_sleepQuality(e) {
+		this.setState({
+			sleepQuality: e.target.checked
+		});
+	};
+
+	handleChange_room(e) {
+		this.setState({
+			room: e.target.checked
+		});
+	};
 
 
 
 	componentDidMount() {
-		// fetch accomodates
-
-	  // fetch("http://localhost:8081/airbnb/accommodates", {
-    //   method: 'GET' // The type of HTTP request.
-    // })
-    //   .then(res => res.json()) // Convert the response data to a JSON.
-    //   .then(accomodatesList => {
-    //
-    //   	let accomodatesDivs = accomodatesList.map((accomodates, i) =>
-    //       <option value={accomodates.accommodates}>{accomodates.accommodates}</option>
-    //     );
-		// 		console.log(accomodatesDivs);
-    //     this.setState({
-    //       accomodates_list: accomodatesDivs,
-    //
-    //     })
-    //   })
-    //   .catch(err => console.log(err))
-    //
-    //
-		// 	// fetch beds
-		// 	fetch("http://localhost:8081/airbnb/beds", {
-	  //     method: 'GET' // The type of HTTP request.
-	  //   })
-	  //     .then(res => res.json()) // Convert the response data to a JSON.
-	  //     .then(bedList => {
-    //
-    //
-	  //     	let bedDivs = bedList.map((bed, i) =>
-	  //         <option value={bed.beds}>{bed.beds}</option>
-	  //       );
-    //
-	  //       this.setState({
-	  //         beds_list: bedDivs,
-    //
-	  //       })
-	  //     })
-	  //     .catch(err => console.log(err))
-    //
-		// 		// fetch room_type
-		// 		fetch("http://localhost:8081/airbnb/room_type", {
-		//       method: 'GET' // The type of HTTP request.
-		//     })
-		//       .then(res => res.json()) // Convert the response data to a JSON.
-		//       .then(roomTpyeList => {
-    //
-		//       	let roomTypeDivs = roomTpyeList.map((roomTpye, i) =>
-		//           <option value={roomTpye.room_type}>{roomTpye.room_type}</option>
-		//         );
-    //
-		//         this.setState({
-		// 		  room_type_list: roomTypeDivs,
-    //
-		//         })
-		//       })
-		//       .catch(err => console.log(err))
+		// fetch classes
+		fetch("http://localhost:8081/hotel/class", {
+			method: 'GET' // The type of HTTP request.
+		})
+			.then(res => res.json()) // Convert the response data to a JSON.
+			.then(classList => {
+				let classDivs = classList.map((classResults, i) =>
+		  			<option value={classResults.class}>
+						{classResults.class}
+					</option>
+				);
+				this.setState({
+					class_list: classDivs,
+				})
+			})
+			.catch(err => console.log(err))
 	}
 
 
+
 	submitResult() {
-		console.log("neighborhood is: " + this.state.neighborhood)
-		console.log("price low is: " + this.state.priceLow)
-		console.log("price high is: " + this.state.priceHigh)
-		var rmType = this.state.roomType.replace(/ /g,"_");
-		rmType = rmType.replace("/","q")
+		console.log("neighborhood is: " + this.state.neighborhood);
+		console.log("price low is: " + this.state.priceLow);
+		console.log("price high is: " + this.state.priceHigh);
+		console.log("service is: " + this.state.service);
+		console.log("location is: " + this.state.location);
 
-		fetch("http://localhost:8081/hotel/" +	this.state.neighborhood + "&" + this.state.accomodates + "&" + this.state.bed + "&" + rmType + "&" + this.state.priceLow + "&" + this.state.priceHigh, {
-      method: 'GET' // The type of HTTP request.
-    })
-      .then(res => res.json()) // Convert the response data to a JSON.
-      .then(resultList => {
-				// console.log("genreLIST is: "+resultList)
-      	let genrerateDivs = resultList.map((airbnbResults, i) =>
-          <BestHousingRow airbnbResults={airbnbResults} />
-        );
+		if (this.state.service === true) {
+			var service = 4;
+		} else {
+			var service = 0;
+		};
 
-        this.setState({
-          result: genrerateDivs
-        })
-      })
-      .catch(err => console.log(err))
+		if (this.state.cleanliness === true) {
+			var cleanliness = 4;
+		} else {
+			var cleanliness = 0;
+		};
+
+		if (this.state.value === true) {
+			var value = 4;
+		} else {
+			var value = 0;
+		};
+
+		if (this.state.location === true) {
+			var location = 4;
+		} else {
+			var location = 0;
+		};
+
+		if (this.state.sleepQuality === true) {
+			var sleepQuality = 4;
+		} else {
+			var sleepQuality = 0;
+		};
+
+		if (this.state.room === true) {
+			var room = 4;
+		} else {
+			var room = 0;
+		};
+
+		fetch("http://localhost:8081/hotel/" + this.state.neighborhood + "&" + this.state.priceLow
+			+ "&" + this.state.priceHigh + "&" + this.state.class + "&" + service + "&" + cleanliness
+			+ "&" + value + "&" + location + "&" + sleepQuality + "&" + room, {
+			method: 'GET' // The type of HTTP request.
+		})
+			.then(res => res.json()) // Convert the response data to a JSON.
+			.then(resultList => {
+				let resultDivs = resultList.map((hotelResults, i) =>
+					<BestHousingRow name={hotelResults.name} street_address={hotelResults.street_address} class={hotelResults.class} price={hotelResults.price} overall={hotelResults.overall} />
+				);
+				this.setState({
+					result: resultDivs
+				})
+			})
+			.catch(err => console.log(err))
 	}
 
 
 
 	render() {
-
 		return (
-			<div className="BestAirbnb">
-				<PageNavbar active="bestairbnb" />
+			<div className="BestHotel">
+				<PageNavbar active="besthotel" />
+				<div class="container besthotel-container">
 
-				<div class="container bestairbnb-container">
+					<br/>
+					<div class="jumbotron" >
+						<div class="h1 text-primary">
+							Best Hotel Recommendation
+						</div>
+
 						<br/>
-			      <div class="jumbotron" >
-			        <div class="h1 text-primary">Best Bnb recommendation</div>
-
-			        <br/>
-			          <div className="dropdown-container">
-
-									<div class="row">
-										<div class="input-group mb-3">
-											<div class="input-group-prepend">
-												<span class="input-group-text" id="">Enter a neighborhood you prefer </span>
-											</div>
-											<input type="text" class="form-control" placeholder="Enter Neighborhood" value={this.state.neighborhood} onChange={this.handleChange_neighborhood} id="neighborhood"/>
-										</div>
-
-
-
+						<div className="dropdown-container">
+							<div class="row">
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="">
+											Enter a neighborhood you prefer
+										</span>
 									</div>
-									<br/>
+									<input type="text" class="form-control" placeholder="CHELSEA" value={this.state.neighborhood} onChange={this.handleChange_neighborhood} id="neighborhood"/>
+								</div>
+							</div>
 
-                  <div class="row">
-                    <div class="form-group">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" onChange={this.handleChange_something} id="gridCheck"/>
-                        <label class="form-check-label" for="gridCheck"> Check me for something </label>
-                      </div>
-                    </div>
-                  </div>
+							<br/>
 
-									<div class="row">
-										<div class="col-4">
-											<select value={this.state.accomodates} onChange={this.handleChange_accomodates} className="dropdown" id="accomodatesDropdown">
-					            	<option select value> -- select accomodates -- </option>
-					            	{this.state.accomodates_list}
-					            </select>
-										</div>
-										<div class="col-4">
-											<select value={this.state.bed} onChange={this.handleChange_bed} className="dropdown" id="bedsDropdown">
-					            	<option select value> -- select bed number -- </option>
-					            	{this.state.beds_list}
-					            </select>
-										</div>
-										<div class="col-4">
-											<select value={this.state.roomType} onChange={this.handleChange_roomType} className="dropdown" id="room_typeDropdown">
-					            	<option select value> -- select room type -- </option>
-					            	{this.state.room_type_list}
-					            </select>
-										</div>
+							<div class="row">
+								<div class="form-group">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" onChange={this.handleChange_service} id="gridCheck"/>
+										<label class="form-check-label" for="gridCheck">
+											service
+										</label>
 									</div>
-									<br/>
-									<div class="row">
-										<div class="col-4">
-											<input type='text' placeholder="Enter priceLow" value={this.state.priceLow} onChange={this.handleChange_priceLow} id="pl" className="priceLow-input"/>
-										</div>
-										<div class="col-4">
-											<input type='text' placeholder="Enter priceHigh" value={this.state.priceHigh} onChange={this.handleChange_priceHigh} id="ph" className="priceHigh-input"/>
-										</div>
-										<div class="col-4">
-			            		<button type="button" class="btn btn-danger"  onClick={this.submitResult}>Search</button>
-										</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" onChange={this.handleChange_cleanliness} id="gridCheck"/>
+										<label class="form-check-label" for="gridCheck">
+											cleanliness
+										</label>
 									</div>
-			          </div>
-
-			      </div>
-			      <div class="jumbotron"  >
-
-			          <div class="row" className="airbnb-head" >
-
-			            <div class="col" ><strong>You May like: </strong></div>
-
-			          </div>
-								<br/>
-			          <div className="movies-container" id="results">
-									<div class="row d-flex align-content-start flex-wrap">
-										<div class="">
-			            		{this.state.result}
-										</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" onChange={this.handleChange_value} id="gridCheck"/>
+										<label class="form-check-label" for="gridCheck">
+											value
+										</label>
 									</div>
-			          </div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" onChange={this.handleChange_location} id="gridCheck"/>
+										<label class="form-check-label" for="gridCheck">
+											location
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" onChange={this.handleChange_sleepQuality} id="gridCheck"/>
+										<label class="form-check-label" for="gridCheck">
+											sleep quality
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" onChange={this.handleChange_room} id="gridCheck"/>
+										<label class="form-check-label" for="gridCheck">
+											room
+										</label>
+									</div>
+								</div>
+							</div>
 
-			      </div>
-			    </div>
+							<br/>
+							<div class="row">
+								<select value={this.state.class} onChange={this.handleChange_class} className="dropdown" id="classDropdown">
+									<option select value>
+										-- select hotel class --
+									</option>
+									{this.state.class_list}
+								</select>
+							</div>
+
+							<bt/>
+							<div class="row">
+								<div class="col-4">
+									<input type='text' placeholder="Enter price low" value={this.state.priceLow} onChange={this.handleChange_priceLow} id="pl" className="priceLow-input"/>
+								</div>
+								<div class="col-4">
+									<input type='text' placeholder="Enter price high" value={this.state.priceHigh} onChange={this.handleChange_priceHigh} id="ph" className="priceHigh-input"/>
+								</div>
+								<div class="col-4">
+									<button type="button" class="btn btn-danger" onClick={this.submitResult}>
+										Search
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="jumbotron">
+						<div class="row" className="airbnb-head">
+							<div class="col" ><strong>You May like: </strong></div>
+						</div>
+
+						<br/>
+						<div className="container">
+							<div className="hotelResults-header">
+								<div className="header-lg"><strong>name</strong></div>
+								<div className="header-lg"><strong>street address</strong></div>
+								<div className="header"><strong>hotel class</strong></div>
+								<div className="header"><strong>price</strong></div>
+								<div className="header"><strong>average rating</strong></div>
+							</div>
+							<div className="hotelResults-container" id="results">
+								{this.state.result}
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		);
 	}

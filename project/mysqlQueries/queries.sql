@@ -8,7 +8,7 @@ WITH airbnb AS (
 		AND p.accommodates >= 1
 		AND p.beds >= 1 AND p.beds <= 3
 		AND p.room_type = 'Entire home/apt'
-		AND p.price > 1 AND p.price < 1000
+		AND p.price >= 1 AND p.price <= 1000
 ), crime_count AS (
 	SELECT a.id, FLOOR(COUNT(*) / 9) AS num_crimes
 	FROM airbnb a, crime c
@@ -60,27 +60,32 @@ LIMIT 10;
 WITH hotel_rating AS (
 	SELECT name, street_address, hotel_class, postal_code, AVG(price) AS price, AVG(service) AS service, 
 		AVG(cleanliness) AS cleanliness, AVG(value) AS value, AVG(location_score) AS location,
-		AVG(sleep_quality) AS sleep_quality, AVG(rooms) AS rooms, AVG(overall) AS overall
+		AVG(sleep_quality) AS sleep_quality, AVG(rooms) AS room, AVG(overall) AS overall
 	FROM hotel
 	GROUP BY name, street_address, hotel_class, postal_code
 ), transformer AS (
 	SELECT DISTINCT NEIGHBORHOOD, ZIPCODE
 	FROM zillow
 ), hotel_info AS (
-	SELECT DISTINCT h.*, t.NEIGHBORHOOD AS neighbourhood
+	SELECT DISTINCT h.name, h.street_address, t.NEIGHBORHOOD AS neighbourhood, h.price, 
+		IFNULL(h.hotel_class, 0) AS class, IFNULL(h.service, 0) AS service, 
+        IFNULL(h.cleanliness, 0) AS cleanliness, IFNULL(h.value, 0) AS value, 
+        IFNULL(h.location, 0) AS location, IFNULL(h.sleep_quality, 0) AS sleep_quality, 
+        IFNULL(h.room, 0) AS room, h.overall
 	FROM hotel_rating h JOIN transformer t ON h.postal_code = t.ZIPCODE
 	ORDER BY name
 )
-SELECT name, street_address, hotel_class, price, overall
+SELECT name, street_address, class, price, overall
 FROM hotel_info
 WHERE neighbourhood = 'CHELSEA'
-	AND price > 1 AND price < 1000
-    AND hotel_class > 3
-    AND service > 4
-    AND cleanliness > 4
-    AND value > 4
-    AND location > 4
-    AND sleep_quality > 4
-    AND rooms > 4
+	AND price >= 1 AND price <= 1000
+    AND class >= 0
+    AND service >= 4
+    AND cleanliness >= 4
+    AND value >= 4
+    AND location >= 4
+    AND sleep_quality >= 4
+    AND room >= 4
 ORDER BY overall DESC
-LIMIT 5;
+LIMIT 10;
+

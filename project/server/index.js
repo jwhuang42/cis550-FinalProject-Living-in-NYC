@@ -57,7 +57,8 @@ app.get('/airbnb/:neighbourhood&:accommodates&:beds&:room_type&:price_low&:price
 
 /* ---- Best Hotel ---- */
 
-// app.get('/hotel/:neighbourhood&:price_low&:price_high&:class&:service&:cleanliness&:value&:location&:sleep_quality&:rooms', routes.hotel);
+app.get('/hotel/class', routes.getClass);
+app.get('/hotel/:neighbourhood&:price_low&:price_high&:class&:service&:cleanliness&:value&:location&:sleep_quality&:room', routes.bestHotel);
 
 /* ---- Best Living ---- */
 

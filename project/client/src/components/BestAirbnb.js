@@ -18,24 +18,21 @@ export default class BestAirbnb extends React.Component {
 			priceLow: "1",
 			priceHigh: "1000",
 
-			result: [],
-
 			accomodates_list: [],
 			beds_list: [],
-			room_type_list: []
+			room_type_list: [],
+
+			result: []
 		};
 
 		this.submitResult = this.submitResult.bind(this);
 
-
 		this.handleChange_neighborhood = this.handleChange_neighborhood.bind(this);
 		this.handleChange_priceLow = this.handleChange_priceLow.bind(this);
 		this.handleChange_priceHigh = this.handleChange_priceHigh.bind(this);
-		// 3 more
 		this.handleChange_accomodates = this.handleChange_accomodates.bind(this);
 		this.handleChange_bed = this.handleChange_bed.bind(this);
 		this.handleChange_roomType = this.handleChange_roomType.bind(this);
-
 	}
 
 	handleChange_neighborhood(e) {

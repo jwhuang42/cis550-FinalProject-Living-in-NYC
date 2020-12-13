@@ -8,14 +8,13 @@ export default class BestHousingRow extends React.Component {
 
 	render() {
 		return (
-			<div className="bestHotelResults">
+			<div className="hotelResults">
 				<div className="name">{this.props.name}</div>
 				<div className="street_address">{this.props.street_address}</div>
-				<div className="hotel_class">{this.props.hotel_class}</div>
+				<div className="class">{this.props.class}</div>
 				<div className="price">{this.props.price}</div>
 				<div className="overall">{this.props.overall}</div>
 			</div>
 		);
 	}
 }
-// name, street_address, hotel_class, price, overall

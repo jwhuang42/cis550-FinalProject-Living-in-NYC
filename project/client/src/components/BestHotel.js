@@ -271,7 +271,7 @@ export default class BestHotel extends React.Component {
                 <div class="col-5">
 									<select value={this.state.class} onChange={this.handleChange_class} class="custom-select mr-sm-2" id="">
 										<option select value>
-											-- your minimum acceptable hotel class --
+											-- minimum acceptable hotel class --
 										</option>
 										{this.state.class_list}
 									</select>

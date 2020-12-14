@@ -32,7 +32,7 @@ export default class BestPlace extends React.Component {
 	}
 
 	componentDidMount(){
-		// this.setState({mapResult: <MapContainer mapInfo={{latitude: 40.7128,longitude: -74.0060}} />})
+		
 	}
 
 	// connecting to google API and initial the google map

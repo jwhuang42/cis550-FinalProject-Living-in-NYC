@@ -16,7 +16,7 @@ export class MapContainer extends React.Component {
     this.displayMovieLink = this.displayMovieLink.bind(this);
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onClose = this.onClose.bind(this);
-    // console.log(this.state.nyc);
+    console.log(this.state.nyc);
   }
 
   onMarkerClick = (props, marker, e) =>
@@ -84,7 +84,7 @@ export class MapContainer extends React.Component {
                   );
                 }
                 else {
-                  console.log(info);
+                  console.log(info.name);
                   return (
                     <Marker key={index+50} id={index+50} position={{lat: info.latitude, lng: info.longitude}}
                       onClick = {this.onMarkerClick}

@@ -101,8 +101,8 @@ export default class FunFacts extends React.Component {
 				<br></br>
 				<div className="container">
 					<div className="jumbotron">
-						<div className="h5">
-							Which fun fact do you wang to know?
+						<div class="h1 text-primary">
+							Best Airbnb recommendation
 						</div>
 						<div className="">
 							<button type="button" class="btninfo btn-info" onClick={this.showAvgRating}>

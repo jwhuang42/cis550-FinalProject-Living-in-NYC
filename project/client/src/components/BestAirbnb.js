@@ -155,7 +155,7 @@ export default class BestAirbnb extends React.Component {
 
 			this.setState({
 			  result: resultList.length > 0? genrerateDivs: [<div class="row justify-content-md-center"><div class='col'>no matching result...</div></div>],
-				mapResult: <MapContainer mapInfo={resultList}/>
+				mapResult: resultList.length > 0? <MapContainer mapInfo={resultList}/> : [<div class="row justify-content-md-center"><div class='col'>ops...it seems that there are matching result based on your given conditions</div></div>]
 			})
 	  })
 	  .catch(err => console.log(err))

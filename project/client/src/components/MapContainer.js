@@ -67,7 +67,7 @@ export class MapContainer extends React.Component {
 
           <Map
             google={this.props.google}
-            zoom={this.state.nyc[0].film === undefined? 11: 12}
+            zoom={11}
             style={mapStyles}
             initialCenter={{ lat: 40.7528, lng: -74.0060}}  //center of nyc
           >

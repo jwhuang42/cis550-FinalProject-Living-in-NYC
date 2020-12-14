@@ -102,8 +102,10 @@ export default class FunFacts extends React.Component {
 				<div className="container">
 					<div className="jumbotron">
 						<div class="h1 text-primary">
-							Best Airbnb recommendation
+							Fun Facts
 						</div>
+
+						<br></br>
 						<div className="">
 							<button type="button" class="btninfo btn-info" onClick={this.showAvgRating}>
 								Number and Average Rating of Airbnb for each Neighbourhood

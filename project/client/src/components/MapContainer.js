@@ -16,7 +16,7 @@ export class MapContainer extends React.Component {
     this.displayMovieLink = this.displayMovieLink.bind(this);
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onClose = this.onClose.bind(this);
-    // console.log(this.state.nyc);
+    console.log(this.state.nyc);
   }
 
   onMarkerClick = (props, marker, e) =>
@@ -67,7 +67,7 @@ export class MapContainer extends React.Component {
 
           <Map
             google={this.props.google}
-            zoom={11}
+            zoom={this.state.nyc[0].film === undefined? 11: 12}
             style={mapStyles}
             initialCenter={{ lat: 40.7528, lng: -74.0060}}  //center of nyc
           >
@@ -84,7 +84,7 @@ export class MapContainer extends React.Component {
                   );
                 }
                 else {
-                  console.log(info);
+                  console.log(info.name);
                   return (
                     <Marker key={index+50} id={index+50} position={{lat: info.latitude, lng: info.longitude}}
                       onClick = {this.onMarkerClick}

@@ -167,7 +167,7 @@ function bestHotel(req, res) {
 			AND sleep_quality >= ${inputSleepQuality}
 			AND room >= ${inputRoom}
 		ORDER BY overall DESC
-		LIMIT 5;
+		LIMIT 10;
 	`;
 	connection.query(query, function(err, rows, fields) {
 		if (err) console.log(err);

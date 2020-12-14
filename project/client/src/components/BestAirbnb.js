@@ -12,7 +12,7 @@ export default class BestAirbnb extends React.Component {
 		super(props);
 
 		this.state = {
-			neighborhood: "Midtown",
+			neighborhood: "",
 			accomodates: "",
 			bed: "",
 			roomType: "",
@@ -43,6 +43,7 @@ export default class BestAirbnb extends React.Component {
 		this.setState({
 			neighborhood: e.target.value
 		});
+
 	}
 	handleChange_priceLow(e) {
 		this.setState({
@@ -143,80 +144,22 @@ export default class BestAirbnb extends React.Component {
 	})
 	  .then(res => res.json()) // Convert the response data to a JSON.
 	  .then(resultList => {
-				// console.log("genreLIST is: "+resultList)
-		let genrerateDivs = resultList.map((airbnbResults, i) =>
-		  <BestAirbnbRow airbnbResults={airbnbResults} />
+			console.log(resultList);
+			this.setState({
+				mapResult: []
+			})
+
+			let genrerateDivs = resultList.map((airbnbResults, i) =>
+			  <BestAirbnbRow airbnbResults={airbnbResults} />
 		);
 
-		this.setState({
-		  result: genrerateDivs,
-					mapResult: <MapContainer mapInfo={resultList}/>
-		})
+			this.setState({
+			  result: resultList.length > 0? genrerateDivs: [<div class="row justify-content-md-center"><div class='col'>no matching result...</div></div>],
+				mapResult: <MapContainer mapInfo={resultList}/>
+			})
 	  })
 	  .catch(err => console.log(err))
 	}
-
-	// <div className="header"><strong>name</strong></div>
-	// <div className="header"><strong>accommodates</strong></div>
-	// <div className="header"><strong>beds</strong></div>
-	// <div className="header"><strong>price</strong></div>
-	// <div className="header"><strong>rating</strong></div>
-
-	// <span class="label info">Enter your preferred neighborhood:</span>
-	// <input type='text' placeholder="Enter Neighborhood" value={this.state.neighborhood} onChange={this.handleChange_neighborhood} id="neighborhood" className="neighborhood_input"/>
-
-
-
-
-
-// Below is an example code of a much better header part: make sure to use class as attribute in each tag, not className
-
-// <form>
-//   <div class="form-row">
-//     <div class="form-group col-md-6">
-//       <label for="inputEmail4">Email</label>
-//       <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-//     </div>
-//     <div class="form-group col-md-6">
-//       <label for="inputPassword4">Password</label>
-//       <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-//     </div>
-//   </div>
-//   <div class="form-group">
-//     <label for="inputAddress">Address</label>
-//     <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-//   </div>
-//   <div class="form-group">
-//     <label for="inputAddress2">Address 2</label>
-//     <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-//   </div>
-//   <div class="form-row">
-//     <div class="form-group col-md-6">
-//       <label for="inputCity">City</label>
-//       <input type="text" class="form-control" id="inputCity">
-//     </div>
-//     <div class="form-group col-md-4">
-//       <label for="inputState">State</label>
-//       <select id="inputState" class="form-control">
-//         <option selected>Choose...</option>
-//         <option>...</option>
-//       </select>
-//     </div>
-//     <div class="form-group col-md-2">
-//       <label for="inputZip">Zip</label>
-//       <input type="text" class="form-control" id="inputZip">
-//     </div>
-//   </div>
-//   <div class="form-group">
-//     <div class="form-check">
-//       <input class="form-check-input" type="checkbox" id="gridCheck">
-//       <label class="form-check-label" for="gridCheck">
-//         Check me out
-//       </label>
-//     </div>
-//   </div>
-//   <button type="submit" class="btn btn-primary">Sign in</button>
-// </form>
 
 
 	render() {
@@ -241,14 +184,14 @@ export default class BestAirbnb extends React.Component {
 											Enter a neighborhood you prefer
 										</span>
 									</div>
-									<input type="text" class="form-control" placeholder="Enter Neighborhood" value={this.state.neighborhood} onChange={this.handleChange_neighborhood} id="neighborhood"/>
+									<input type="text" class="form-control" placeholder="Enter Neighborhood (e.g. Midtown, Clinton Hill, Park Slope)" value={this.state.neighborhood} onChange={this.handleChange_neighborhood} id="neighborhood"/>
 								</div>
 							</div>
 
 							<br/>
-							<div class="row">
+							<div class="form-row">
 								<div class="col-4">
-									<select value={this.state.accomodates} onChange={this.handleChange_accomodates} className="dropdown" id="accomodatesDropdown">
+									<select value={this.state.accomodates} onChange={this.handleChange_accomodates} class="custom-select mr-sm-2" id="">
 										<option select value>
 											-- select accomodates --
 										</option>
@@ -256,7 +199,7 @@ export default class BestAirbnb extends React.Component {
 									</select>
 								</div>
 								<div class="col-4">
-									<select value={this.state.bed} onChange={this.handleChange_bed} className="dropdown" id="bedsDropdown">
+									<select value={this.state.bed} onChange={this.handleChange_bed} class="custom-select mr-sm-2" id="">
 										<option select value>
 											-- select bed number --
 										</option>
@@ -264,7 +207,7 @@ export default class BestAirbnb extends React.Component {
 									</select>
 								</div>
 								<div class="col-4">
-									<select value={this.state.roomType} onChange={this.handleChange_roomType} className="dropdown" id="room_typeDropdown">
+									<select value={this.state.roomType} onChange={this.handleChange_roomType} class="custom-select mr-sm-2" id="">
 										<option select value>
 											-- select room type --
 										</option>
@@ -274,15 +217,15 @@ export default class BestAirbnb extends React.Component {
 							</div>
 
 							<br/>
-							<div class="row">
+							<div class="form-row">
 								<div class="col-4">
-									<input type='text' placeholder="Enter priceLow" value={this.state.priceLow} onChange={this.handleChange_priceLow} id="pl" className="priceLow-input"/>
+									<input type='text' placeholder="Enter price lowerbound" value={this.state.priceLow} onChange={this.handleChange_priceLow} id="" class="form-control mt-2 mr-sm-2"/>
 								</div>
 								<div class="col-4">
-									<input type='text' placeholder="Enter priceHigh" value={this.state.priceHigh} onChange={this.handleChange_priceHigh} id="ph" className="priceHigh-input"/>
+									<input type='text' placeholder="Enter price upperbound" value={this.state.priceHigh} onChange={this.handleChange_priceHigh} id="" class="form-control mt-2 mr-sm-2"/>
 								</div>
 								<div class="col-4">
-									<button type="button" class="btn btn-danger" onClick={this.submitResult}>
+									<button type="button" class=" btn btn-block btn-danger mt-2 mx-auto" onClick={this.submitResult}>
 										Search
 									</button>
 								</div>
@@ -293,7 +236,7 @@ export default class BestAirbnb extends React.Component {
 					<div class="jumbotron">
 						<div class="row justify-content-md-center">
 							<div class="h5">
-								Below are our recommended locations:
+								Explore our recommendation:
 							</div>
 						</div>
 						<div class="row justify-content-md-center" id="map">

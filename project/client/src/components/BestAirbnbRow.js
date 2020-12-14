@@ -20,7 +20,7 @@ export default class BestAirbnbRow extends React.Component {
 		else if (rate > 80) {
 			return "text-warning";
 		}
-		else if (rate == 'N/A') {
+		else if (rate === 'N/A') {
 			return "text-secondary";
 		}
 		else {

@@ -31,9 +31,7 @@ export default class BestPlace extends React.Component {
 		});
 	}
 
-	componentDidMount(){
 
-	}
 
 	// connecting to google API and initial the google map
 	initializeMap(){
@@ -102,7 +100,7 @@ export default class BestPlace extends React.Component {
 							</div>
 
 							<div class="row justify-content-md-center">
-						  	<button type="button" class="btn btn-danger" buttonType="mapButton" onClick={this.initializeMap}>Starting Exploration</button>
+						  	<button type="button" class="btn btn-info" buttonType="mapButton" onClick={this.initializeMap}>Starting Exploration</button>
 						  </div>
 						</div>
 					</div>

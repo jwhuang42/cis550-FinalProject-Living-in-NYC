@@ -13,11 +13,11 @@ export default class BestAirbnb extends React.Component {
 
 		this.state = {
 			neighborhood: "Midtown",
-			accomodates: "4",
-			bed: "4",
+			accomodates: "",
+			bed: "",
 			roomType: "",
-			priceLow: "1",
-			priceHigh: "1000",
+			priceLow: "",
+			priceHigh: "",
 
 			result: [],
 			mapResult: [],

@@ -31,9 +31,7 @@ export default class BestPlace extends React.Component {
 		});
 	}
 
-	componentDidMount(){
-		
-	}
+	
 
 	// connecting to google API and initial the google map
 	initializeMap(){
@@ -86,7 +84,7 @@ export default class BestPlace extends React.Component {
 					<br/>
 					<div className="jumbotron">
 						<div class="h1 text-primary">
-							Best Places to explore
+							Best Places to Explore
 						</div>
 						<br/>
 						<div className="dropdown-container">

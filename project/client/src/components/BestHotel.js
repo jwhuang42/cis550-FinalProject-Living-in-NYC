@@ -9,9 +9,9 @@ export default class BestHotel extends React.Component {
 		super(props);
 
 		this.state = {
-			neighborhood: "CHELSEA",
-			priceLow: "1",
-			priceHigh: "1000",
+			neighborhood: "",
+			priceLow: "",
+			priceHigh: "",
 			class: "",
 			service: false,
 			cleanliness: false,
@@ -42,6 +42,7 @@ export default class BestHotel extends React.Component {
 
 
 	handleChange_neighborhood(e) {
+
 		this.setState({
 			neighborhood: e.target.value
 		});
@@ -209,7 +210,7 @@ export default class BestHotel extends React.Component {
 											Enter a neighborhood you prefer
 										</span>
 									</div>
-									<input type="text" class="form-control" placeholder="CHELSEA" value={this.state.neighborhood} onChange={this.handleChange_neighborhood} id="neighborhood"/>
+									<input type="text" class="form-control" placeholder="Enter Neighborhood (e.g. Chinatown, Chelsea)" value={this.state.neighborhood} onChange={this.handleChange_neighborhood} id="neighborhood"/>
 								</div>
 							</div>
 

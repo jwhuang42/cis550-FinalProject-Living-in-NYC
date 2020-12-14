@@ -13,11 +13,11 @@ export default class BestAirbnb extends React.Component {
 
 		this.state = {
 			neighborhood: "",
-			accomodates: "1",
-			bed: "1",
+			accomodates: "",
+			bed: "",
 			roomType: "",
-			priceLow: "1",
-			priceHigh: "1000",
+			priceLow: "",
+			priceHigh: "",
 
 			result: [],
 			mapResult: [],
@@ -219,10 +219,10 @@ export default class BestAirbnb extends React.Component {
 							<br/>
 							<div class="row">
 								<div class="col-4">
-									<input type='text' placeholder="Enter priceLow" value={this.state.priceLow} onChange={this.handleChange_priceLow} id="pl" className="priceLow-input"/>
+									<input type='text' placeholder="Enter price lowerbound" value={this.state.priceLow} onChange={this.handleChange_priceLow} id="pl" className="priceLow-input"/>
 								</div>
 								<div class="col-4">
-									<input type='text' placeholder="Enter priceHigh" value={this.state.priceHigh} onChange={this.handleChange_priceHigh} id="ph" className="priceHigh-input"/>
+									<input type='text' placeholder="Enter price upperbound" value={this.state.priceHigh} onChange={this.handleChange_priceHigh} id="ph" className="priceHigh-input"/>
 								</div>
 								<div class="col-4">
 									<button type="button" class="btn btn-danger" onClick={this.submitResult}>

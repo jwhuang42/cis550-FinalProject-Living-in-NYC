@@ -254,16 +254,14 @@ export default class BestHotel extends React.Component {
 										</label>
 									</div>
 								</div>
-							</div>
-
-							<br/>
-							<div class="row">
-								<select value={this.state.class} onChange={this.handleChange_class} className="dropdown" id="classDropdown">
-									<option select value>
-										-- select hotel class --
-									</option>
-									{this.state.class_list}
-								</select>
+								<div class="col-5">
+									<select value={this.state.class} onChange={this.handleChange_class} className="dropdown" id="classDropdown">
+										<option select value>
+											-- select hotel class --
+										</option>
+										{this.state.class_list}
+									</select>
+								</div>
 							</div>
 
 							<br/>

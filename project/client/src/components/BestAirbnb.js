@@ -189,9 +189,9 @@ export default class BestAirbnb extends React.Component {
 							</div>
 
 							<br/>
-							<div class="row">
+							<div class="form-row">
 								<div class="col-4">
-									<select value={this.state.accomodates} onChange={this.handleChange_accomodates} className="dropdown" id="accomodatesDropdown">
+									<select value={this.state.accomodates} onChange={this.handleChange_accomodates} class="custom-select mr-sm-2" id="">
 										<option select value>
 											-- select accomodates --
 										</option>
@@ -199,7 +199,7 @@ export default class BestAirbnb extends React.Component {
 									</select>
 								</div>
 								<div class="col-4">
-									<select value={this.state.bed} onChange={this.handleChange_bed} className="dropdown" id="bedsDropdown">
+									<select value={this.state.bed} onChange={this.handleChange_bed} class="custom-select mr-sm-2" id="">
 										<option select value>
 											-- select bed number --
 										</option>
@@ -207,7 +207,7 @@ export default class BestAirbnb extends React.Component {
 									</select>
 								</div>
 								<div class="col-4">
-									<select value={this.state.roomType} onChange={this.handleChange_roomType} className="dropdown" id="room_typeDropdown">
+									<select value={this.state.roomType} onChange={this.handleChange_roomType} class="custom-select mr-sm-2" id="">
 										<option select value>
 											-- select room type --
 										</option>
@@ -217,15 +217,15 @@ export default class BestAirbnb extends React.Component {
 							</div>
 
 							<br/>
-							<div class="row">
+							<div class="form-row">
 								<div class="col-4">
-									<input type='text' placeholder="Enter price lowerbound" value={this.state.priceLow} onChange={this.handleChange_priceLow} id="pl" className="priceLow-input"/>
+									<input type='text' placeholder="Enter price lowerbound" value={this.state.priceLow} onChange={this.handleChange_priceLow} id="" class="form-control mt-2 mr-sm-2"/>
 								</div>
 								<div class="col-4">
-									<input type='text' placeholder="Enter price upperbound" value={this.state.priceHigh} onChange={this.handleChange_priceHigh} id="ph" className="priceHigh-input"/>
+									<input type='text' placeholder="Enter price upperbound" value={this.state.priceHigh} onChange={this.handleChange_priceHigh} id="" class="form-control mt-2 mr-sm-2"/>
 								</div>
 								<div class="col-4">
-									<button type="button" class="btn btn-danger" onClick={this.submitResult}>
+									<button type="button" class=" btn btn-block btn-danger mt-2 mx-auto" onClick={this.submitResult}>
 										Search
 									</button>
 								</div>
@@ -236,7 +236,7 @@ export default class BestAirbnb extends React.Component {
 					<div class="jumbotron">
 						<div class="row justify-content-md-center">
 							<div class="h5">
-								Below are our recommended locations:
+								Explore our recommendation:
 							</div>
 						</div>
 						<div class="row justify-content-md-center" id="map">

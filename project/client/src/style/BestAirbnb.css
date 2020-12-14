@@ -36,11 +36,11 @@
   color:gray;
   width:300px;
 }
-#accomodatesDropdown{
+/* #accomodatesDropdown{
   position: relative;
   right: 15px;
-}
-#pl{
+} */
+/* #pl{
   position: relative;
   right:15px;
   top:10px;
@@ -55,15 +55,15 @@
   font-size: 25px;
   text-align: center;
   width:300px;
-}
-button{
+} */
+/* button{
   position: relative;
 
   top:10px;
   font-size: 25px;
   text-align: center;
   width:300px;
-}
+} */
 
 .border-3{
   border-width: thick

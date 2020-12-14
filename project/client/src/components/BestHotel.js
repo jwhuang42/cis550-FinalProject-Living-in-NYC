@@ -112,8 +112,8 @@ export default class BestHotel extends React.Component {
 			.then(res => res.json()) // Convert the response data to a JSON.
 			.then(classList => {
 				let classDivs = classList.map((classResults, i) =>
-		  			<option value={classResults.class}>
-						{classResults.class}
+		  			<option value={classResults.class === 0? "Don't care": classResults.class}>
+						{classResults.class === 0? "Don't care": classResults.class}
 					</option>
 				);
 				this.setState({
@@ -216,65 +216,79 @@ export default class BestHotel extends React.Component {
 
 							<br/>
 
-							<div class="row">
-								<div class="form-group">
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox" onChange={this.handleChange_service} id="gridCheck"/>
-										<label class="form-check-label" for="gridCheck">
+
+							<div class="form-row">
+                <label class="col-sm-3.5 mb-3 col-form-label">check the properties you care about </label>
+                <div class="col-1.5">
+									<div class="form-check mr-sm-1">
+
+										<input class="form-check-input" type="checkbox" onChange={this.handleChange_service} id="gridCheck1"/>
+										<label class="form-check-label" for="gridCheck1">
 											service
 										</label>
 									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox" onChange={this.handleChange_cleanliness} id="gridCheck"/>
-										<label class="form-check-label" for="gridCheck">
+                </div>
+                <div class="col-1.5">
+									<div class="form-check mb-2 mr-sm-1">
+										<input class="form-check-input" type="checkbox" onChange={this.handleChange_cleanliness} id="gridCheck2"/>
+										<label class="form-check-label" for="gridCheck2">
 											cleanliness
 										</label>
 									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox" onChange={this.handleChange_value} id="gridCheck"/>
-										<label class="form-check-label" for="gridCheck">
+                </div>
+                <div class="col-1.5">
+									<div class="form-check mb-2 mr-sm-1">
+										<input class="form-check-input" type="checkbox" onChange={this.handleChange_value} id="gridCheck3"/>
+										<label class="form-check-label" for="gridCheck3">
 											value
 										</label>
 									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox" onChange={this.handleChange_location} id="gridCheck"/>
-										<label class="form-check-label" for="gridCheck">
+                </div>
+                <div class="col-1.5">
+									<div class="form-check mb-2 mr-sm-1">
+										<input class="form-check-input" type="checkbox" onChange={this.handleChange_location} id="gridCheck4"/>
+										<label class="form-check-label" for="gridCheck4">
 											location
 										</label>
 									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox" onChange={this.handleChange_sleepQuality} id="gridCheck"/>
-										<label class="form-check-label" for="gridCheck">
+                </div>
+                <div class="col-1.5">
+									<div class="form-check mb-2 mr-sm-1">
+										<input class="form-check-input" type="checkbox" onChange={this.handleChange_sleepQuality} id="gridCheck5"/>
+										<label class="form-check-label" for="gridCheck5">
 											sleep quality
 										</label>
 									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox" onChange={this.handleChange_room} id="gridCheck"/>
-										<label class="form-check-label" for="gridCheck">
+                </div>
+                <div class="col-1.5">
+									<div class="form-check mb-2 mr-sm-1">
+										<input class="form-check-input" type="checkbox" onChange={this.handleChange_room} id="gridCheck6"/>
+										<label class="form-check-label" for="gridCheck6">
 											room
 										</label>
 									</div>
-								</div>
-								<div class="col-5">
-									<select value={this.state.class} onChange={this.handleChange_class} className="dropdown" id="classDropdown">
+                </div>
+                <div class="col-5">
+									<select value={this.state.class} onChange={this.handleChange_class} class="custom-select mr-sm-2" id="">
 										<option select value>
-											-- select hotel class --
+											-- your minimum acceptable hotel class --
 										</option>
 										{this.state.class_list}
 									</select>
-								</div>
+                </div>
 							</div>
 
 							<br/>
-							<div class="row">
-								<div class="col-4">
-									<input type='text' placeholder="Enter price lowerbound" value={this.state.priceLow} onChange={this.handleChange_priceLow} id="pl" className="priceLow-input"/>
+
+							<div class="form-row">
+								<div class="col-5">
+									<input type='text' placeholder="Enter price lowerbound" value={this.state.priceLow} onChange={this.handleChange_priceLow} id="pl" class="form-control mt-2 mr-sm-1"/>
 								</div>
-								<div class="col-4">
-									<input type='text' placeholder="Enter price upperbound" value={this.state.priceHigh} onChange={this.handleChange_priceHigh} id="ph" className="priceHigh-input"/>
+								<div class="col-5">
+									<input type='text' placeholder="Enter price upperbound" value={this.state.priceHigh} onChange={this.handleChange_priceHigh} id="ph" class="form-control mt-2 mr-sm-1"/>
 								</div>
-								<div class="col-4">
-									<button type="button" class="btn btn-danger" onClick={this.submitResult}>
+								<div class="col-2">
+									<button type="button" class="btn btn-block mt-2 mx-sm-1 btn-danger" onClick={this.submitResult}>
 										Search
 									</button>
 								</div>

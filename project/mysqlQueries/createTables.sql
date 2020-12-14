@@ -1,3 +1,5 @@
+-- Airbnb Tables --
+
 CREATE TABLE airbnb_name
 SELECT id, listing_url, name, picture_url
 FROM airbnb_listings;
@@ -34,9 +36,29 @@ SELECT id, calendar_last_scraped, number_of_reviews, number_of_reviews_ltm, numb
     calculated_host_listings_count_shared_rooms, reviews_per_month
 FROM airbnb_listings;
 
+CREATE TABLE round_airbnb_place
+SELECT id, latitude, longitude, ROUND(latitude, 3) AS round_latitude, ROUND(longitude, 3) AS round_longitude
+FROM airbnb_place;
+
+CREATE INDEX airbnbLocation ON round_airbnb_place (round_latitude, round_longitude) USING BTREE;
+
+
+
+-- Average Hotel Rating --
+
 CREATE TABLE hotel_rating
 SELECT name, street_address, hotel_class, postal_code, AVG(price) AS price, AVG(service) AS service,
 	AVG(cleanliness) AS cleanliness, AVG(value) AS value, AVG(location_score) AS location,
 	AVG(sleep_quality) AS sleep_quality, AVG(rooms) AS room, AVG(overall) AS overall
 FROM hotel
 GROUP BY name, street_address, hotel_class, postal_code;
+
+
+
+-- Crime Rounded Coordinate --
+
+CREATE TABLE round_crime
+SELECT ROUND(latitude, 3) AS round_latitude, ROUND(longitude, 3) AS round_longitude
+FROM crime;
+
+CREATE INDEX crimeLocation ON round_crime (round_latitude, round_longitude) USING BTREE;

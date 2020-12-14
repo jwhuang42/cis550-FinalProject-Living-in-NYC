@@ -72,31 +72,34 @@ function bestAirbnb(req, res) {
 
 	var query = `
 		WITH airbnb AS (
-			SELECT n.id, n.picture_url, h.host_url, h.host_name, n.name, p.accommodates, p.beds, p.price,
-				FLOOR(r.review_scores_rating) AS rating, l.latitude, l.longitude, n.listing_url
-			FROM airbnb_name n, airbnb_property p, airbnb_review r, airbnb_host h, airbnb_place l
-			WHERE n.id = p.id AND n.id = r.id AND n.id = h.id AND n.id = l.id
-				AND h.host_neighbourhood = '${inputNeighbourhood}'
+			SELECT n.id, n.picture_url, n.name, n.listing_url, h.host_url, h.host_name,
+				p.accommodates, p.beds, p.price, FLOOR(r.review_scores_rating) AS rating,
+        		l.latitude, l.longitude, l.round_latitude, l.round_longitude
+			FROM airbnb_name n
+				JOIN airbnb_property p ON n.id = p.id
+				JOIN airbnb_review r ON n.id = r.id
+				JOIN airbnb_host h ON n.id = h.id
+				JOIN round_airbnb_place l ON n.id = l.id
+			WHERE h.host_neighbourhood = '${inputNeighbourhood}'
 				AND p.accommodates >= ${inputAccomodates}
 				AND p.beds >= ${inputBeds} AND p.beds <= ${inputBeds} + 2
 				AND p.room_type = '${inputRoomType}'
 				AND p.price > ${inputPriceLow} AND p.price < ${inputPriceHigh}
 		), crime_count AS (
-			SELECT a.id, FLOOR(COUNT(*) / 9) AS num_crimes
-			FROM airbnb a, crime c
-			WHERE POWER((a.latitude - c.latitude) * 111139, 2)
-				+ POWER((a.longitude - c.longitude) * 111139, 2) < POWER(800, 2)
+			SELECT a.id, COUNT(*) AS num_crimes
+			FROM airbnb a JOIN round_crime c ON
+				(a.round_latitude, a.round_longitude) = (c.round_latitude, c.round_longitude)
 			GROUP BY a.id
 		), result AS (
 			SELECT a.picture_url, a.name, a.accommodates, a.beds, a.price, a.rating, c.num_crimes,
 				a.host_url, a.latitude, a.longitude, a.listing_url, a.host_name
 			FROM airbnb a JOIN crime_count c ON a.id = c.id
-			WHERE c.num_crimes < 100
+			WHERE c.num_crimes < 10
 			ORDER BY rating DESC
 			LIMIT 10
 		)
-		SELECT picture_url, name, accommodates, beds, price, IFNULL(rating, 'N/A') AS rating, num_crimes,
-			host_url, latitude, longitude, listing_url, host_name
+		SELECT picture_url, name, accommodates, beds, price, IFNULL(rating, 'N/A') AS rating,
+			num_crimes, host_url, latitude, longitude, listing_url, host_name
 		FROM result;
 	`;
 	connection.query(query, function(err, rows, fields) {

@@ -172,7 +172,7 @@ export default class BestAirbnb extends React.Component {
 					<br/>
 					<div class="jumbotron">
 						<div class="h1 text-primary">
-							Best Airbnb recommendation
+							Best Airbnb Recommendation
 						</div>
 
 						<br/>

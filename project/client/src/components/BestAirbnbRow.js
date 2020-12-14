@@ -60,7 +60,7 @@ export default class BestAirbnbRow extends React.Component {
 				</div>
 				<div class="row justify-content-md-center">
 					<div class="">
-						average number of crimes within half miles per month: {this.props.airbnbResults.num_crimes}
+						number of crimes within 0.1 miles in 2020: {this.props.airbnbResults.num_crimes}
 					</div>
 				</div>
 				<br/>

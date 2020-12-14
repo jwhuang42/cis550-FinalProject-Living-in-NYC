@@ -95,7 +95,7 @@ function bestAirbnb(req, res) {
 				a.host_url, a.latitude, a.longitude, a.listing_url, a.host_name
 			FROM airbnb a JOIN crime_count c ON a.id = c.id
 			WHERE c.num_crimes < 10
-			ORDER BY rating DESC
+			ORDER BY rating DESC, num_crimes, name
 			LIMIT 10
 		)
 		SELECT picture_url, name, accommodates, beds, price, IFNULL(rating, 'N/A') AS rating,
@@ -184,15 +184,14 @@ function bestHotel(req, res) {
 function getPopularFilmingPlaces(req, res){
 	var query = `
 		WITH popPlace AS(
-		SELECT neighborhood , Borough , count(*) as num
-		FROM movie_scene
-		GROUP BY neighborhood , Borough
-		ORDER BY num DESC
-		LIMIT 10
+			SELECT neighborhood , Borough , count(*) as num
+			FROM movie_scene
+			GROUP BY neighborhood , Borough
+			ORDER BY num DESC
+			LIMIT 10
 		)
 		SELECT m.latitude, m.longitude, m.film, m.imdb_link, m.neighborhood, m.Borough, m.scene_type
-		FROM movie_scene m
-		JOIN popPlace p ON (m.neighborhood, m.Borough) = (p.neighborhood, p.Borough)
+		FROM movie_scene m JOIN popPlace p ON (m.neighborhood, m.Borough) = (p.neighborhood, p.Borough)
 		ORDER BY p.num DESC
 		LIMIT 40;
 	`;

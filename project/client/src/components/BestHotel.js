@@ -220,7 +220,7 @@ export default class BestHotel extends React.Component {
 							<div class="form-row">
                 <label class="col-sm-3.5 mb-3 col-form-label">check the properties you care about </label>
                 <div class="col-1.5">
-									<div class="form-check mr-sm-1">
+									<div class="form-check mb-2 mr-sm-1">
 
 										<input class="form-check-input" type="checkbox" onChange={this.handleChange_service} id="gridCheck1"/>
 										<label class="form-check-label" for="gridCheck1">

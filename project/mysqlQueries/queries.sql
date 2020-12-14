@@ -71,13 +71,7 @@ LIMIT 10;
 
 
 -- Output Best Hotel based on User Requirements
-WITH hotel_rating AS (
-	SELECT name, street_address, hotel_class, postal_code, AVG(price) AS price, AVG(service) AS service,
-		AVG(cleanliness) AS cleanliness, AVG(value) AS value, AVG(location_score) AS location,
-		AVG(sleep_quality) AS sleep_quality, AVG(rooms) AS room, AVG(overall) AS overall
-	FROM hotel
-	GROUP BY name, street_address, hotel_class, postal_code
-), transformer AS (
+WITH transformer AS (
 	SELECT DISTINCT NEIGHBORHOOD, ZIPCODE
 	FROM zillow
 ), hotel_info AS (

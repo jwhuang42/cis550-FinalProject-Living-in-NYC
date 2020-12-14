@@ -33,3 +33,10 @@ SELECT id, calendar_last_scraped, number_of_reviews, number_of_reviews_ltm, numb
     calculated_host_listings_count_entire_homes, calculated_host_listings_count_private_rooms, 
     calculated_host_listings_count_shared_rooms, reviews_per_month
 FROM airbnb_listings;
+
+CREATE TABLE hotel_rating
+SELECT name, street_address, hotel_class, postal_code, AVG(price) AS price, AVG(service) AS service,
+	AVG(cleanliness) AS cleanliness, AVG(value) AS value, AVG(location_score) AS location,
+	AVG(sleep_quality) AS sleep_quality, AVG(rooms) AS room, AVG(overall) AS overall
+FROM hotel
+GROUP BY name, street_address, hotel_class, postal_code;

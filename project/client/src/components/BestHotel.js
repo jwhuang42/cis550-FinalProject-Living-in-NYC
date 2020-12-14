@@ -291,11 +291,11 @@ export default class BestHotel extends React.Component {
 						<br/>
 						<div className="container">
 							<div className="hotelResults-header">
-								<div className="header-lg"><strong>name</strong></div>
-								<div className="header-lg"><strong>street address</strong></div>
-								<div className="header"><strong>hotel class</strong></div>
-								<div className="header"><strong>price</strong></div>
-								<div className="header"><strong>average rating</strong></div>
+								<div className="header-lg"><strong>Name</strong></div>
+								<div className="header-lg"><strong>Street Address</strong></div>
+								<div className="header"><strong>Hotel Class</strong></div>
+								<div className="header"><strong>Price</strong></div>
+								<div className="header"><strong>Average Rating</strong></div>
 							</div>
 							<div className="hotelResults-container" id="results">
 								{this.state.result}

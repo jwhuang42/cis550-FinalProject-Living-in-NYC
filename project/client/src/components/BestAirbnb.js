@@ -14,11 +14,11 @@ export default class BestAirbnb extends React.Component {
 
 
 			neighborhood: "Midtown",
-			accomodates: "",
-			bed: "",
-			roomType: "",
-			price_low: "",
-			price_high: "",
+			accomodates: "2",
+			bed: "1",
+			roomType: "Entire home/apt",
+			price_low: "10",
+			price_high: "300",
 
 			result: [],
 

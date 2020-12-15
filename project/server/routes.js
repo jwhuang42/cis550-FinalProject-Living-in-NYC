@@ -261,6 +261,22 @@ function numMovies(req, res) {
 	});
 }
 
+function rsratio(req, res) {
+	var query = `
+		SELECT s.countyName, r.RegionName AS zipcode, r.rent_avg / s.house_avg AS rent_sale_ratio
+		FROM zillow_zori r JOIN zillow_zhvi s ON r.RegionID = s.RegionID
+		WHERE r.RegionName = s.Zipcode
+		ORDER BY rent_sale_ratio DESC
+	`;
+	connection.query(query, function(err, rows, fields) {
+		if (err) console.log(err);
+		else {
+			console.log(rows);
+			res.json(rows);
+		}
+	});
+}
+
 
 
 // change the above
@@ -278,5 +294,6 @@ module.exports = {
 
 	avgRating: avgRating,
 	newHosts: newHosts,
-	numMovies: numMovies
+	numMovies: numMovies,
+	rsratio: rsratio
 }

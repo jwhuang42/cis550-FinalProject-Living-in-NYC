@@ -1,7 +1,7 @@
 -- Output Best Airbnb based on User Requirements --
 WITH airbnb AS (
-	SELECT n.id, n.picture_url, n.name, n.listing_url, h.host_url, h.host_name, 
-		p.accommodates, p.beds, p.price, FLOOR(r.review_scores_rating) AS rating, 
+	SELECT n.id, n.picture_url, n.name, n.listing_url, h.host_url, h.host_name,
+		p.accommodates, p.beds, p.price, FLOOR(r.review_scores_rating) AS rating,
         l.latitude, l.longitude
 	FROM airbnb_name n, airbnb_property p, airbnb_review r, airbnb_host h, airbnb_place l
 	WHERE n.id = p.id AND n.id = r.id AND n.id = h.id AND n.id = l.id
@@ -24,20 +24,20 @@ WITH airbnb AS (
 	ORDER BY rating DESC, num_crimes, name
 	LIMIT 10
 )
-SELECT picture_url, name, accommodates, beds, price, IFNULL(rating, 'N/A') AS rating, 
+SELECT picture_url, name, accommodates, beds, price, IFNULL(rating, 'N/A') AS rating,
 	num_crimes, host_url, latitude, longitude, listing_url, host_name
 FROM result;
 
 -- Optimized Airbnb --
 WITH airbnb AS (
-	SELECT n.id, n.picture_url, n.name, n.listing_url, h.host_url, h.host_name, 
-		p.accommodates, p.beds, p.price, FLOOR(r.review_scores_rating) AS rating, 
+	SELECT n.id, n.picture_url, n.name, n.listing_url, h.host_url, h.host_name,
+		p.accommodates, p.beds, p.price, FLOOR(r.review_scores_rating) AS rating,
         l.latitude, l.longitude, l.round_latitude, l.round_longitude
 	FROM airbnb_name n
 		JOIN airbnb_property p ON n.id = p.id
 		JOIN airbnb_review r ON n.id = r.id
 		JOIN airbnb_host h ON n.id = h.id
-		JOIN round_airbnb_place l ON n.id = l.id 
+		JOIN round_airbnb_place l ON n.id = l.id
 	WHERE h.host_neighbourhood = 'Midtown'
 		AND p.accommodates >= 1
 		AND p.beds >= 1 AND p.beds <= 3
@@ -46,7 +46,7 @@ WITH airbnb AS (
 	ORDER BY l.latitude, l.longitude
 ), crime_count AS (
 	SELECT a.id, COUNT(*) AS num_crimes
-	FROM airbnb a JOIN round_crime c ON 
+	FROM airbnb a JOIN round_crime c ON
 		(a.round_latitude, a.round_longitude) = (c.round_latitude, c.round_longitude)
 	GROUP BY a.id
 ), result AS (
@@ -57,7 +57,7 @@ WITH airbnb AS (
 	ORDER BY rating DESC, num_crimes, name
 	LIMIT 10
 )
-SELECT picture_url, name, accommodates, beds, price, IFNULL(rating, 'N/A') AS rating, 
+SELECT picture_url, name, accommodates, beds, price, IFNULL(rating, 'N/A') AS rating,
 	num_crimes, host_url, latitude, longitude, listing_url, host_name
 FROM result;
 
@@ -134,3 +134,10 @@ WHERE neighbourhood = 'CHELSEA'
     AND room >= 4
 ORDER BY overall DESC
 LIMIT 10;
+
+-- Find the rent and sale ratio of properties in the same region. 
+-- High rent and sale ratio means buying properties in that region tends to give houselords more profit
+SELECT s.countyName, r.RegionName AS zipcode, r.rent_avg / s.house_avg AS rent_sale_ratio
+FROM zillow_zori r JOIN zillow_zhvi s ON r.RegionID = s.RegionID
+WHERE r.RegionName = s.Zipcode
+ORDER BY rent_sale_ratio DESC

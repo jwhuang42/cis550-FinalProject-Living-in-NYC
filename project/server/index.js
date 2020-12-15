@@ -69,7 +69,7 @@ app.get('/movies/popular', routes.getPopularFilmingPlaces);
 app.get('/funfacts/avgRating', routes.avgRating);
 app.get('/funfacts/newHosts', routes.newHosts);
 app.get('/funfacts/numMovies', routes.numMovies);
-
+app.get('/funfacts/rsratio', routes.rsratio);
 
 
 app.listen(8081, () => {

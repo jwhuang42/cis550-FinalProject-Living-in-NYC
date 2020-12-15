@@ -12,23 +12,12 @@ export default class BestAirbnb extends React.Component {
 		super(props);
 
 		this.state = {
-<<<<<<< HEAD
-
-
-			neighborhood: "Midtown",
-			accomodates: "2",
-			bed: "1",
-			roomType: "Entire home/apt",
-			price_low: "10",
-			price_high: "300",
-=======
 			neighborhood: "",
 			accomodates: "",
 			bed: "",
 			roomType: "",
 			priceLow: "",
 			priceHigh: "",
->>>>>>> ff301347361201cd77a54fbf62941e3ac72ec866
 
 			result: [],
 			mapResult: [],
@@ -175,78 +164,6 @@ export default class BestAirbnb extends React.Component {
 
 	render() {
 		return (
-<<<<<<< HEAD
-			<div className="BestGenres">
-				<PageNavbar active="bestgenres" />
-
-				<div className="container bestgenres-container">
-			      <div className="jumbotron">
-			        <div className="h5">Best Bnb recommendation</div>
-
-			        <div className="years-container">
-			          <div className="dropdown-container">
-
-									<div class="row">
-
-
-										<span class="label info">Enter your preferred neighborhood:</span>
-
-										<input type='text' placeholder="Enter Neighborhood" value={this.state.neighborhood} onChange={this.handleChange_neighborhood} id="neighborhood" className="neighborhood_input"/>
-									</div>
-									<div class="row"><p></p></div>
-									<div class="row">
-										<div class="col-4">
-											<select value={this.state.accomodates} onChange={this.handleChange_accomodates} className="dropdown" id="accomodatesDropdown">
-					            	<option select value> -- select accomodates -- </option>
-					            	{this.state.accomodates_list}
-					            </select>
-										</div>
-										<div class="col-4">
-											<select value={this.state.bed} onChange={this.handleChange_bed} className="dropdown" id="bedsDropdown">
-					            	<option select value> -- select bed number -- </option>
-					            	{this.state.beds_list}
-					            </select>
-										</div>
-										<div class="col-4">
-											<select value={this.state.roomType} onChange={this.handleChange_roomType} className="dropdown" id="room_typeDropdown">
-					            	<option select value> -- select room type -- </option>
-					            	{this.state.room_type_list}
-					            </select>
-										</div>
-									</div>
-									<div class="row"><p></p></div>
-									<div class="row">
-										<div class="col-4">
-											<input type='text' placeholder="Enter price_low" value={this.state.price_low} onChange={this.handleChange_price_low} id="pl" className="price_low-input"/>
-										</div>
-										<div class="col-4">
-											<input type='text' placeholder="Enter price_high" value={this.state.price_high} onChange={this.handleChange_price_high} id="ph" className="price_high-input"/>
-										</div>
-										<div class="col-4">
-			            		<button className="submit-btn" id="decadesSubmitBtn" onClick={this.submitResult}>Search</button>
-										</div>
-									</div>
-			          </div>
-			        </div>
-			      </div>
-			      <div className="jumbotron">
-
-			          <div className="airbnb-head">
-
-			            <div class="row" className="header"><strong>You May like: </strong></div>
-
-			          </div>
-			          <div className="movies-container" id="results">
-									<div class="row">
-										<div class="col-lg-4">
-			            		{this.state.result}
-										</div>
-									</div>
-			          </div>
-
-			      </div>
-			    </div>
-=======
 			<div className="BestAirbnb">
 				<PageNavbar active="bestairbnb" />
 
@@ -344,7 +261,6 @@ export default class BestAirbnb extends React.Component {
 						</div>
 					</div>
 				</div>
->>>>>>> ff301347361201cd77a54fbf62941e3ac72ec866
 			</div>
 		);
 	}

@@ -28,25 +28,39 @@
   position: relative;
   left: 200px;
   top:-10px;
+<<<<<<< HEAD
   width:300px;
 
+=======
+
+
+>>>>>>> ff301347361201cd77a54fbf62941e3ac72ec866
 }
 .dropdown{
   font-size: 25px;
   color:gray;
   width:300px;
 }
+<<<<<<< HEAD
 #accomodatesDropdown{
   position: relative;
   right: 15px;
 }
 #pl{
+=======
+/* #accomodatesDropdown{
+  position: relative;
+  right: 15px;
+} */
+/* #pl{
+>>>>>>> ff301347361201cd77a54fbf62941e3ac72ec866
   position: relative;
   right:15px;
   top:10px;
   font-size: 25px;
   text-align: center;
   width:300px;
+<<<<<<< HEAD
 }
 #ph{
   position: relative;
@@ -68,12 +82,38 @@ button{
   width: 350px;
   height: 300px;
 
+=======
+>>>>>>> ff301347361201cd77a54fbf62941e3ac72ec866
 }
+#ph{
+  position: relative;
 
+  top:10px;
+  font-size: 25px;
+  text-align: center;
+  width:300px;
+} */
+/* button{
+  position: relative;
+
+  top:10px;
+  font-size: 25px;
+  text-align: center;
+  width:300px;
+} */
+
+.border-3{
+  border-width: thick
+}
 .airbnbResults{
   background-color: #e6eff4;
 
 }
+<<<<<<< HEAD
 .jumbotron {
     background: none;
+=======
+.head-jumbotron {
+
+>>>>>>> ff301347361201cd77a54fbf62941e3ac72ec866
 }

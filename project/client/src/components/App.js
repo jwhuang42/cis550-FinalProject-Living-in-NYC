@@ -7,7 +7,9 @@ import {
 // import Dashboard from './Dashboard';
 
 import BestAirbnb from './BestAirbnb';
-
+import BestHotel from './BestHotel';
+import BestPlace from './BestPlace';
+import FunFacts from './FunFacts';
 
 export default class App extends React.Component {
 
@@ -25,12 +27,32 @@ export default class App extends React.Component {
 						/>
 						<Route
 							exact
-							path="/dashboard"
+							path="/bestairbnb"
 							render={() => (
 								<BestAirbnb />
 							)}
 						/>
-
+						<Route
+							exact
+							path="/besthotel"
+							render={() => (
+								<BestHotel />
+							)}
+						/>
+						<Route
+							exact
+							path="/bestplace"
+							render={() => (
+								<BestPlace />
+							)}
+						/>
+						<Route
+							exact
+							path="/funfacts"
+							render={() => (
+								<FunFacts />
+							)}
+						/>
 					</Switch>
 				</Router>
 			</div>

@@ -1,0 +1,69 @@
+.h5{
+  position: relative;
+  top:-50px;
+  right:15px;
+}
+
+.info {
+  background-color: #2196F3;
+} /* Blue */
+
+.btninfo{
+  position: relative;
+  top: 10px;
+  font-size: 16px;
+  text-align: center;
+  width: 600px;
+}
+
+.border-3{
+  border-width: thick
+}
+
+.container .results-header {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  height: 40px;
+}
+
+.results-header .header-lg {
+  flex: 1 0 50%;
+}
+
+.results-header .header {
+  flex: 1 0 25%;
+}
+
+.results-container .FunFactsAvgRatingResults {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  height: 40px;
+}
+
+.results-container .FunFactsNewHostsResults {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  height: 40px;
+}
+
+.results-container .FunFactsNumMoviesResults {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  height: 40px;
+}
+
+.FunFactsAvgRatingResults .host_neighbourhood, .FunFactsAvgRatingResults .count, .FunFactsAvgRatingResults .avg_rating {
+  flex: 1 0 25%;
+}
+
+.FunFactsNewHostsResults .year, .FunFactsNewHostsResults .num {
+  flex: 1 0 25%;
+}
+
+.FunFactsNumMoviesResults .neighborhood, .FunFactsNumMoviesResults .Borough, .FunFactsNumMoviesResults .num {
+  flex: 1 0 25%;
+}

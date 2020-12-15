@@ -1,0 +1,44 @@
+.container .results-header {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  height: 40px;
+}
+
+.results-header .header-lg {
+  flex: 1 0 50%;
+}
+
+.results-header .header {
+  flex: 1 0 25%;
+}
+
+.container .hotelResults-header {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  height: 40px;
+}
+
+.hotelResults-header .header-lg {
+  flex: 1 0 25%;
+}
+
+.hotelResults-header .header {
+  flex: 1 0 10%;
+}
+
+.hotelResults-container .hotelResults {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  height: 40px;
+}
+
+.hotelResults .name, .hotelResults .street_address {
+  flex: 1 0 25%;
+}
+
+.hotelResults .class, .hotelResults .price, .hotelResults .overall {
+  flex: 1 0 10%;
+}

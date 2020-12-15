@@ -28,7 +28,8 @@
   position: relative;
   left: 200px;
   top:-10px;
-<<<<<<< HEAD
+  }
+/* <<<<<<< HEAD
   width:300px;
 
 =======
@@ -47,7 +48,7 @@
   right: 15px;
 }
 #pl{
-=======
+======= */
 /* #accomodatesDropdown{
   position: relative;
   right: 15px;
@@ -108,12 +109,4 @@ button{
 .airbnbResults{
   background-color: #e6eff4;
 
-}
-<<<<<<< HEAD
-.jumbotron {
-    background: none;
-=======
-.head-jumbotron {
-
->>>>>>> ff301347361201cd77a54fbf62941e3ac72ec866
 }

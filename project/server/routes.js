@@ -86,8 +86,8 @@ function bestAirbnb(req, res) {
 				AND p.room_type = '${inputRoomType}'
 				AND p.price > ${inputPriceLow} AND p.price < ${inputPriceHigh}
 		), crime_count AS (
-			SELECT a.id, COUNT(*) AS num_crimes
-			FROM airbnb a JOIN round_crime c ON
+			SELECT a.id, COUNT(c.round_latitude) AS num_crimes
+			FROM airbnb a LEFT JOIN round_crime c ON
 				(a.round_latitude, a.round_longitude) = (c.round_latitude, c.round_longitude)
 			GROUP BY a.id
 		), result AS (
@@ -267,6 +267,7 @@ function rsratio(req, res) {
 		FROM zillow_zori r JOIN zillow_zhvi s ON r.RegionID = s.RegionID
 		WHERE r.RegionName = s.Zipcode
 		ORDER BY rent_sale_ratio DESC
+		LIMIT 20
 	`;
 	connection.query(query, function(err, rows, fields) {
 		if (err) console.log(err);

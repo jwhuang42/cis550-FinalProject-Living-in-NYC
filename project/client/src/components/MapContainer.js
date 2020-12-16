@@ -41,8 +41,8 @@ export class MapContainer extends React.Component {
       <div class="hostLink">
         <p>price: {price}</p>
         <p>rating: {rating}</p>
-        <p>please <a href = {listing_url}>click here</a> to check more detailed infomation of the listing. </p>
-        <p> contact <a href = {host_url}>{host_name}</a> to start an amazing journey! </p>
+        <p>please <a href = {listing_url} target="popup">click here</a> to check more detailed infomation of the listing. </p>
+        <p> contact <a href = {host_url} target="popup">{host_name}</a> to start an amazing journey! </p>
       </div>
     );
   }
@@ -51,7 +51,7 @@ export class MapContainer extends React.Component {
     // additional icons: https://sites.google.com/site/gmapsdevelopment/
     return (
       <div class="imdmLink">
-        <p>This place is used for a {scene} scene, please <a href = {link}>click here</a> for more: </p>
+        <p>This place is used for a {scene} scene, please <a href = {link} target="popup">click here</a> for more: </p>
       </div>
     );
 

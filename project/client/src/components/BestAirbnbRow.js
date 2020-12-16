@@ -33,7 +33,7 @@ export default class BestAirbnbRow extends React.Component {
 			<div class="container">
 				<div class="row justify-content-md-center" >
 					<div class="col-4">
-						<a href = {this.props.airbnbResults.picture_url}>
+						<a href = {this.props.airbnbResults.picture_url} target="popup">
 							<img src={this.props.airbnbResults.picture_url} class="img-fluid rounded border border-primary border-3" alt="Apartment" />
 						</a>
 					</div>

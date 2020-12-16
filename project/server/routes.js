@@ -157,7 +157,7 @@ function bestHotel(req, res) {
 		)
 		SELECT name, street_address, class, price, overall
 		FROM hotel_info
-		WHERE neighbourhood = '${inputNeighbourhood}'
+		WHERE neighbourhood LIKE '%${inputNeighbourhood}%'
 			AND price >= ${inputPriceLow} AND price <= ${inputPriceHigh}
 			AND class >= ${inputClass}
 			AND service >= ${inputService}

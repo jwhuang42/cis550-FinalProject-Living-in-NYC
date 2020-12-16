@@ -170,8 +170,14 @@ export default class BestHotel extends React.Component {
 			var room = 0;
 		};
 
+		if (this.state.class.includes('care')) {
+			var cls = 0;
+		} else {
+			var cls = this.state.class;
+		};
+
 		fetch("http://localhost:8081/hotel/" + this.state.neighborhood + "&" + this.state.priceLow
-			+ "&" + this.state.priceHigh + "&" + this.state.class + "&" + service + "&" + cleanliness
+			+ "&" + this.state.priceHigh + "&" + cls + "&" + service + "&" + cleanliness
 			+ "&" + value + "&" + location + "&" + sleepQuality + "&" + room, {
 			method: 'GET' // The type of HTTP request.
 		})

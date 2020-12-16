@@ -267,7 +267,7 @@ function rsratio(req, res) {
 		FROM zillow_zori r JOIN zillow_zhvi s ON r.RegionID = s.RegionID
 		WHERE r.RegionName = s.Zipcode
 		ORDER BY rent_sale_ratio DESC
-		LIMIT 20
+		LIMIT 20;
 	`;
 	connection.query(query, function(err, rows, fields) {
 		if (err) console.log(err);

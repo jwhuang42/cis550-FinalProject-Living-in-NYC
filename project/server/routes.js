@@ -184,9 +184,9 @@ function bestHotel(req, res) {
 function getPopularFilmingPlaces(req, res){
 	var query = `
 		WITH popPlace AS(
-			SELECT neighborhood , Borough , count(*) as num
+			SELECT neighborhood, Borough, COUNT(*) as num
 			FROM movie_scene
-			GROUP BY neighborhood , Borough
+			GROUP BY neighborhood, Borough
 			ORDER BY num DESC
 			LIMIT 10
 		)

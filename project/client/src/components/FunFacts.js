@@ -110,9 +110,9 @@ export default class FunFacts extends React.Component {
 
 				// Set the state of the header and result to the value returned by the HTTP response from the server.
 				this.setState({
-					header: [<div className="header"><strong>zipcode</strong></div>,
-							 <div className="header"><strong>county_name</strong></div>,
-							 <div className="header"><strong>rent_sale_ratio</strong></div>],
+					header: [<div className="header"><strong>Zipcode</strong></div>,
+							 <div className="header"><strong>County</strong></div>,
+							 <div className="header"><strong>Rent-Sale Ratio</strong></div>],
 					result: rsDivs
 				})
 			})
@@ -166,7 +166,7 @@ export default class FunFacts extends React.Component {
 							<div class="col-3"></div>
 							<div class="col-6">
 								<button type="button" class="btninfo btn-block btn-info" onClick={this.showRatio}>
-									The place where houselord gets most profit
+									The Place where Houselord Gets the most Profit
 								</button>
 							</div>
 						</div>

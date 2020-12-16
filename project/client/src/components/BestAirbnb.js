@@ -24,9 +24,8 @@ export default class BestAirbnb extends React.Component {
 
 			accomodates_list: [],
 			beds_list: [],
-			room_type_list: [],
+			room_type_list: []
 
-			result: []
 		};
 
 		this.submitResult = this.submitResult.bind(this);
@@ -136,6 +135,14 @@ export default class BestAirbnb extends React.Component {
 		console.log("neighborhood is: " + this.state.neighborhood)
 		console.log("price low is: " + this.state.priceLow)
 		console.log("price high is: " + this.state.priceHigh)
+		if(this.state.neighborhood === undefined){
+			this.setState({
+			  result: [],
+				mapResult: []
+			})
+			return;
+		}
+
 		var rmType = this.state.roomType.replace(/ /g,"_");
 		rmType = rmType.replace("/","q")
 

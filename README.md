@@ -23,6 +23,6 @@ Database: MySQL containing the designed and optimized 3NF database of Airbnb, Zi
 **How to run the app** 
 
 1. clone the source code
-2. change the db-config file under ```<Your path>/cis550/project/server/db-config.js``` with your local database and populate the tables required
+2. change the db-config file under ```<Your path>/cis550/project/server/db-config.js``` to the setup your local database and populate the tables required
 3. change directory into ```<Your path>/cis550/project/server``` and enter ```npm install``` and ```npm start``` to start the server
 4. change directory into ```<Your path>/cis550/project/client``` and enter ```npm install``` and ```npm start``` to start the client

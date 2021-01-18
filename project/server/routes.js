@@ -79,7 +79,7 @@ function bestAirbnb(req, res) {
 				JOIN airbnb_property p ON n.id = p.id
 				JOIN airbnb_review r ON n.id = r.id
 				JOIN airbnb_host h ON n.id = h.id
-				JOIN round_airbnb_place l ON n.id = l.id
+				JOIN airbnb_place l ON n.id = l.id
 			WHERE h.host_neighbourhood = '${inputNeighbourhood}'
 				AND p.accommodates >= ${inputAccomodates}
 				AND p.beds >= ${inputBeds} AND p.beds <= ${inputBeds} + 2
@@ -87,7 +87,7 @@ function bestAirbnb(req, res) {
 				AND p.price > ${inputPriceLow} AND p.price < ${inputPriceHigh}
 		), crime_count AS (
 			SELECT a.id, COUNT(c.round_latitude) AS num_crimes
-			FROM airbnb a LEFT JOIN round_crime c ON
+			FROM airbnb a LEFT JOIN crime c ON
 				(a.round_latitude, a.round_longitude) = (c.round_latitude, c.round_longitude)
 			GROUP BY a.id
 		), result AS (
@@ -150,12 +150,12 @@ function bestHotel(req, res) {
 			SELECT DISTINCT h.name, h.street_address, t.NEIGHBORHOOD AS neighbourhood, h.price,
 				IFNULL(h.hotel_class, 0) AS class, IFNULL(h.service, 0) AS service,
 				IFNULL(h.cleanliness, 0) AS cleanliness, IFNULL(h.value, 0) AS value,
-				IFNULL(h.location, 0) AS location, IFNULL(h.sleep_quality, 0) AS sleep_quality,
-				IFNULL(h.room, 0) AS room, h.overall
-			FROM hotel_rating h JOIN transformer t ON h.postal_code = t.ZIPCODE
+				IFNULL(h.location_score, 0) AS location, IFNULL(h.sleep_quality, 0) AS sleep_quality,
+				IFNULL(h.rooms, 0) AS room, h.overall
+			FROM hotel h JOIN transformer t ON h.postal_code = t.ZIPCODE
 			ORDER BY name
 		)
-		SELECT name, street_address, class, price, overall
+		SELECT DISTINCT name, street_address, class, price, overall
 		FROM hotel_info
 		WHERE neighbourhood LIKE '%${inputNeighbourhood}%'
 			AND price >= ${inputPriceLow} AND price <= ${inputPriceHigh}

@@ -118,6 +118,7 @@ export default class BestHotel extends React.Component {
 				);
 				this.setState({
 					class_list: classDivs,
+					result: [""]
 				})
 			})
 			.catch(err => console.log(err))
@@ -309,13 +310,7 @@ export default class BestHotel extends React.Component {
 
 						<br/>
 						<div className="container">
-							<div className="hotelResults-header">
-								<div className="header-lg"><strong>Name</strong></div>
-								<div className="header-lg"><strong>Street Address</strong></div>
-								<div className="header"><strong>Hotel Class</strong></div>
-								<div className="header"><strong>Price</strong></div>
-								<div className="header"><strong>Average Rating</strong></div>
-							</div>
+							{getHeader(this.state.result)}
 							<div className="hotelResults-container" id="results">
 								{this.state.result}
 							</div>
@@ -324,5 +319,23 @@ export default class BestHotel extends React.Component {
 				</div>
 			</div>
 		);
+	}
+}
+
+function getHeader(result){
+
+	if (result.length > 0){
+		return (
+			<div className="hotelResults-header">
+				<div className="header-lg"><strong>Name</strong></div>
+				<div className="header-lg"><strong>Street Address</strong></div>
+				<div className="header"><strong>Hotel Class</strong></div>
+				<div className="header"><strong>Price</strong></div>
+				<div className="header"><strong>Average Rating</strong></div>
+			</div>
+		);
+
+	}else{
+		return <div class="p-3 text">ops... no matching result based on your given condition</div>
 	}
 }

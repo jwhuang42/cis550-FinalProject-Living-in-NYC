@@ -69,7 +69,7 @@ export class MapContainer extends React.Component {
             google={this.props.google}
             zoom={this.state.nyc[0].film === undefined? 11: 12}
             style={mapStyles}
-            initialCenter={{ lat: 40.7528, lng: -74.0060}}  //center of nyc
+            initialCenter={this.state.nyc? {lat: this.state.nyc[0].latitude, lng: this.state.nyc[0].longitude}: { lat: 40.7528, lng: -74.0060}}  //center of nyc { lat: 40.7528, lng: -74.0060}
           >
               {this.state.nyc.map((info, index) => {
                 if (info.film !== undefined){

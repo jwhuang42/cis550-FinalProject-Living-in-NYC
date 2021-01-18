@@ -15,7 +15,7 @@ visualization.
 
 Frontend: ReactJS with Bootstrap and CSS for styling, google-maps-react for displaying the map.
 
-Backend: NodeJS handle http request and communicate with the database.
+Backend: Express(.js) on Node server handle http request and communicate with the database.
 
 Database: MySQL containing the designed and optimized 3NF database of Airbnb, Zillow, Hotel, Crime report, Movie scene in NYC on AWS (contact me for the data used in this app).
 
